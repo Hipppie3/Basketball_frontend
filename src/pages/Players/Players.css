@@ -1,0 +1,51 @@
+.player-container {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ background-color: black;
+}
+
+.player-title {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-top: 2rem;
+}
+
+.player-card-container {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+ grid-gap: 30px;
+ margin: 2rem;
+}
+
+.playerCard {
+ display: flex;
+ flex-direction: column;
+ height: 400px;
+ align-items: center;
+ justify-content: center;
+ background-color: #0fd8ea;
+ border-radius: 8px;
+ padding: 10px;
+ text-align: center;
+}
+
+.player-image {
+ flex: .8;
+ width: 100%;
+ height: auto;
+ max-height: 80%;
+ object-fit: cover;
+ border-radius: 8px;
+ background-color: rgb(255, 255, 255);
+ border: 1px solid black;
+}
+
+.player-name {
+ flex: .2;
+ margin-top: 10px;
+ text-decoration: none;
+ font-size: 30px;
+ color: white;
+}

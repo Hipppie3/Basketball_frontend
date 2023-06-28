@@ -4,7 +4,8 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
 import Media from './pages/Media'
-import Players from './pages/Players'
+import Players from './pages/Players/Players'
+import PlayersPage from './pages/Players/PlayersPage'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/about" element={<About/>} />
       <Route path="/media" element={<Media/>} />
       <Route path="/players" element={<Players />} />
+      <Route path='/players/:id' element={<PlayersPage />} />
     </Routes>
     </div>
   )
