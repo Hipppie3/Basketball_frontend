@@ -1,27 +1,25 @@
-import { useEffect, useState } from 'react'
 import './App.css'
-import axios from 'axios'
+import { Routes, Route } from 'react-router-dom' 
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import About from './pages/About'
+import Media from './pages/Media'
+import Players from './pages/Players'
+
 
 function App() {
-const [ stats, setStats ] = useState([])
-
-useEffect(()=> {
-  axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players')
-    .then((response) => {
-      setStats(response.data);
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-},[]);
 
 
   return (
-    <>
-    {stats.map((stat) => (
-    <h1 key={stat.id}>{stat.first_name}</h1>
-    ))}
-    </>
+    <div>
+      <Navbar />
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path="/about" element={<About/>} />
+      <Route path="/media" element={<Media/>} />
+      <Route path="/players" element={<Players />} />
+    </Routes>
+    </div>
   )
 }
 
