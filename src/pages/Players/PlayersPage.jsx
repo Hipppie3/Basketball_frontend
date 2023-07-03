@@ -31,7 +31,6 @@ function PlayerPage() {
       try {
         const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
         setPlayer(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Something went wrong:', error);
       }
@@ -45,35 +44,33 @@ function PlayerPage() {
   }
 
 console.log(player);
-console.log()
   return (
      <div className="players">
       <section className="players-container">
-
         <div className="players-profile">
-          <img className={player.first_name === "Lynn haiep" ? "lynn" : "hiep"} src={player.image} alt="hiep"/>
+          <img className={player.player.first_name === "Lynn haiep" ? "lynn" : "hiep"} src={player.image} alt="hiep"/>
           <div className="profile-information">
             <h3 className="position">Park Crew | #0 | Point Guard</h3>
-            <h1 className="name">{player.first_name} <br/>{player.last_name}</h1>
+            <h1 className="name">{player.player.first_name} <br/>{player.player.last_name}</h1>
           </div>
         </div>
-    
-       <div className="players-info">
+    {player.statistics.map((stat) => (
+       <div className="players-info" key={id}>
           <div className="left-section">
             <div className="players-avg">
-              <span className="avg">PPG</span> <span className="avg-num">8.6</span>
+              <span className="avg">PPG</span> <span className="avg-num">{stat.ppg}</span>
             </div>
             <div className="players-avg">
-              <span className="avg">RBG</span> <span className="avg-num">12.3</span>
+              <span className="avg">RBG</span> <span className="avg-num">{stat.rbg}</span>
             </div>
             <div className="players-avg">
-              <span className="avg">APG</span> <span className="avg-num">1.0</span>
+              <span className="avg">APG</span> <span className="avg-num">{stat.apg}</span>
             </div>
             <div className="players-avg">
-              <span className="avg">SPG</span> <span className="avg-num">0.8</span>
+              <span className="avg">SPG</span> <span className="avg-num">{stat.spg}</span>
             </div>
             <div className="players-avg">
-              <span className="avg">BPG</span> <span className="avg-num">4.3</span>
+              <span className="avg">BPG</span> <span className="avg-num">{stat.bpg}</span>
             </div>
           </div>
 
@@ -92,6 +89,7 @@ console.log()
             </div>    
           </div>
         </div>
+    ))}
 
         <div className="players-link-container">
           <div className="players-link-left">
@@ -174,7 +172,7 @@ console.log()
             
 
 
- {player.stats.map((stat) => (
+ {player.statistics.map((stat) => (
         <div key={stat.id}>
             <div className="game-row">
               <div className="game-date">JAN 22, 2023</div>

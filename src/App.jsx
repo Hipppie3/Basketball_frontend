@@ -4,8 +4,9 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
 import Media from './pages/Media'
-import Players from './pages/Players/Players'
-import PlayersPage from './pages/Players/PlayersPage'
+import Players from './pages/players/Players'
+import PlayersPage from './pages/players/PlayersPage'
+import PlayersForm from './pages/players/playersForm/PlayersForm'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
     <Routes>
       <Route path='/' element={<Home />} />
+      <Route path="/playersform" element={<PlayersForm/>} />
       <Route path="/about" element={<About/>} />
       <Route path="/media" element={<Media/>} />
       <Route path="/players" element={<Players />} />

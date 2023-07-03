@@ -1,0 +1,62 @@
+.addNewPlayerContainer{
+ display: flex;
+ flex-direction: column;
+}
+
+.addPlayerTitle {
+ margin-left: 3.5rem;
+}
+
+.newPlayer {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ width: 350px;
+ height: 150px;
+ border: 1px solid black;
+ gap: 10px;
+ margin-top: 1rem;
+}
+
+
+.newPlayerInput {
+ margin-left: 1rem;
+ width: 200px;
+ height: 30px;
+}
+
+.addPlayerBtn {
+ margin-top: 1rem;
+ width: 200px;
+ height: 20px;
+ margin-left: 6rem;
+}
+
+.deletePlayerTitle {
+ margin-left: 4rem;
+ margin-top: 1rem;
+}
+
+.deletePlayer {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ margin-top: 1rem;
+ width: 350px;
+ height: 100px;
+ border: 1px solid black;
+}
+.deletePlayerInput {
+ margin-left: 1rem;
+ width: 200px;
+ height: 30px;
+}
+
+.deletePlayerBtn {
+ margin-top: 1rem;
+ width: 200px;
+ height: 20px;
+ margin-left: 5.5rem;
+}
