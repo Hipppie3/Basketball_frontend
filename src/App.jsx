@@ -4,9 +4,9 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
 import Media from './pages/Media'
-import Players from './pages/Players/Players'
-import PlayersPage from './pages/Players/PlayersPage'
-import PlayersForm from './pages/Players/playersForm/PlayersForm'
+import Players from './pages/playersFolder/Players'
+import PlayersPage from './pages/playersFolder/PlayersPage'
+import PlayersForm from './pages/playersFolder/playersForm/PlayersForm'
 
 
 function App() {
