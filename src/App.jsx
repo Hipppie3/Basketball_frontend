@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
 import Media from './pages/Media'
-import Players from './pages/players/Players'
+// import Players from './pages/players/Players'
 import PlayersPage from './pages/players/PlayersPage'
 import PlayersForm from './pages/players/playersForm/PlayersForm'
 
@@ -20,7 +20,7 @@ function App() {
       <Route path="/playersform" element={<PlayersForm/>} />
       <Route path="/about" element={<About/>} />
       <Route path="/media" element={<Media/>} />
-      <Route path="/players" element={<Players />} />
+      {/* <Route path="/players" element={<Players />} /> */}
       <Route path='/players/:id' element={<PlayersPage />} />
     </Routes>
     </div>
