@@ -5,7 +5,7 @@ import video1 from '../videos/a.mp4';
 import video2 from '../videos/b.mp4';
 import './PlayersPage.css'
 
-function PlayerPage() {
+function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const videos = [video1, video2, video1, video2, video1, video2]; // Add more videos as needed
   const { id } = useParams();
@@ -293,4 +293,4 @@ console.log(player);
   );
 }
 
-export default PlayerPage;
+export default PlayersPage;
