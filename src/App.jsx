@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
 import Media from './pages/Media'
-import Players from './pages/Players'
+import Players from './pages/players/Players'
 // import PlayersPage from './pages/players/PlayersPage'
 // import PlayersForm from './pages/players/playersForm/PlayersForm'
 
