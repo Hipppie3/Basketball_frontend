@@ -32,7 +32,7 @@ function AddNewPlayers() {
   return (
    <div className="addNewPlayerContainer">
     <h1 className="addPlayerTitle">Add New Player</h1>
-      <div >
+
       <form onSubmit={handlePlayerSubmit} className="newPlayer">
         <label className="newPlayerLabel">
           First Name:
@@ -72,7 +72,7 @@ function AddNewPlayers() {
         <button type="submit" className="deletePlayerBtn">Delete Player</button>
       </form>
     </div>
-    </div>
+
   )
 }
 
