@@ -29,9 +29,9 @@ function AddNewPlayers() {
 
   const handleDeletePlayer = async () => {
     try {
-      await axios.delete(`api/players/${deletePlayerId}`);
+      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${deletePlayerId}`);
       // Reset form values
-      setId('');
+      setDeletePlayerId('');
     } catch (error) {
       console.error(error);
     }
