@@ -10,7 +10,7 @@ function AddNewPlayers() {
 
   const handlePlayerSubmit = async (e) => {
   e.preventDefault();
-
+    console.log('Hi')
   try {
     const response = await axios.post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players', {
       player: {
