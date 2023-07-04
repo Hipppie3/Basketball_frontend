@@ -5,7 +5,7 @@ import axios from 'axios';
 function AddNewPlayers() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-
+  const [deletePlayerId, setDeletePlayerId] = useState('');
 
 
   const handlePlayerSubmit = async (e) => {
@@ -27,6 +27,15 @@ function AddNewPlayers() {
   }
 };
 
+  const handleDeletePlayer = async () => {
+    try {
+      await axios.delete(`api/players/${deletePlayerId}`);
+      // Reset form values
+      setId('');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
   return (
@@ -59,14 +68,14 @@ function AddNewPlayers() {
 
 
         <h1 className="deletePlayerTitle">Delete Player</h1>
-      <form /*onSubmit={handleDeletePlayer}*/ className="deletePlayer">
+      <form onSubmit={handleDeletePlayer}className="deletePlayer">
         <label>
           Player ID:
           <input
             className="deletePlayerInput"
             type="number"
-            // value={deletePlayerId}
-            // onChange={(e) => setDeletePlayerId(e.target.value)}
+            value={deletePlayerId}
+            onChange={(e) => setDeletePlayerId(e.target.value)}
           />
         </label>
         <button type="submit" className="deletePlayerBtn">Delete Player</button>
