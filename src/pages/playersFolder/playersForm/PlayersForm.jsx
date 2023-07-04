@@ -1,7 +1,7 @@
 import React from 'react'
 import './PlayersForm.css'
 import AddNewPlayers from './AddNewPlayers';
-import AddStatsPage from './AddStatsPage';
+// import AddStatsPage from './AddStatsPage';
 
 
 function PlayersForm() {
@@ -11,7 +11,7 @@ function PlayersForm() {
       <div>
       <AddNewPlayers/>
       </div>
-      <AddStatsPage/>
+      {/* <AddStatsPage/> */}
     </div>
   )
 }
