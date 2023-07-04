@@ -1,0 +1,30 @@
+.addNewStatsContainer {
+ margin-left: 1rem;
+}
+
+.addStatsTitle {
+  text-align: center;
+}
+
+.newStats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center
+}
+
+.newStatsLabel {
+  display: flex;
+  flex-direction: row;
+  width: 600px; /* Adjust this width as needed */
+
+}
+
+.newStatsInput {
+  display: flex;
+  width: 100px; /* Adjust this width as needed */
+}
+
+.addStatsBtn {
+  margin-top: 10px;
+}

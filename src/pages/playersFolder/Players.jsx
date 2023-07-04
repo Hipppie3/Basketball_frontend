@@ -33,16 +33,17 @@ function Players() {
 
   return (
     <div className="player-container">
-      <h1 className="player-title"> PLAYERS </h1>
       <div className="player-card-container">
+        <h1 className='sports-title'>Basketball</h1>
+        <div className="player-name-container">
         {players.map((player) => (
-          <div key={player.id} className="playerCard">
-            <img className="player-image" src={player.image}/>
+          <div key={player.id} >
             <Link className="player-name" to={`/players/${player.id}`} onClick={(event) => handlePlayerClick(event, player.id)}>
-              {player.first_name}
+              {player.first_name} {player.last_name}
             </Link>
           </div>
         ))}
+        </div>
       </div>
     </div>
   );
