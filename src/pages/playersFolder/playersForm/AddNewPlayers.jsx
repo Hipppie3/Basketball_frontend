@@ -10,25 +10,29 @@ function AddNewPlayers() {
 
   const handlePlayerSubmit = async (e) => {
   e.preventDefault();
-    console.log('Hi')
+
   try {
+    console.log(firstName, lastName)
     const response = await axios.post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players', {
       player: {
         first_name: firstName,
         last_name: lastName,
       },
     });
-    console.log(response.data);
+  
     // Reset form values
     setFirstName('');
     setLastName('');
+     console.log(response.data)
   } catch (error) {
     console.error(error);
   }
 };
 
+
   const handleDeletePlayer = async () => {
     try {
+      console.log(player.first_name);
       await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${deletePlayerId}`);
       // Reset form values
       setDeletePlayerId('');
