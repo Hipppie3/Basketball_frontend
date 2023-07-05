@@ -13,7 +13,7 @@ function AddNewPlayers() {
 
   try {
     console.log(firstName, lastName)
-    const response = await axios.post('api/players', {
+    const response = await axios.post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players', {
       player: {
         first_name: firstName,
         last_name: lastName,
@@ -33,7 +33,7 @@ function AddNewPlayers() {
 const handleDeletePlayer = async (e) => {
   e.preventDefault();
   try {
-    await axios.delete(`api/players/${deletePlayerId}`, {
+    await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${deletePlayerId}`, {
       data: {
         player: {
           id: deletePlayerId,
