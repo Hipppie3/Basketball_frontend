@@ -30,15 +30,22 @@ function AddNewPlayers() {
 };
 
 
-  const handleDeletePlayer = async () => {
-    try {
-      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${deletePlayerId}`);
-      // Reset form values
-      setDeletePlayerId('');
-    } catch (error) {
-      console.error(error);
-    }
-  };
+const handleDeletePlayer = async () => {
+  try {
+    await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${deletePlayerId}`, {
+      data: {
+        player: {
+          id: deletePlayerId,
+        },
+      },
+    });
+    // Reset form values
+    setDeletePlayerId('');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
 
   return (
