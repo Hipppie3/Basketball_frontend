@@ -8,33 +8,27 @@ function AddNewPlayers() {
   const [deletePlayerId, setDeletePlayerId] = useState('');
 
 
-const handlePlayerSubmit = async (e) => {
+  const handlePlayerSubmit = async (e) => {
   e.preventDefault();
 
   try {
     console.log(firstName, lastName)
-    const response = await axios.post(
-      'https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players',
-      {
-        player: {
-          first_name: firstName,
-          last_name: lastName,
-        },
+    const response = await axios.post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players', {
+      player: {
+        first_name: firstName,
+        last_name: lastName,
       },
-      {
-        withCredentials: true, // Add the withCredentials option here
-      }
+    }
     );
-
+  
     // Reset form values
     setFirstName('');
     setLastName('');
-    console.log(response.data);
+     console.log(response.data)
   } catch (error) {
     console.error(error);
   }
 };
-
 
 
   const handleDeletePlayer = async (e) => {
