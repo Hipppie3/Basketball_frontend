@@ -26,7 +26,7 @@ const [statId, setStatId] = useState('');
     e.preventDefault();
 
     try {
-      const response = await axios.post(`api/players/${id}/statistics`, {
+      const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`, {
         game_date,
         fgm,
         fga,
@@ -67,7 +67,7 @@ const [statId, setStatId] = useState('');
 
     const handleDeleteStatistics = async () => {
     try {
-      await axios.delete(`api/players/${id}/statistics`);
+      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`);
       // Reset form values
       setStatId('');
     } catch (error) {
