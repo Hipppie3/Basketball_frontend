@@ -35,7 +35,7 @@ function Navbar() {
           className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
           } onClick={closeMobileMenu}>PLAYERS</NavLink>
           </li>
-          <li className='nav-items'><NavLink to='/form' 
+          <li className='nav-items'><NavLink 
           className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
           } onClick={closeMobileMenu}>FORM</NavLink>
           <div className='dropdown'>

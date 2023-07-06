@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './AddStatsPage.css'
+import axios from 'axios';
 
 function AddStatsPage() {
 
