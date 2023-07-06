@@ -30,3 +30,17 @@ margin-bottom: 4rem;
 .newStatsInput {
   width: 100%;
 }
+
+.deleteStats {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.statsInput {
+  margin-top: 2rem;
+  display: flex;
+  gap: 10px;
+}

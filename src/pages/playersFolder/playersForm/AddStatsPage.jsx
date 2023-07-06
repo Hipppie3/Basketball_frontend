@@ -25,6 +25,7 @@ const [stl, setStl] = useState('');
 const [blk, setBlk] = useState('');
 const [to, setTo] = useState('');
 const [pts, setPts] = useState('');
+const [statId, setStatId] = useState('');
 
   const handleStatisticsSubmit = async (e) => {
     e.preventDefault();
@@ -76,6 +77,16 @@ const [pts, setPts] = useState('');
     setBlk('');
     setTo('');
     setPts('');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+    const handleDeleteStatistics = async () => {
+    try {
+      await axios.delete(`api/players/${id}/statistics`);
+      // Reset form values
+      setId('');
     } catch (error) {
       console.error(error);
     }
@@ -283,6 +294,30 @@ const [pts, setPts] = useState('');
     className="addStatsBtn">Submit</button>
 
 </form>
+<div className="deleteStats">
+<h1>Delete Player Stats</h1>
+  <form onSubmit={handleDeleteStatistics}>
+    <div className='statsInput'>
+        <label>
+          Player ID:
+          <input
+            type="number"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+        </label>
+        <label>
+          Statistic ID:
+          <input
+            type="number"
+            value={statId}
+            onChange={(e) => setStatId(e.target.value)}
+          />
+        </label>
+        <button type="submit">Delete Player Stats</button>
+        </div>
+      </form>
+      </div>
  </div>
 )
 }

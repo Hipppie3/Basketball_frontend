@@ -158,7 +158,7 @@ console.log(player);
               <div className="twoPM">2PM</div>
               <div className="twoPA">2PA</div>
               <div className="threePM">3PM</div>
-              <div className="threePA">.3PA</div>
+              <div className="threePA">3PA</div>
               <div className="oReb">OREB</div>
               <div className="dReb">DREB</div>
               <div className="reb">REB</div>
