@@ -6,12 +6,6 @@ function AddStatsPage() {
 
 const [id, setId] = useState('');
 const [game_date, setGame_Date] = useState('');
-const [matchup, setMatchup] = useState('');
-const [ppg, setPpg] = useState('');
-const [rbg, setRbg] = useState('');
-const [apg, setApg] = useState('');
-const [spg, setSpg] = useState('');
-const [bpg, setBpg] = useState('');
 const [fgm, setFgm] = useState('');
 const [fga, setFga] = useState('');
 const [fg_percentage, setFg_Percentage] = useState('');
@@ -34,12 +28,6 @@ const [statId, setStatId] = useState('');
     try {
       const response = await axios.post(`api/players/${id}/statistics`, {
         game_date,
-        matchup,
-        ppg,
-        rbg,
-        apg,
-        spg,
-        bpg,
         fgm,
         fga,
         fg_percentage,
@@ -57,13 +45,7 @@ const [statId, setStatId] = useState('');
       });
       console.log(response.data);
       // Reset form values
-         setGame_Date('');
-    setMatchup('');
-    setPpg('');
-    setRbg('');
-    setApg('');
-    setSpg('');
-    setBpg('');
+    setGame_Date('');
     setFgm('');
     setFga('');
     setFg_Percentage('');
@@ -87,7 +69,7 @@ const [statId, setStatId] = useState('');
     try {
       await axios.delete(`api/players/${id}/statistics`);
       // Reset form values
-      setId('');
+      setStatId('');
     } catch (error) {
       console.error(error);
     }
