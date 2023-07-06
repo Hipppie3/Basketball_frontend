@@ -6,7 +6,8 @@ import About from './pages/About'
 import Media from './pages/Media'
 import Players from './pages/playersFolder/Players'
 import PlayersPage from './pages/playersFolder/PlayersPage'
-import PlayersForm from './pages/playersFolder/playersForm/PlayersForm'
+import AddNewPlayers from './pages/playersFolder/playersForm/AddNewPlayers'
+import AddStatsPage from './pages/playersFolder/playersForm/AddStatsPage'
 
 
 
@@ -18,7 +19,8 @@ function App() {
       <Navbar />
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path="/playersform" element={<PlayersForm/>} />
+      <Route path="/editPlayers" element={<AddNewPlayers/>} />
+      <Route path="/editStats" element={<AddStatsPage/>} />
       <Route path="/about" element={<About/>} />
       <Route path="/media" element={<Media/>} />
       <Route path="/players" element={<Players />} />

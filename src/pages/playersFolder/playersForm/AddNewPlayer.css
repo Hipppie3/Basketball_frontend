@@ -1,10 +1,13 @@
 .addNewPlayerContainer{
  display: flex;
  flex-direction: column;
+ justify-content: center;
+ align-items: center;
 }
 
 .addPlayerTitle {
- margin-left: 3.5rem;
+ margin-left: 2rem;
+ margin-top: 5rem;
 }
 
 .newPlayer {
@@ -34,8 +37,8 @@
 }
 
 .deletePlayerTitle {
- margin-left: 4rem;
- margin-top: 1rem;
+ margin-left: 1rem;
+ margin-top: 5rem;
 }
 
 .deletePlayer {

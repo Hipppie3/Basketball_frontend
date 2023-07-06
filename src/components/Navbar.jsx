@@ -35,6 +35,21 @@ function Navbar() {
           className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
           } onClick={closeMobileMenu}>PLAYERS</NavLink>
           </li>
+          <li className='nav-items'><NavLink to='/form' 
+          className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
+          } onClick={closeMobileMenu}>FORM</NavLink>
+          <div className='dropdown'>
+          <NavLink to='/editPlayers' className='dropdown-link' onClick={closeMobileMenu}>
+    Edit Player
+  </NavLink>
+  <NavLink to='/editStats' className='dropdown-link' onClick={closeMobileMenu}>
+    Edit Statistics
+  </NavLink>
+  <NavLink to='/form/add-video' className='dropdown-link' onClick={closeMobileMenu}>
+    Edit Video
+  </NavLink>
+          </div>
+          </li>
         </ul>
       </div>
     </nav>

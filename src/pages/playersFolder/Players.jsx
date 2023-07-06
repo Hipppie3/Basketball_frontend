@@ -39,7 +39,7 @@ function Players() {
         {players.map((player) => (
           <div key={player.id} >
             <Link className="player-name" to={`/players/${player.id}`} onClick={(event) => handlePlayerClick(event, player.id)}>
-              {player.first_name} {player.last_name}
+              {player.first_name} {player.last_name} {player.id}
             </Link>
           </div>
         ))}

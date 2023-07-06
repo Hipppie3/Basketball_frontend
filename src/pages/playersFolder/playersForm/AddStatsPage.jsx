@@ -83,17 +83,24 @@ const [pts, setPts] = useState('');
   return (
     <div className="addNewStatsContainer">
      <h1 className="addStatsTitle">Add New Stats</h1>
-    <div>
-      <form onSubmit={handleStatisticsSubmit} className="newStats">
-       <label className="newStatsLabel" htmlFor="id">Player ID:
-          <input
+
+
+    <form onSubmit={handleStatisticsSubmit} className="newStats">
+    <div className='statsContainer'>
+
+    <div className="stats">
+       <label className="newStatsLabel" htmlFor="id">Player ID
+      <input
             className="newStatsInput"
             type="number"
             value={id}
             onChange={(e) => setId(e.target.value)}
-          />
-    </label>
-    <label className="newStatsLabel" htmlFor="game_date">Game Date:
+      />
+      </label>
+    </div>
+
+    <div className="stats">
+    <label className="newStatsLabel" htmlFor="game_date">GDate
     <input
       className="newStatsInput"
       type="text"
@@ -101,62 +108,11 @@ const [pts, setPts] = useState('');
       value={game_date}
       onChange={(e) => setGame_Date(e.target.value)}
     />
-    </label> 
-    <label className="newStatsLabel" htmlFor="matchup">Matchup:
-    <input
-      className="newStatsInput"
-      type="text"
-      id="matchup"
-      value={matchup}
-      onChange={(e) => setMatchup(e.target.value)}
-    />
     </label>
-    <label className="newStatsLabel" htmlFor="ppg">PPG:
-    <input
-      className="newStatsInput"
-      type="text"
-      id="ppg"
-      value={ppg}
-      onChange={(e) => setPpg(e.target.value)}
-    />
-    </label>
-    <label className="newStatsLabel" htmlFor="rbg">RBG:
-    <input
-      className="newStatsInput"
-      type="text"
-      id="rbg"
-      value={rbg}
-      onChange={(e) => setRbg(e.target.value)}
-    />
-    </label>
-    <label className="newStatsLabel" htmlFor="apg">APG:
-    <input
-      className="newStatsInput"
-      type="text"
-      id="apg"
-      value={apg}
-      onChange={(e) => setApg(e.target.value)}
-    />
-    </label>
-    <label className="newStatsLabel" htmlFor="spg">SPG:
-    <input
-      className="newStatsInput"
-      type="text"
-      id="spg"
-      value={spg}
-      onChange={(e) => setSpg(e.target.value)}
-    />
-    </label>
-    <label className="newStatsLabel" htmlFor="bpg">BPG:
-    <input
-      className="newStatsInput"
-      type="text"
-      id="bpg"
-      value={bpg}
-      onChange={(e) => setBpg(e.target.value)}
-    />
-    </label>
-    <label className="newStatsLabel" htmlFor="fgm">FGM:
+    </div>
+    
+    <div className="stats">
+    <label className="newStatsLabel" htmlFor="fgm">FGM
     <input
       className="newStatsInput"
       type="text"
@@ -165,7 +121,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setFgm(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="fga">FGA:
+    </div>
+
+    <div className="stats">
+    <label className="newStatsLabel" htmlFor="fga">FGA
     <input
       className="newStatsInput"
       type="text"
@@ -174,7 +133,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setFga(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="fg_percentage">FG Percentage:
+    </div>
+
+    <div className="stats">
+    <label className="newStatsLabel" htmlFor="fg_percentage">FG%
     <input
       className="newStatsInput"
       type="text"
@@ -183,7 +145,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setFg_Percentage(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="two_pm">Two-Point Made:
+    </div>
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="two_pm">2PM
     <input
       className="newStatsInput"
       type="text"
@@ -192,7 +157,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setTwo_Pm(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="two_pa">Two-Point Attempted:
+    </div>
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="two_pa">2PA
     <input
       type="text"
       id="two_pa"
@@ -200,7 +168,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setTwo_Pa(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="three_pm">Three-Point Made:
+    </div>
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="three_pm">3PM
     <input
       className="newStatsInput"
       type="text"
@@ -209,7 +180,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setThree_Pm(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="three_pa">Three-Point Attempted:
+    </div>
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="three_pa">3PA
     <input
       className="newStatsInput"
       type="text"
@@ -218,7 +192,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setThree_Pa(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="oreb">Offensive Rebounds:
+    </div>
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="oreb">OReb
     <input
       className="newStatsInput"
       type="text"
@@ -227,7 +204,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setOreb(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="dreb">Defensive Rebounds:
+    </div>
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="dreb">DReb
     <input
       className="newStatsInput"
       type="text"
@@ -236,7 +216,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setDreb(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="reb">Total Rebounds:
+    </div>
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="reb">Reb
     <input
       className="newStatsInput"
       type="text"
@@ -245,7 +228,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setReb(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="stl">Steals:
+    </div>
+
+       <div className="stats"></div>
+    <label className="newStatsLabel" htmlFor="stl">Steals
     <input
       className="newStatsInput"
       type="text"
@@ -254,7 +240,9 @@ const [pts, setPts] = useState('');
       onChange={(e) => setStl(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="blk">Blocks:
+
+       <div className="stats">
+    <label className="newStatsLabel" htmlFor="blk">Blocks
     <input
       className="newStatsInput"
       type="text"
@@ -263,7 +251,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setBlk(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="to">Turnovers:
+    </div>
+
+    <div className="stats">
+    <label className="newStatsLabel" htmlFor="to">TO
     <input
       className="newStatsInput"
       type="text"
@@ -272,7 +263,10 @@ const [pts, setPts] = useState('');
       onChange={(e) => setTo(e.target.value)}
     />
     </label>
-    <label className="newStatsLabel" htmlFor="pts">Points:
+    </div>
+
+    <div className="stats">
+    <label className="newStatsLabel" htmlFor="pts">Points
     <input
       className="newStatsInput"
       type="text"
@@ -281,12 +275,16 @@ const [pts, setPts] = useState('');
       onChange={(e) => setPts(e.target.value)}
     />
     </label>
+    </div>
+
+
+    </div>
     <button type="submit"
     className="addStatsBtn">Submit</button>
 
 </form>
  </div>
-  </div>)
+)
 }
 
 export default AddStatsPage
