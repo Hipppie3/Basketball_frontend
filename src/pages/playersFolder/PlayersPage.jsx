@@ -45,11 +45,15 @@ function PlayersPage() {
 
 
 
-  function formatDate(dateString) {
-    const [month, day, year] = dateString.split('/');
-    const formattedYear = year.slice(-2);
-    return `${month}/${day}/${formattedYear}`;
+function formatDate(dateString) {
+  if (!dateString) {
+    return ''; // Return an empty string for undefined or empty values
   }
+
+  const [month, day, year] = dateString.split('/');
+  const formattedYear = year?.slice(-2) || '';
+  return `${month || ''}/${day || ''}/${formattedYear}`;
+}
 
 console.log(player);
   return (
