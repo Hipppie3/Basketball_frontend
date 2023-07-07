@@ -3,16 +3,16 @@ import React, { useState } from 'react'
 import './AddVideoPage.css'
 
 function AddVideoPage() {
-   const [id, setId] = useState('');
-  const [videoId, setVideoId] = useState('');
+  const [id, setId] = useState('');
   const [videoTitle, setVideoTitle] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
+  const [deleteVideoId, setDeleteVideoId] = useState('');
 
    const handleVideoSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`api/players/${id}/videos`, {
+      const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/players/${id}/videos`, {
         title: videoTitle,
         url: videoUrl,
       });
@@ -28,9 +28,10 @@ function AddVideoPage() {
 
   const handleDeleteVideo = async () => {
     try {
-      await axios.delete(`api/players/${id}/videos`);
+      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/players/${id}/videos/${deleteVideoId}`);
       // Reset form values
       setId('');
+      setDeleteVideoId('');
     } catch (error) {
       console.error(error);
     }
@@ -95,8 +96,8 @@ function AddVideoPage() {
           <input
           className="deleteVideoInput"
             type="number"
-            value={videoId}
-            onChange={(e) => setVideoId(e.target.value)}
+            value={deleteVideoId}
+            onChange={(e) => setDeleteVideoId(e.target.value)}
           />
         </label>
         <button className="deleteVideoBtn" type="submit">Delete Player Video</button>
