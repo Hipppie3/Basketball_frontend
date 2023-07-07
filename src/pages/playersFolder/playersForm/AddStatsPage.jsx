@@ -5,6 +5,7 @@ import axios from 'axios';
 function AddStatsPage() {
 
 const [id, setId] = useState('');
+const [deleteStatisticsId, setDeleteStatisticsId] = useState('');
 const [game_date, setGame_Date] = useState('');
 const [fgm, setFgm] = useState('');
 const [fga, setFga] = useState('');
@@ -20,7 +21,7 @@ const [stl, setStl] = useState('');
 const [blk, setBlk] = useState('');
 const [to, setTo] = useState('');
 const [pts, setPts] = useState('');
-const [statId, setStatId] = useState('');
+
 
   const handleStatisticsSubmit = async (e) => {
     e.preventDefault();
@@ -67,9 +68,10 @@ const [statId, setStatId] = useState('');
 
     const handleDeleteStatistics = async () => {
     try {
-      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`);
+      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics/${deleteStatisticsId}`);
       // Reset form values
-      setStatId('');
+      setId('');
+      setDeleteStatisticsId('');
     } catch (error) {
       console.error(error);
     }
@@ -293,8 +295,8 @@ const [statId, setStatId] = useState('');
           Statistic ID:
           <input
             type="number"
-            value={statId}
-            onChange={(e) => setStatId(e.target.value)}
+            value={deleteStatisticsId}
+            onChange={(e) => setDeleteStatisticsId(e.target.value)}
           />
         </label>
         <button type="submit">Delete Player Stats</button>
