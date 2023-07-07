@@ -43,17 +43,7 @@ function PlayersPage() {
     return <div>Loading...</div>;
   }
 
-
-
-function formatDate(dateString) {
-  if (!dateString) {
-    return ''; // Return an empty string for undefined or empty values
-  }
-
-  const [month, day, year] = dateString.split('/');
-  const formattedYear = year?.slice(-2) || '';
-  return `${month || ''}/${day || ''}/${formattedYear}`;
-}
+  
 
 console.log(player);
   return (
@@ -190,7 +180,7 @@ console.log(player);
  {player.statistics.map((stat) => (
         <div key={stat.id}>
             <div className="game-row">
-              <div className="game-date">{formatDate(stat.game_date)}</div>
+              <div className="game-date">{stat.game_date}</div>
               {/* <div className="game-matchup">{stat.matchup}</div>
               <div className="game-outcome">{stat.w_l}</div> */}
               <div className="fgm">{stat.fgm}</div>
