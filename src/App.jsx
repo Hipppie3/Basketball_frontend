@@ -8,6 +8,7 @@ import Players from './pages/playersFolder/Players'
 import PlayersPage from './pages/playersFolder/PlayersPage'
 import AddNewPlayers from './pages/playersFolder/playersForm/AddNewPlayers'
 import AddStatsPage from './pages/playersFolder/playersForm/AddStatsPage'
+import AddVideoPage from './pages/playersFolder/playersForm/AddVideoPage'
 
 
 
@@ -21,6 +22,7 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path="/editPlayers" element={<AddNewPlayers/>} />
       <Route path="/editStats" element={<AddStatsPage/>} />
+      <Route path="/editVideos" element={<AddVideoPage/>} />
       <Route path="/about" element={<About/>} />
       <Route path="/media" element={<Media/>} />
       <Route path="/players" element={<Players />} />

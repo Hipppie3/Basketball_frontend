@@ -83,9 +83,8 @@ const [pts, setPts] = useState('');
 
     <form onSubmit={handleStatisticsSubmit} className="newStats">
     <div className='statsContainer'>
-
     <div className="stats">
-       <label className="newStatsLabel" htmlFor="id">Player ID
+      <label className="newStatsLabel" htmlFor="id">Player ID
       <input
             className="newStatsInput"
             type="number"
@@ -143,7 +142,7 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="two_pm">2PM
     <input
       className="newStatsInput"
@@ -155,9 +154,10 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="two_pa">2PA
     <input
+      className="newStatsInput"
       type="text"
       id="two_pa"
       value={two_pa}
@@ -166,7 +166,7 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="three_pm">3PM
     <input
       className="newStatsInput"
@@ -178,7 +178,7 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="three_pa">3PA
     <input
       className="newStatsInput"
@@ -190,7 +190,7 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="oreb">OReb
     <input
       className="newStatsInput"
@@ -202,7 +202,7 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="dreb">DReb
     <input
       className="newStatsInput"
@@ -214,7 +214,7 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="reb">Reb
     <input
       className="newStatsInput"
@@ -226,7 +226,7 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-       <div className="stats"></div>
+    <div className="stats"></div>
     <label className="newStatsLabel" htmlFor="stl">Steals
     <input
       className="newStatsInput"
@@ -237,7 +237,7 @@ const [pts, setPts] = useState('');
     />
     </label>
 
-       <div className="stats">
+    <div className="stats">
     <label className="newStatsLabel" htmlFor="blk">Blocks
     <input
       className="newStatsInput"
@@ -273,12 +273,13 @@ const [pts, setPts] = useState('');
     </label>
     </div>
 
-
     </div>
+    <div>
     <button type="submit"
     className="addStatsBtn">Submit</button>
-
+    </div>
 </form>
+
 <div className="deleteStats">
 <h1>Delete Player Stats</h1>
   <form onSubmit={handleDeleteStatistics}>

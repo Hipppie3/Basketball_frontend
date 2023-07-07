@@ -51,8 +51,10 @@ const handleDeletePlayer = async (e) => {
 
   return (
    <div className="addNewPlayerContainer">
-    <h1 className="addPlayerTitle">Add New Player</h1>
 
+    <div className="playerContainer">
+    <h1 className="addPlayerTitle">Add New Player</h1>
+      
       <form onSubmit={handlePlayerSubmit} className="newPlayer">
         <label className="newPlayerLabel">
           First Name:
@@ -74,10 +76,11 @@ const handleDeletePlayer = async (e) => {
         </label>
         <button className="addPlayerBtn" type="submit">Add Player</button>
       </form>
+      </div>
 
 
 
-
+        <div className="playerContainer">
         <h1 className="deletePlayerTitle">Delete Player</h1>
       <form onSubmit={handleDeletePlayer}className="deletePlayer">
         <label>
@@ -91,6 +94,7 @@ const handleDeletePlayer = async (e) => {
         </label>
         <button type="submit" className="deletePlayerBtn">Delete Player</button>
       </form>
+      </div>
     </div>
 
   )

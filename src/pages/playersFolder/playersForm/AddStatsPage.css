@@ -1,38 +1,57 @@
 .addNewStatsContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
   width: 100%;
   height: 100%;
 }
 
+.newStatsLabel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.newStatsInput {
+  width: 77px;
+}
+
+.addStatsBtn{
+  margin-top: 1rem;
+  width: 200px;
+  height: 20px;
+}
+
+.newStats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .addStatsTitle {
 display: flex;
 justify-content: center;
 margin-bottom: 4rem;
+margin-top: 5rem;
 }
 
 .statsContainer{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .stats {
   display: flex;
-
-
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.newStatsLabel{
-  width: 85px;
-}
 
-.newStatsInput {
-  width: 100%;
-}
 
 .deleteStats {
-  margin-top: 3rem;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

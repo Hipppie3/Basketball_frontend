@@ -36,8 +36,7 @@ function Navbar() {
           } onClick={closeMobileMenu}>PLAYERS</NavLink>
           </li>
           <li className='nav-items'><NavLink 
-          className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
-          } onClick={closeMobileMenu}>FORM</NavLink>
+          className= {click ? 'nav-links active-form' : 'nav-links'} onClick={closeMobileMenu}>FORM</NavLink>
           <div className='dropdown'>
           <NavLink to='/editPlayers' className='dropdown-link' onClick={closeMobileMenu}>
     Edit Player
@@ -45,7 +44,7 @@ function Navbar() {
   <NavLink to='/editStats' className='dropdown-link' onClick={closeMobileMenu}>
     Edit Statistics
   </NavLink>
-  <NavLink to='/form/add-video' className='dropdown-link' onClick={closeMobileMenu}>
+  <NavLink to='editVideos' className='dropdown-link' onClick={closeMobileMenu}>
     Edit Video
   </NavLink>
           </div>
