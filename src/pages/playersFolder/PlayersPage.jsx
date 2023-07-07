@@ -46,31 +46,34 @@ function PlayersPage() {
 console.log(player);
   return (
      <div className="players">
+
       <section className="players-container">
         <div className="players-profile">
-          <img className={player.player.first_name === "Lynn haiep" ? "lynn" : "hiep"} src={player.image} alt="hiep"/>
+          <img className={player.player.first_name} src={player.image} alt="hiep"/>
           <div className="profile-information">
             <h3 className="position">Park Crew | #0 | Point Guard</h3>
             <h1 className="name">{player.player.first_name} <br/>{player.player.last_name}</h1>
           </div>
+
+
         </div>
     {player.statistics.map((stat) => (
        <div className="players-info" key={id}>
           <div className="left-section">
             <div className="players-avg">
-              <span className="avg">PPG</span> <span className="avg-num">{stat.ppg}</span>
+              <span className="avg">PPG</span> <span className="avg-num"></span>
             </div>
             <div className="players-avg">
-              <span className="avg">RBG</span> <span className="avg-num">{stat.rbg}</span>
+              <span className="avg">RBG</span> <span className="avg-num"></span>
             </div>
             <div className="players-avg">
-              <span className="avg">APG</span> <span className="avg-num">{stat.apg}</span>
+              <span className="avg">APG</span> <span className="avg-num"></span>
             </div>
             <div className="players-avg">
-              <span className="avg">SPG</span> <span className="avg-num">{stat.spg}</span>
+              <span className="avg">SPG</span> <span className="avg-num"></span>
             </div>
             <div className="players-avg">
-              <span className="avg">BPG</span> <span className="avg-num">{stat.bpg}</span>
+              <span className="avg">BPG</span> <span className="avg-num"></span>
             </div>
           </div>
 
@@ -121,13 +124,13 @@ console.log(player);
                 &lt;
               </button>
             )}
-            {visibleVideos.map((video, index) => {
+            {player.videos.map((playerVideo, index) => {
   const videoIndex = scrollPosition + index; // Calculate the actual index of the video in the videos array
   return (
 
       <div className="eaVid" key={`video-${index}`}>
-        <video src={video} controls />
-        <div className="hi">{texts[videoIndex]}</div>
+        <video src={playerVideo.url} controls />
+        <div className="hi">{playerVideo.title}</div>
       </div>
 
   );

@@ -17,10 +17,12 @@ const [three_pa, setThree_Pa] = useState('');
 const [oreb, setOreb] = useState('');
 const [dreb, setDreb] = useState('');
 const [reb, setReb] = useState('');
+const [ast, setAst] = useState('');
 const [stl, setStl] = useState('');
 const [blk, setBlk] = useState('');
 const [to, setTo] = useState('');
 const [pts, setPts] = useState('');
+
 
 
   const handleStatisticsSubmit = async (e) => {
@@ -39,6 +41,7 @@ const [pts, setPts] = useState('');
         oreb,
         dreb,
         reb,
+        ast,
         stl,
         blk,
         to,
@@ -57,6 +60,7 @@ const [pts, setPts] = useState('');
     setOreb('');
     setDreb('');
     setReb('');
+    setAst('');
     setStl('');
     setBlk('');
     setTo('');
@@ -225,9 +229,21 @@ const [pts, setPts] = useState('');
     />
     </label>
     </div>
+      <div className="stats">
+    <label className="newStatsLabel" htmlFor="reb">Ast
+    <input
+      className="newStatsInput"
+      type="text"
+      id="ast"
+      value={ast}
+      onChange={(e) => setAst(e.target.value)}
+    />
+    </label>
+    </div>
+
 
     <div className="stats"></div>
-    <label className="newStatsLabel" htmlFor="stl">Steals
+    <label className="newStatsLabel" htmlFor="stl">Stl
     <input
       className="newStatsInput"
       type="text"
@@ -238,7 +254,7 @@ const [pts, setPts] = useState('');
     </label>
 
     <div className="stats">
-    <label className="newStatsLabel" htmlFor="blk">Blocks
+    <label className="newStatsLabel" htmlFor="blk">Blk
     <input
       className="newStatsInput"
       type="text"
@@ -262,7 +278,7 @@ const [pts, setPts] = useState('');
     </div>
 
     <div className="stats">
-    <label className="newStatsLabel" htmlFor="pts">Points
+    <label className="newStatsLabel" htmlFor="pts">Pts
     <input
       className="newStatsInput"
       type="text"
