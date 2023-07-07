@@ -12,7 +12,7 @@ function AddVideoPage() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/players/${id}/videos`, {
+      const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/videos`, {
         title: videoTitle,
         url: videoUrl,
       });
@@ -28,7 +28,7 @@ function AddVideoPage() {
 
   const handleDeleteVideo = async () => {
     try {
-      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/players/${id}/videos/${deleteVideoId}`);
+      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/videos/${deleteVideoId}`);
       // Reset form values
       setId('');
       setDeleteVideoId('');
@@ -78,14 +78,16 @@ function AddVideoPage() {
         <button className="addVideoBtn" type="submit">Add Video</button>
       </form>
       </div>
-      <div className="deleteVideoContainer">
 
+
+      
+      <div className="deleteVideoContainer">
         <h1 className="deleteVideoTitle" >Delete Player Video</h1>
       <form onSubmit={handleDeleteVideo} className="deleteVideo">
         <label>
           Player ID:
           <input
-           className="deleteVideoInput"
+          className="deleteVideoInput"
             type="number"
             value={id}
             onChange={(e) => setId(e.target.value)}
