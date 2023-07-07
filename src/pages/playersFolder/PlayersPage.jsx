@@ -153,8 +153,8 @@ console.log(player);
             <div className="game-row game-header">
               
               <div className="game-date">GAME DATE</div>
-              <div className="game-matchup">MATCHUP</div>
-              <div className="game-outcome">W/L</div>
+              {/* <div className="game-matchup">MATCHUP</div>
+              <div className="game-outcome">W/L</div> */}
               <div className="fgm">FGM</div>
               <div className="fga">FGA</div>
               <div className="fgp">FG%</div>
