@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import video1 from '../videos/a.mp4';
 import video2 from '../videos/b.mp4';
 import './PlayersPage.css'
-import moment from 'moment';
 
 function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -45,9 +44,6 @@ function PlayersPage() {
   }
 
 console.log(player);
-
-const formattedDate = moment(stat.game_date).format('MM/DD/YY'); // Format the game_date
-
   return (
      <div className="players">
 
@@ -182,7 +178,7 @@ const formattedDate = moment(stat.game_date).format('MM/DD/YY'); // Format the g
  {player.statistics.map((stat) => (
         <div key={stat.id}>
             <div className="game-row">
-              <div className="game-date">{formattedDate}</div>
+              <div className="game-date">{stat.game_date}</div>
               {/* <div className="game-matchup">{stat.matchup}</div>
               <div className="game-outcome">{stat.w_l}</div> */}
               <div className="fgm">{stat.fgm}</div>
