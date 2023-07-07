@@ -178,9 +178,9 @@ console.log(player);
  {player.statistics.map((stat) => (
         <div key={stat.id}>
             <div className="game-row">
-              <div className="game-date">JAN 22, 2023</div>
-              <div className="game-matchup">MEM @ PHX</div>
-              <div className="game-outcome">{stat.w_l}</div>
+              <div className="game-date">{stat.game_date}</div>
+              {/* <div className="game-matchup">{stat.matchup}</div>
+              <div className="game-outcome">{stat.w_l}</div> */}
               <div className="fgm">{stat.fgm}</div>
               <div className="fga">{stat.fga}</div>
               <div className="fgp">{stat.fg_percentage}</div>
