@@ -53,7 +53,7 @@ console.log(player.videos);
       </div>
     </div>
 
-    {player.statistics.map((stat) => (
+
        <div className="players-info" key={id}>
           <div className="left-section">
             <div className="players-avg">
@@ -88,7 +88,7 @@ console.log(player.videos);
             </div>    
           </div>
         </div>
-    ))}
+
 
         <div className="players-link-container">
           <div className="players-link-left">
