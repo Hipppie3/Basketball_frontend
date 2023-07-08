@@ -41,11 +41,6 @@
  max-height: 350px;
 }
 
-.lynn {
- height: 70%;
- margin-right: 2rem;
-}
-
 .name {
  font-size: 40px;
 }
@@ -224,7 +219,7 @@
  flex-direction: row;
  margin-left: 10px;
  margin-right: 10px;
- margin-top: 20px;
+ margin-top: 10px;
  transition: transform 0.3s ease;
  /* Add transition property */
  align-items: center;
@@ -242,7 +237,7 @@
 .eaVid {
  display: flex;
  flex-direction: column;
- height: 100%;
+ height: 90%;
  flex: 0.25;
  margin-right: 10px;
  margin-left: 10px;
@@ -338,7 +333,7 @@
 .game-row {
  display: grid;
  /* Use CSS grid for better control over column layout */
- grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+ grid-template-columns: repeat(16, 1fr);
  /* Adjust the number of columns based on your data */
  align-items: center;
  padding: 10px 0;
@@ -358,8 +353,6 @@
 
 
 .game-date,
-.game-matchup,
-.game-outcome,
 .fgm,
 .fga,
 .fgp,

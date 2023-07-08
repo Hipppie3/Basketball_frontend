@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import video1 from '../videos/a.mp4';
-import video2 from '../videos/b.mp4';
 import './PlayersPage.css'
 
 function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const videos = [video1, video2, video1, video2, video1, video2]; // Add more videos as needed
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
-
-  const texts = ["Pat with the sideline jumper", "Text 2", "Text 3", "Text 4", "Text 5", "Text 6"]; // Add more texts as needed
-  
-  const visibleVideos = videos.slice(scrollPosition, scrollPosition + 4);
 
   const handleScrollLeft = () => {
     setScrollPosition(scrollPosition - 1);
@@ -23,8 +16,8 @@ function PlayersPage() {
     setScrollPosition(scrollPosition + 1);
   };
 
-   const canScrollLeft = scrollPosition > 0; // Check if there are videos to scroll to the left
-  const canScrollRight = scrollPosition + 4 < videos.length; // Check if there are videos to scroll to the right
+  const canScrollLeft = scrollPosition > 0; // Check if there are videos to scroll to the left
+  const canScrollRight = scrollPosition + 4 < player?.videos?.length; // Check if there are videos to scroll to the right
 
   useEffect(() => {
     const fetchPlayerData = async () => {
@@ -43,9 +36,9 @@ function PlayersPage() {
     return <div>Loading...</div>;
   }
 
-  
+  const visibleVideos = player.videos?.slice(scrollPosition, scrollPosition + 4) || [];
 
-console.log(player);
+console.log(player.videos);
   return (
      <div className="players">
 
@@ -118,7 +111,6 @@ console.log(player);
        <section className="video-container">
         <div className="players-video">
           <div className="latest-video">LATEST VIDEOS</div>
-   
           <div className="vid">
             {canScrollLeft && (
               <button 
@@ -126,7 +118,7 @@ console.log(player);
                 &lt;
               </button>
             )}
-            {player.videos.map((playerVideo, index) => {
+            {visibleVideos.map((playerVideo, index) => {
   const videoIndex = scrollPosition + index; // Calculate the actual index of the video in the videos array
   return (
 
@@ -134,17 +126,14 @@ console.log(player);
         <video src={playerVideo.url} controls />
         <div className="hi">{playerVideo.title}</div>
       </div>
-
   );
 })}
-
             {canScrollRight && (
               <button className={`scroll-btn right ${canScrollRight ? 'slide-right' : ''}`} onClick={handleScrollRight}>
                 &gt;
               </button>
             )}
           </div>
-    
         </div>
       </section>
 
@@ -155,8 +144,6 @@ console.log(player);
             <div className="game-row game-header">
               
               <div className="game-date">GAME DATE</div>
-              {/* <div className="game-matchup">MATCHUP</div>
-              <div className="game-outcome">W/L</div> */}
               <div className="fgm">FGM</div>
               <div className="fga">FGA</div>
               <div className="fgp">FG%</div>
@@ -181,8 +168,6 @@ console.log(player);
         <div key={stat.id}>
             <div className="game-row">
               <div className="game-date">{stat.game_date}</div>
-              {/* <div className="game-matchup">{stat.matchup}</div>
-              <div className="game-outcome">{stat.w_l}</div> */}
               <div className="fgm">{stat.fgm}</div>
               <div className="fga">{stat.fga}</div>
               <div className="fgp">{stat.fg_percentage}</div>
