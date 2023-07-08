@@ -1,12 +1,10 @@
 .player-container {
- max-width: 1400px;
  margin: 0;
  padding: 0;
 }
 
 .player-card-container {
  width: 100%;
- margin-left: 1rem;
  margin-top: 4rem;
  display: flex;
  flex-direction: column;
@@ -65,7 +63,7 @@
  display: flex;
  flex-wrap: wrap;
  justify-content: space-between;
- gap: 10px;
+ gap: 20px;
  max-width: 1560px;
  /* Adjust this value as needed */
  margin: 0 auto;
@@ -96,3 +94,25 @@
  font-size: 12px;
 }
 
+
+
+@media (max-width: 600px) {
+ .player-name-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* Adjust this value to set the desired gap between player cards */
+ }
+
+
+}
+@media (max-width: 300px) {
+ .player-name-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* Adjust this value to set the desired gap between player cards */
+ }
+
+
+}
