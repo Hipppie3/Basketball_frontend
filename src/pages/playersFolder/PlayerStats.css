@@ -1,0 +1,74 @@
+
+.playersStatsPage {
+ height: 100dvh;
+ background-color: rgb(231, 238, 246);
+}
+
+.players-stats-container {
+ width: 100%;
+ height: auto;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: rgb(231, 238, 246);
+ padding: 40px 0;
+
+}
+
+.players-stats {
+ width: 95%;
+ background-color: white;
+ padding: 20px;
+ border-radius: 8px;
+ overflow-x: auto;
+ /* Enable horizontal scrolling if content overflows */
+}
+
+.game-table {
+ width: max-content;
+ margin-top: 20px;
+
+}
+
+.game-row {
+ display: grid;
+ /* Use CSS grid for better control over column layout */
+ grid-template-columns: repeat(17, 1fr);
+ /* Adjust the number of columns based on your data */
+ align-items: center;
+ padding: 10px 0;
+ border-bottom: 1px solid #d9d9d9;
+ font-size: 14px;
+ /* Adjust font size as needed */
+}
+
+.game-header {
+ font-weight: bold;
+ font-size: 12px;
+ background-color: rgb(231, 238, 246);
+ /* Add left padding to match the rows */
+
+}
+
+
+
+.game-date,
+.fgm,
+.fga,
+.fgp,
+.twoPM,
+.twoPA,
+.threePM,
+.threePA,
+.oReb,
+.dReb,
+.reb,
+.ast,
+.stl,
+.blk,
+.to,
+.pts {
+ text-align: center;
+ white-space: nowrap;
+
+}

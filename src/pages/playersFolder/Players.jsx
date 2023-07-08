@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Players.css';
+import { FaSearch } from 'react-icons/fa'
 
 
 function Players() {
@@ -33,18 +34,33 @@ function Players() {
 
   return (
     <div className="player-container">
+
       <div className="player-card-container">
-        <h1 className='sports-title'>Basketball</h1>
+        <h1 className='sports-title'>PLAYERS</h1>
+      <div className="search-input">
+        <input type="text" placeholder="Search for a player" />
+        <button type="submit">
+        <FaSearch />
+        </button>
+      </div>
+
+        
         <div className="player-name-container">
         {players.map((player) => (
+          <div className="player-card">
+          <img className="player-card-image"/>
           <div key={player.id} >
             <Link className="player-name" to={`/players/${player.id}`} onClick={(event) => handlePlayerClick(event, player.id)}>
               {player.first_name} {player.last_name} {player.id}
             </Link>
           </div>
+          <div className="player-sports">BASKETBALL</div>
+          </div>
         ))}
         </div>
+
       </div>
+
     </div>
   );
 }
