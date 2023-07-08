@@ -1,7 +1,11 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
 function PlayersStatsPage() {
+  const { id } = useParams();
+  const [player, setPlayer] = useState(null);
+
    useEffect(() => {
     const fetchPlayerData = async () => {
       try {
@@ -21,7 +25,12 @@ function PlayersStatsPage() {
 
   return (
     <div>
-      
+      <h1>{player.first_name} Stats</h1>
+      {player.statistics.map((stat) => (
+        <div key={stat.id}>
+        <p1>{stat.pts}</p1>
+        </div>
+      ))}
     </div>
   )
 }
