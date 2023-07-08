@@ -1,5 +1,5 @@
 .players {
- min-height: 100dvh;
+ min-height: 100vh;
  width: 100%;
  margin: 0;
  padding: 0;
@@ -7,27 +7,36 @@
 }
 
 .players-container {
- height: 76dvh;
+ height: 80vh;
  display: flex;
  flex-direction: column;
 }
 
-
 .players-profile {
  color: white;
- height: 100%;
- flex: .66;
  display: flex;
- flex-direction: row;
+ flex-direction: column;
+ justify-content: space-evenly;
+ align-items: center;
+ height: 100%;
+ flex: 0.66;
  background-color: #5d76a9;
- align-items: end;
 }
 
+.players-image {
+ height: 300px;
+ width: 300px;
+ border: 1px solid black;
+ border-radius: 180px;
+ margin-top: 1.5rem;
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-position: center;
+}
 
 .profile-information {
  display: flex;
  flex-direction: column;
- margin-bottom: 10rem;
 }
 
 .position {
@@ -35,11 +44,6 @@
  font-weight: lighter;
 }
 
-.hiep {
- height: 90%;
- max-width: 465px;
- max-height: 350px;
-}
 
 .name {
  font-size: 40px;
@@ -188,17 +192,21 @@
  justify-content: center;
  align-items: center;
  background-color: rgb(231, 238, 246);
+ overflow: hidden;
+ /* Add overflow property */
 }
-
 
 .players-video {
  display: flex;
  flex-direction: column;
- overflow: hidden;
  width: 95%;
  height: 90%;
  background-color: white;
  border-radius: 8px;
+ overflow-x: scroll;
+ /* Add overflow property */
+ scroll-behavior: smooth;
+ /* Add smooth scrolling behavior */
 }
 
 .latest-video {
@@ -237,16 +245,24 @@
 .eaVid {
  display: flex;
  flex-direction: column;
- height: 90%;
- flex: 0.25;
+ flex: 0 0 auto;
+ /* Added flex property */
  margin-right: 10px;
  margin-left: 10px;
  align-items: center;
  justify-content: center;
  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+ scroll-snap-align: center;
 }
 
+.eaVid iframe {
+ width: 100%;
+ /* Set the width to 100% */
+ height: 100%;
+ /* Set the height to 100% */
+}
 .hi {
+ 
  font-weight: bold;
  padding-top: 10px;
  height: 20%;
@@ -256,11 +272,10 @@
 
 
 .eaVid video {
- width: 300px;
- height: 200px;
+ width: 100%;
+ height: 100%;
  object-fit: cover;
 }
-
 
 
 /* Rest of the CSS */
@@ -394,16 +409,9 @@
   background-color: rgb(231, 238, 246);
  }
 
- .hiep {
-  height: 90%;
- }
-
- .profile-information {
-  margin-bottom: 8rem;
- }
 
  .players-container {
-  height: 66dvh;
+  height: 85dvh;
   display: flex;
   flex-direction: column;
  }
@@ -486,14 +494,6 @@
   border-bottom: 1px solid white;
  }
 
- .hiep {
-  height: 80%;
- }
-
- .profile-information {
-  margin-bottom: 6rem;
- }
-
  .players-avg {
   display: flex;
   flex-direction: column;
@@ -518,6 +518,10 @@
   padding: 0;
   font-weight: bold;
  }
+
+    .players-link-left {
+     margin-left: 9rem;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -529,22 +533,31 @@
   background-color: rgb(231, 238, 246);
  }
 
- .players-container {
-  height: 76dvh;
-  display: flex;
-  flex-direction: column;
- }
-
 
  .players-profile {
   color: white;
   height: 100%;
   flex: .3;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: #5d76a9;
-  align-items: end;
+  align-items: center;
  }
+    .players-container {
+     height: 80dvh;
+     display: flex;
+     flex-direction: column;
+    }
+  
+    .profile-information {
+     margin-bottom: 1rem;
+     margin-top: 1rem;
+    }
+  
+    .players-image {
+     height: 250px;
+     width: 250px
+    }
 
  .players-info {
   display: flex;
@@ -562,12 +575,127 @@
   border-bottom: 1px solid white;
  }
 
- .hiep {
-  height: 70%;
+
+ .name {
+  font-size: 30px;
  }
 
- .profile-information {
-  margin-bottom: 6rem;
+ .position {
+  font-size: 15px;
+ }
+
+ .players-avg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid white;
+ }
+
+ .right-section {
+  flex: .7;
+  display: flex;
+  flex-direction: row;
+ }
+
+ .avg {
+  font-size: 17px;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-weight: lighter;
+ }
+
+ .avg-num {
+  font-size: 20px;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+ }
+
+ .left-side {
+  flex: .5;
+  display: flex;
+  flex-direction: column;
+  border: none;
+ }
+
+ .left-info {
+  border: none;
+  flex: .25;
+  display: flex;
+  align-items: center;
+  justify-content: center
+ }
+
+ .right-side {
+  flex: .5;
+  display: flex;
+  flex-direction: column;
+  border: none;
+ }
+
+ .right-info {
+  border: none;
+  flex: .25;
+  display: flex;
+  align-items: center;
+  justify-content: center
+ }
+
+    .players-link-left {
+     margin-left: 8rem;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+ .players {
+  min-height: 100dvh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(231, 238, 246);
+ }
+
+ .players-container {
+  height: 80dvh;
+  display: flex;
+  flex-direction: column;
+ }
+.profile-information {
+ margin-bottom: 1rem;
+ margin-top: 1rem;
+}
+.players-image {
+ height: 250px;
+ width: 250px
+}
+
+ .players-profile {
+  color: white;
+  height: 100%;
+  flex: .3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #5d76a9;
+ }
+
+ .players-info {
+  display: flex;
+  flex: .6;
+ }
+
+ .left-section {
+  flex: .3;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  border-bottom: 1px solid white;
  }
 
  .name {
@@ -637,128 +765,9 @@
   justify-content: center
  }
 
- ;
-
-}
-
-@media screen and (max-width: 500px) {
- .players {
-  min-height: 100dvh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(231, 238, 246);
+ .players-link-left {
+  margin-left: 5rem;
  }
-
- .players-container {
-  height: 76dvh;
-  display: flex;
-  flex-direction: column;
- }
-
-
- .players-profile {
-  color: white;
-  height: 100%;
-  flex: .3;
-  display: flex;
-  flex-direction: row;
-  background-color: #5d76a9;
-  align-items: end;
- }
-
- .players-info {
-  display: flex;
-  flex: .6;
- }
-
- .left-section {
-  flex: .3;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding-left: 6rem;
-  padding-right: 6rem;
-  border-bottom: 1px solid white;
- }
-
- .hiep {
-  height: 65%;
- }
-
- .profile-information {
-  margin-bottom: 6rem;
- }
-
- .name {
-  font-size: 20px;
- }
-
- .position {
-  font-size: 15px;
- }
-
- .players-avg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-right: 1px solid white;
- }
-
- .right-section {
-  flex: .7;
-  display: flex;
-  flex-direction: row;
- }
-
- .avg {
-  font-size: 17px;
-  margin: 0;
-  padding: 0;
-  color: white;
-  font-weight: lighter;
- }
-
- .avg-num {
-  font-size: 20px;
-  color: white;
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
- }
-
- .left-side {
-  flex: .5;
-  display: flex;
-  flex-direction: column;
-  border: none;
- }
-
- .left-info {
-  border: none;
-  flex: .25;
-  display: flex;
-  align-items: center;
-  justify-content: center
- }
-
- .right-side {
-  flex: .5;
-  display: flex;
-  flex-direction: column;
-  border: none;
- }
-
- .right-info {
-  border: none;
-  flex: .25;
-  display: flex;
-  align-items: center;
-  justify-content: center
- }
-
- ;
 
 }
 
@@ -804,18 +813,8 @@
   border-bottom: 1px solid white;
  }
 
- .hiep {
-  height: 70%;
- }
-
- .profile-information {
-  margin-bottom: 6rem;
-  margin-right: 2rem;
- }
-
  .name {
-  font-size: 23px;
-
+  font-size: 30px;
  }
 
  .position {

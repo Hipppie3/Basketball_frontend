@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './PlayersPage.css'
+import YouTube from 'react-youtube'
 
 function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -37,21 +38,21 @@ function PlayersPage() {
   }
 
   const visibleVideos = player.videos?.slice(scrollPosition, scrollPosition + 4) || [];
-
+  const getPlayerVideoId = (url) => {
+  const videoId = url.split('v=')[1];
+  return videoId;
+  };  
 console.log(player.videos);
   return (
-     <div className="players">
+   <div className="players">
+  <section className="players-container">
+    <div className="players-profile">
+      <div className="players-image" style={{ backgroundImage: `url(${player.image})` }}></div>
+      <div className="profile-information">
+        <h1 className="name">{player.player.first_name} {player.player.last_name}</h1>
+      </div>
+    </div>
 
-      <section className="players-container">
-        <div className="players-profile">
-          <img className={player.player.first_name} src={player.image} alt="hiep"/>
-          <div className="profile-information">
-            <h3 className="position">Park Crew | #0 | Point Guard</h3>
-            <h1 className="name">{player.player.first_name} <br/>{player.player.last_name}</h1>
-          </div>
-
-
-        </div>
     {player.statistics.map((stat) => (
        <div className="players-info" key={id}>
           <div className="left-section">
@@ -101,7 +102,6 @@ console.log(player.videos);
           <div className="players-link-right"></div>
         </div>
       </section>
-
         <section className="ad">
      <div className="ad-container">
        <h1>SPONSORS</h1>
@@ -118,13 +118,13 @@ console.log(player.videos);
                 &lt;
               </button>
             )}
-            {visibleVideos.map((playerVideo, index) => {
+            {visibleVideos.map((video, index) => {
   const videoIndex = scrollPosition + index; // Calculate the actual index of the video in the videos array
   return (
 
       <div className="eaVid" key={`video-${index}`}>
-        <video src={playerVideo.url} controls />
-        <div className="hi">{playerVideo.title}</div>
+        <YouTube videoId={getPlayerVideoId(video.url)} />
+    <div className="hi">{video.title}</div>
       </div>
   );
 })}
