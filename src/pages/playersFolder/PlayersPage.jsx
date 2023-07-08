@@ -23,7 +23,7 @@ function PlayersPage() {
   useEffect(() => {
     const fetchPlayerData = async () => {
       try {
-        const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
+        const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players`);
         setPlayer(response.data);
       } catch (error) {
         console.error('Something went wrong:', error);
