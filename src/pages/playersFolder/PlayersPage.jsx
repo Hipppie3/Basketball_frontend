@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import './PlayersPage.css'
 import YouTube from 'react-youtube'
 
@@ -42,7 +42,7 @@ function PlayersPage() {
   const videoId = url.split('v=')[1];
   return videoId;
   };  
-console.log(player.videos);
+console.log(player);
   return (
    <div className="players">
   <section className="players-container">
@@ -94,7 +94,7 @@ console.log(player.videos);
           <div className="players-link-left">
             <ul>
               <li>Profile</li>
-              <li>Stats</li>
+              <li><NavLink to={`/players/${player.id}/stats`}>Stats</NavLink></li>
               <li>Bio</li>
               <li>Media</li>
             </ul>

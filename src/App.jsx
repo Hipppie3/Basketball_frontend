@@ -9,6 +9,7 @@ import PlayersPage from './pages/playersFolder/PlayersPage'
 import AddNewPlayers from './pages/playersFolder/playersForm/AddNewPlayers'
 import AddStatsPage from './pages/playersFolder/playersForm/AddStatsPage'
 import AddVideoPage from './pages/playersFolder/playersForm/AddVideoPage'
+import PlayerStatsPage from './pages/playersFolder/PlayersStatsPage'
 
 
 
@@ -26,6 +27,7 @@ function App() {
       <Route path="/about" element={<About/>} />
       <Route path="/media" element={<Media/>} />
       <Route path="/players" element={<Players />} />
+      <Route path="/players/:id/stats" element={<PlayerStatsPage/>} />
       <Route path='/players/:id' element={<PlayersPage />} />
     </Routes>
     </div>
