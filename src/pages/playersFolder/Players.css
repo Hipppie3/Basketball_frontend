@@ -1,44 +1,11 @@
-.search-input {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-}
-
-.search-input input {
-  padding: 10px 40px; /* Adjust this value to set the padding of the input */
-  font-size: 16px; /* Adjust this value to set the font size of the input */
-  border: 1px solid #ccc; /* Add a border around the input if desired */
-  border-radius: 4px; /* Add border radius to the input if desired */
-  width: 900px; /* Adjust this value to set the width of the input */
-  height: 70px;
-}
-
-.search-input button {
-  font-size: 27px;
-  position: absolute;
-  top: 50%;
-  right: 20px; /* Adjust this value to set the right distance of the button */
-  transform: translateY(-50%);
-  height: 100%;
-  background-color: transparent;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: #b1b0b0; /* Adjust the color of the button icon */
-}
-
-
 .player-container {
- display: flex;
- flex-direction: column;
- justify-content: center;
+ max-width: 1400px;
+ margin: 0;
+ padding: 0;
 }
 
 .player-card-container {
+ width: 100%;
  margin-left: 1rem;
  margin-top: 4rem;
  display: flex;
@@ -51,12 +18,58 @@
 .sports-title {
  font-size: 40px;
 }
-.player-name-container{
- display: flex;
- flex-direction: column;
- gap: 5px;
+
+.search-input {
+ position: relative;
+ display: inline-flex;
+ align-items: center;
+ margin-top: 1rem;
+ margin-bottom: 3rem;
+ width:70%;
 }
 
+.search-input input {
+ padding: 10px 40px;
+ /* Adjust this value to set the padding of the input */
+ font-size: 16px;
+ /* Adjust this value to set the font size of the input */
+ border: 1px solid #ccc;
+ /* Add a border around the input if desired */
+ border-radius: 4px;
+ /* Add border radius to the input if desired */
+ width: 100%;
+ /* Adjust this value to set the width of the input */
+ height: 70px;
+}
+
+.search-input button {
+ font-size: 27px;
+ position: absolute;
+ top: 50%;
+ right: 20px;
+ /* Adjust this value to set the right distance of the button */
+ transform: translateY(-50%);
+ height: 100%;
+ background-color: transparent;
+ border: none;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
+ color: #b1b0b0;
+ /* Adjust the color of the button icon */
+}
+
+
+.player-name-container {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ gap: 10px;
+ max-width: 1560px;
+ /* Adjust this value as needed */
+ margin: 0 auto;
+}
 .player-card {
  display: flex;
  flex-direction: column;
@@ -82,3 +95,4 @@
  padding-top: 15px;
  font-size: 12px;
 }
+
