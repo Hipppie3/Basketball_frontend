@@ -47,20 +47,17 @@ function Players() {
 
         
         <div className="player-name-container">
-     {players.map((player) => (
-  <div className="player-card" key={player.id}>
-    <Link
-      className="player-name"
-      to={`/players/${player.id}`}
-      onClick={(event) => handlePlayerClick(event, player.id)}
-    >
-      {player.image_url && <img src={player.image_url} className="player-card-image" />}
-      {player.first_name} {player.last_name} {player.id}
-    </Link>
-    <div className="player-sports">BASKETBALL</div>
-  </div>
-))}
-
+        {players.map((player) => (
+          <div className="player-card">
+            <div key={player.id} >
+            <Link className="player-name" to={`/players/${player.id}`} onClick={(event) => handlePlayerClick(event, player.id)}>
+            <img src={player.image_url} className="player-card-image"/>
+              {player.first_name} {player.last_name} {player.id}
+            </Link>
+          </div>
+          <div className="player-sports">BASKETBALL</div>
+          </div>
+        ))}
         </div>
 
       </div>
