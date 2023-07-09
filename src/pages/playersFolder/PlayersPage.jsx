@@ -8,6 +8,12 @@ function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
+  const [averagePTS, setAveragePTS] = useState(0);
+  const [averageREB, setAverageREB] = useState(0);
+  const [averageAST, setAverageAST] = useState(0);
+  const [averageSTL, setAverageSTL] = useState(0);
+  const [averageBLK, setAverageBLK] = useState(0);
+
 
   const handleScrollLeft = () => {
     setScrollPosition(scrollPosition - 1);
@@ -32,7 +38,34 @@ function PlayersPage() {
 
     fetchPlayerData();
   }, [id]);
+  
+  const calculateAverages = (statistics) => {
+    let totalPTS = 0;
+    let totalREB = 0;
+    let totalAST = 0;
+    let totalSTL = 0;
+    let totalBLK = 0;
 
+    statistics.forEach((stat) => {
+      totalPTS += stat.pts;
+      totalREB += stat.reb;
+      totalAST += stat.ast;
+      totalSTL += stat.stl;
+      totalBLK += stat.blk;
+    });
+
+    const avgPTS = statistics.length > 0 ? (totalPTS / statistics.length).toFixed(2) : 0;
+    const avgREB = statistics.length > 0 ? (totalREB / statistics.length).toFixed(2) : 0;
+    const avgAST = statistics.length > 0 ? (totalAST / statistics.length).toFixed(2) : 0;
+    const avgSTL = statistics.length > 0 ? (totalSTL / statistics.length).toFixed(2) : 0;
+    const avgBLK = statistics.length > 0 ? (totalBLK / statistics.length).toFixed(2) : 0;
+
+    setAveragePTS(avgPTS);
+    setAverageREB(avgREB);
+    setAverageAST(avgAST);
+    setAverageSTL(avgSTL);
+    setAverageBLK(avgBLK);
+  };
   if (!player) {
     return <div>Loading...</div>;
   }
@@ -43,6 +76,8 @@ function PlayersPage() {
   return videoId;
   };  
 console.log(player);
+
+
   return (
    <div className="players">
   <section className="players-container">
@@ -57,10 +92,10 @@ console.log(player);
        <div className="players-info" key={id}>
           <div className="left-section">
             <div className="players-avg">
-              <span className="avg">PPG</span> <span className="avg-num"></span>
+              <span className="avg">PPG</span> {averagePTS} <span className="avg-num"></span>
             </div>
             <div className="players-avg">
-              <span className="avg">RBG</span> <span className="avg-num"></span>
+              <span className="avg">RBG</span>  <span className="avg-num"></span>
             </div>
             <div className="players-avg">
               <span className="avg">APG</span> <span className="avg-num"></span>

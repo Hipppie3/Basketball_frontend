@@ -1,14 +1,31 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import './PlayerStats.css';
+import './PlayerStats.css'
 
 function PlayersStatsPage() {
+  const navigate = useNavigate
   const { id } = useParams();
-  const navigate = useNavigate();
   const [player, setPlayer] = useState(null);
 
-  // Calculate the totals
+   useEffect(() => {
+    const fetchPlayerData = async () => {
+      try {
+        const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
+        setPlayer(response.data);
+      } catch (error) {
+        console.error('Something went wrong:', error);
+      }
+    };
+
+    fetchPlayerData();
+  }, [id]);
+
+  if (!player) {
+    return <div>Loading...</div>;
+  }
+
+    // Calculate the totals
   let totalFGM = 0;
   let totalFGA = 0;
   let totalFGPercentage = 0;
@@ -24,60 +41,40 @@ function PlayersStatsPage() {
   let totalBLK = 0;
   let totalTO = 0;
   let totalPTS = 0;
+  // ... other stat variables
 
-  let averageFGPercentage = 0; // Declare the variable here
+  player.statistics.forEach((stat) => {
+    totalFGM += stat.fgm;
+    totalFGA += stat.fga;
+    totalFGPercentage += parseFloat(stat.fg_percentage) || 0;
+    total2PA += stat.two_pa;
+    total2PM += stat.two_pm;
+    total3PM += stat.three_pm;
+    total3PA += stat.three_pa;
+    totalOREB += stat.oreb;
+    totalDREB += stat.dreb;
+    totalREB += stat.reb;
+    totalAST += stat.ast;
+    totalSTL += stat.stl;
+    totalBLK += stat.blk;
+    totalTO += stat.to;
+    totalPTS += stat.pts
+    // ... update other stat variables accordingly
+  });
 
-  useEffect(() => {
-    const fetchPlayerData = async () => {
-      try {
-        const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
-        setPlayer(response.data);
-      } catch (error) {
-        console.error('Something went wrong:', error);
-      }
-    };
+  const averageFGPercentage = player.statistics.length > 0 ? (totalFGPercentage / player.statistics.length).toFixed(2) : 0;
+  const averagePTS = player.statistics.length > 0 ? (totalPTS / player.statistics.length).toFixed(2) : 0;
+  const averageREB = player.statistics.length > 0 ? (totalREB / player.statistics.length).toFixed(2) : 0;
+  const averageAST = player.statistics.length > 0 ? (totalAST / player.statistics.length).toFixed(2) : 0;
+  const averageSTL = player.statistics.length > 0 ? (totalSTL / player.statistics.length).toFixed(2) : 0;
+  const averageBLK = player.statistics.length > 0 ? (totalBLK / player.statistics.length).toFixed(2) : 0;
 
-    fetchPlayerData();
-  }, [id]);
 
-  useEffect(() => {
-    if (player) {
-      player.statistics.forEach((stat) => {
-        totalFGM += stat.fgm;
-        totalFGA += stat.fga;
-        totalFGPercentage += parseFloat(stat.fg_percentage) || 0;
-        total2PA += stat.two_pa;
-        total2PM += stat.two_pm;
-        total3PM += stat.three_pm;
-        total3PA += stat.three_pa;
-        totalOREB += stat.oreb;
-        totalDREB += stat.dreb;
-        totalREB += stat.reb;
-        totalAST += stat.ast;
-        totalSTL += stat.stl;
-        totalBLK += stat.blk;
-        totalTO += stat.to;
-        totalPTS += stat.pts;
-      });
 
-      const averagePTS = player.statistics.length > 0 ? (totalPTS / player.statistics.length).toFixed(2) : 0;
-      const averageREB = player.statistics.length > 0 ? (totalREB / player.statistics.length).toFixed(2) : 0;
-      const averageAST = player.statistics.length > 0 ? (totalAST / player.statistics.length).toFixed(2) : 0;
-      const averageSTL = player.statistics.length > 0 ? (totalSTL / player.statistics.length).toFixed(2) : 0;
-      const averageBLK = player.statistics.length > 0 ? (totalBLK / player.statistics.length).toFixed(2) : 0;
 
-      averageFGPercentage = player.statistics.length > 0 ? (totalFGPercentage / player.statistics.length).toFixed(2) : 0; // Assign the calculated value
 
-      const queryParams = `?averagePTS=${averagePTS}&averageREB=${averageREB}&averageAST=${averageAST}&averageSTL=${averageSTL}&averageBLK=${averageBLK}&averageFGPercentage=${averageFGPercentage}`;
-      navigate(`/players/${id}${queryParams}`);
-    }
-  }, [player, navigate, id]);
 
-  if (!player) {
-    return <div>Loading...</div>;
-  }
-
-  return (
+  return ( 
     <div className="playersStatsPage">
             <section className="players-stats-container">
         <div className="players-stats">
