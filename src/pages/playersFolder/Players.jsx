@@ -15,19 +15,7 @@ function Players() {
       try {
         const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players');
         setPlayers(response.data);
-
-        // Fetch image URL for each player
-        const playersWithImages = await Promise.all(
-          response.data.map(async (player) => {
-            const playerResponse = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/player/${player.id}`);
-            return {
-              player: playerResponse.data.player,
-              image_url: playerResponse.data.image_url,
-            };
-          })
-        );
-
-        setPlayers(playersWithImages);
+        console.log(response.data)
       } catch (error) {
         console.error('Something went wrong:', error);
       }
@@ -35,7 +23,6 @@ function Players() {
 
     fetchPlayerData();
   }, []);
-
 
   if (!players) {
     return <div>Loading...</div>;
