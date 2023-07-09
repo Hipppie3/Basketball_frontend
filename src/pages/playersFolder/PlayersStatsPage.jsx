@@ -12,6 +12,7 @@ function PlayersStatsPage() {
       try {
         const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
         setPlayer(response.data);
+        console.log(response.data.image_url)
       } catch (error) {
         console.error('Something went wrong:', error);
       }
@@ -28,7 +29,7 @@ function PlayersStatsPage() {
     <div className="playersStatsPage">
             <section className="players-stats-container">
         <div className="players-stats">
-          <img src={player.player.image_url}/>
+          <img src={player.image_url}/>
             <h1>{player.player.first_name} {player.player.last_name}</h1>
           <div className="game-table">
             <div className="game-row game-header">
