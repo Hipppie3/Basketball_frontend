@@ -29,7 +29,7 @@ function PlayersStatsPage() {
     <div className="playersStatsPage">
             <section className="players-stats-container">
         <div className="players-stats">
-          <img src={player.image_url} alt="Player" />
+          <img src="https://agile-reef-32463-2ad3559c3e00.herokuapp.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--11c2611a075daf4cc25880daf68ccdd768cebca8/h2.png" alt="Player" />
 
             <h1>{player.player.first_name} {player.player.last_name}</h1>
           <div className="game-table">
