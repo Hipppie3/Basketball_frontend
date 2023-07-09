@@ -118,11 +118,11 @@ console.log(player);
                 &lt;
               </button>
             )}
-            {visibleVideos.map((video, index) => {
+            {visibleVideos.slice(-7).map((video, index) => {
   const videoIndex = scrollPosition + index; // Calculate the actual index of the video in the videos array
   return (
 
-      <div className="eaVid" key={`video-${index}`}>
+      <div className="eaVid" key={`video-${video.id}`}>
         <YouTube videoId={getPlayerVideoId(video.url)} />
     <div className="hi">{video.title}</div>
       </div>
@@ -164,7 +164,7 @@ console.log(player);
             
 
 
- {player.statistics.map((stat) => (
+ {player.statistics.slice(-5).map((stat) => (
         <div key={stat.id}>
             <div className="game-row">
               <div className="game-date">{stat.game_date}</div>

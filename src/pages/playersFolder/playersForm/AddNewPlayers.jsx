@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './AddNewPlayer.css'
 
 
 function AddNewPlayers() {
@@ -83,9 +84,9 @@ const handlePlayerSubmit = async (e) => {
 
   return (
     <div className="addNewPlayerContainer">
+
       <div className="playerContainer">
         <h1 className="addPlayerTitle">Add New Player</h1>
-
         <form onSubmit={handlePlayerSubmit} className="newPlayer">
           <label className="newPlayerLabel">
             First Name:
@@ -109,20 +110,29 @@ const handlePlayerSubmit = async (e) => {
             Add Player
           </button>
         </form>
-      </div>
 
-      <form onSubmit={handleSubmit}>
-      <input type="file" onChange={handleImageChange} />
-      <input
-        type="text"
-        placeholder="Player ID"
+
+      
+      <div className='add-image-form'>
+       <h1> Add Player Image</h1>      
+      <form onSubmit={handleSubmit} className="add-player-image">
+        <label>
+        Player ID:
+        <input
+        className="image-id"
+        type="number"
         value={playerId}
         onChange={(e) => setPlayerId(e.target.value)}
       />
-      <button type="submit">Upload Image</button>
+      <input className="upload-input" type="file" onChange={handleImageChange} />
+      </label>
+      <button type="submit" className="image-btn">Upload Image</button>
     </form>
+    </div>
+      </div>
 
-      <div className="playerContainer">
+
+      <div className="playerContainer1">
         <h1 className="deletePlayerTitle">Delete Player</h1>
         <form onSubmit={handleDeletePlayer} className="deletePlayer">
           <label>
@@ -139,6 +149,8 @@ const handlePlayerSubmit = async (e) => {
           </button>
         </form>
       </div>
+
+
     </div>
   );
 }

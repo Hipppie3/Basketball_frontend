@@ -15,6 +15,11 @@
 
 }
 
+.total-row {
+ border-top: 1px solid black;
+font-weight: bold;
+}
+
 .players-stats {
  width: 95%;
  background-color: white;

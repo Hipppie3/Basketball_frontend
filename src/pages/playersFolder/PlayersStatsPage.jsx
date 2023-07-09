@@ -1,13 +1,33 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import './PlayerStats.css'
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import './PlayerStats.css';
 
 function PlayersStatsPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [player, setPlayer] = useState(null);
 
-   useEffect(() => {
+  // Calculate the totals
+  let totalFGM = 0;
+  let totalFGA = 0;
+  let totalFGPercentage = 0;
+  let total2PM = 0;
+  let total2PA = 0;
+  let total3PM = 0;
+  let total3PA = 0;
+  let totalOREB = 0;
+  let totalDREB = 0;
+  let totalREB = 0;
+  let totalAST = 0;
+  let totalSTL = 0;
+  let totalBLK = 0;
+  let totalTO = 0;
+  let totalPTS = 0;
+
+  let averageFGPercentage = 0; // Declare the variable here
+
+  useEffect(() => {
     const fetchPlayerData = async () => {
       try {
         const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
@@ -19,6 +39,39 @@ function PlayersStatsPage() {
 
     fetchPlayerData();
   }, [id]);
+
+  useEffect(() => {
+    if (player) {
+      player.statistics.forEach((stat) => {
+        totalFGM += stat.fgm;
+        totalFGA += stat.fga;
+        totalFGPercentage += parseFloat(stat.fg_percentage) || 0;
+        total2PA += stat.two_pa;
+        total2PM += stat.two_pm;
+        total3PM += stat.three_pm;
+        total3PA += stat.three_pa;
+        totalOREB += stat.oreb;
+        totalDREB += stat.dreb;
+        totalREB += stat.reb;
+        totalAST += stat.ast;
+        totalSTL += stat.stl;
+        totalBLK += stat.blk;
+        totalTO += stat.to;
+        totalPTS += stat.pts;
+      });
+
+      const averagePTS = player.statistics.length > 0 ? (totalPTS / player.statistics.length).toFixed(2) : 0;
+      const averageREB = player.statistics.length > 0 ? (totalREB / player.statistics.length).toFixed(2) : 0;
+      const averageAST = player.statistics.length > 0 ? (totalAST / player.statistics.length).toFixed(2) : 0;
+      const averageSTL = player.statistics.length > 0 ? (totalSTL / player.statistics.length).toFixed(2) : 0;
+      const averageBLK = player.statistics.length > 0 ? (totalBLK / player.statistics.length).toFixed(2) : 0;
+
+      averageFGPercentage = player.statistics.length > 0 ? (totalFGPercentage / player.statistics.length).toFixed(2) : 0; // Assign the calculated value
+
+      const queryParams = `?averagePTS=${averagePTS}&averageREB=${averageREB}&averageAST=${averageAST}&averageSTL=${averageSTL}&averageBLK=${averageBLK}&averageFGPercentage=${averageFGPercentage}`;
+      navigate(`/players/${id}${queryParams}`);
+    }
+  }, [player, navigate, id]);
 
   if (!player) {
     return <div>Loading...</div>;
@@ -75,7 +128,25 @@ function PlayersStatsPage() {
               <div className="pts">{stat.pts}</div>
             </div>
        </div>))}
-
+              <div className="game-row total-row">
+                <div className="stat-id"> Total </div>
+                <div></div>
+                <div className="fga">{totalFGM}</div>
+                <div className="fga">{totalFGA}</div>
+                <div className="fgp">{averageFGPercentage}</div>
+                <div className="twoPM">{total2PM}</div>
+              <div className="twoPA">{total2PA}</div>
+              <div className="threePM">{total3PM}</div>
+              <div className="threePA">{total3PA}</div>
+              <div className="oReb">{totalOREB}</div>
+              <div className="dReb">{totalDREB}</div>
+              <div className="reb">{totalREB}</div>
+              <div className="ast">{totalAST}</div>
+              <div className="stl">{totalSTL}</div>
+              <div className="blk">{totalBLK}</div>
+              <div className="to">{totalTO}</div>
+              <div className="pts">{totalPTS}</div>
+              </div>
           </div>
         </div>
       </section>
