@@ -3,7 +3,40 @@
  height: 100dvh;
  background-color: rgb(231, 238, 246);
 }
+.players-link-left1 {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: white;
+ height: 4dvh;
+}
+.players-link-left1 ul {
+ display: flex;
+ /* Add this line */
+ flex-direction: row;
+ /* Add this line */
+ list-style: none;
+ padding: 0;
+ margin: 0;
+}
 
+.players-link-left1 li {
+ margin-left: 2rem;
+ border-bottom: 2px solid transparent;
+ cursor: pointer;
+}
+
+.players-link-left1 li:hover {
+ border-bottom-color: black;
+}
+
+.players-link-left1 ul li a {
+  color: black;
+}
+.players-name {
+ display: flex;
+ justify-content: center;
+}
 .players-stats-container {
  width: 100%;
  height: auto;

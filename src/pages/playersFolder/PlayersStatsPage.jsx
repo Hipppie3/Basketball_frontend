@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import './PlayerStats.css'
 
 function PlayersStatsPage() {
-  const navigate = useNavigate
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
 
@@ -66,9 +65,27 @@ function PlayersStatsPage() {
 
   return ( 
     <div className="playersStatsPage">
+
+ 
+          <div className="players-link-left1">
+            
+            <ul>
+              <li>
+              <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink></li>
+              <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link'>Stats</NavLink></li>
+              <li>Bio</li>
+              <li>Media</li>
+            </ul>
+          </div>
+   
+        
+
             <section className="players-stats-container">
+              
         <div className="players-stats">
-            <h1>{player.player.first_name} {player.player.last_name}</h1>
+                  <div className="players-name">
+      <h1>{player.player.first_name} {player.player.last_name}</h1>
+      </div>
           <div className="game-table">
             <div className="game-row game-header">
               <div className="stat-id">Stats ID</div>

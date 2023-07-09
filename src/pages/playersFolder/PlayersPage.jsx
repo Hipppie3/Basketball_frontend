@@ -116,7 +116,7 @@ console.log(averagePoints);
           <div className="players-link-left">
             <ul>
               <li>Profile</li>
-              <li><NavLink to={`/players/${player.player.id}/stats`}>Stats</NavLink></li>
+              <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
               <li>Bio</li>
               <li>Media</li>
             </ul>
