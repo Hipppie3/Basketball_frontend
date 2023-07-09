@@ -69,13 +69,14 @@
  flex-direction: column;
  justify-content: center;
  align-items: center;
+ gap: 5px;
  flex: .2;
  border-right: 1px solid white;
 }
 
 .avg {
  color: white;
- font-size: 20px;
+ font-size: 15px;
 }
 
 .avg-num {

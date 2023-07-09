@@ -63,16 +63,6 @@ function PlayersStatsPage() {
   });
 
   const averageFGPercentage = player.statistics.length > 0 ? (totalFGPercentage / player.statistics.length).toFixed(2) : 0;
-  const averagePTS = player.statistics.length > 0 ? (totalPTS / player.statistics.length).toFixed(2) : 0;
-  const averageREB = player.statistics.length > 0 ? (totalREB / player.statistics.length).toFixed(2) : 0;
-  const averageAST = player.statistics.length > 0 ? (totalAST / player.statistics.length).toFixed(2) : 0;
-  const averageSTL = player.statistics.length > 0 ? (totalSTL / player.statistics.length).toFixed(2) : 0;
-  const averageBLK = player.statistics.length > 0 ? (totalBLK / player.statistics.length).toFixed(2) : 0;
-
-
-
-
-
 
   return ( 
     <div className="playersStatsPage">

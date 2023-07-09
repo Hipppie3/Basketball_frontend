@@ -8,12 +8,6 @@ function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
-  const [averagePTS, setAveragePTS] = useState(0);
-  const [averageREB, setAverageREB] = useState(0);
-  const [averageAST, setAverageAST] = useState(0);
-  const [averageSTL, setAverageSTL] = useState(0);
-  const [averageBLK, setAverageBLK] = useState(0);
-
 
   const handleScrollLeft = () => {
     setScrollPosition(scrollPosition - 1);
@@ -38,34 +32,7 @@ function PlayersPage() {
 
     fetchPlayerData();
   }, [id]);
-  
-  const calculateAverages = (statistics) => {
-    let totalPTS = 0;
-    let totalREB = 0;
-    let totalAST = 0;
-    let totalSTL = 0;
-    let totalBLK = 0;
 
-    statistics.forEach((stat) => {
-      totalPTS += stat.pts;
-      totalREB += stat.reb;
-      totalAST += stat.ast;
-      totalSTL += stat.stl;
-      totalBLK += stat.blk;
-    });
-
-    const avgPTS = statistics.length > 0 ? (totalPTS / statistics.length).toFixed(2) : 0;
-    const avgREB = statistics.length > 0 ? (totalREB / statistics.length).toFixed(2) : 0;
-    const avgAST = statistics.length > 0 ? (totalAST / statistics.length).toFixed(2) : 0;
-    const avgSTL = statistics.length > 0 ? (totalSTL / statistics.length).toFixed(2) : 0;
-    const avgBLK = statistics.length > 0 ? (totalBLK / statistics.length).toFixed(2) : 0;
-
-    setAveragePTS(avgPTS);
-    setAverageREB(avgREB);
-    setAverageAST(avgAST);
-    setAverageSTL(avgSTL);
-    setAverageBLK(avgBLK);
-  };
   if (!player) {
     return <div>Loading...</div>;
   }
@@ -75,9 +42,29 @@ function PlayersPage() {
   const videoId = url.split('v=')[1];
   return videoId;
   };  
-console.log(player);
 
+    let totalPoints = 0;
+    let totalRebounds = 0;
+    let totalAssists = 0;
+    let totalSteals = 0;
+    let totalBlocks = 0;
 
+  player.statistics.forEach((stat) => {
+    totalPoints += stat.pts || 0;
+    totalRebounds += stat.reb || 0;
+    totalAssists += stat.ast || 0;
+    totalSteals += stat.stl || 0;
+    totalBlocks += stat.blocks || 0;
+  });
+
+  // Calculate average points per game
+  const averagePoints = player.statistics.length > 0 ? (totalPoints / player.statistics.length).toFixed(2) : 0;
+  const averageRebounds = player.statistics.length > 0 ? (totalRebounds / player.statistics.length).toFixed(2) : 0;
+  const averageAssists = player.statistics.length > 0 ? (totalAssists / player.statistics.length).toFixed(2) : 0;
+  const averageSteals = player.statistics.length > 0 ? (totalSteals / player.statistics.length).toFixed(2) : 0;
+  const averageBlocks = player.statistics.length > 0 ? (totalBlocks / player.statistics.length).toFixed(2) : 0;
+
+console.log(averagePoints);
   return (
    <div className="players">
   <section className="players-container">
@@ -92,19 +79,19 @@ console.log(player);
        <div className="players-info" key={id}>
           <div className="left-section">
             <div className="players-avg">
-              <span className="avg">PPG</span> {averagePTS} <span className="avg-num"></span>
+              <span className="avg">PPG</span><span className="avg-num">{averagePoints}</span>
             </div>
             <div className="players-avg">
-              <span className="avg">RBG</span>  <span className="avg-num"></span>
+              <span className="avg">RBG</span><span className="avg-num">{averageRebounds} </span>
             </div>
             <div className="players-avg">
-              <span className="avg">APG</span> <span className="avg-num"></span>
+              <span className="avg">APG</span><span className="avg-num">{averageAssists} </span>
             </div>
             <div className="players-avg">
-              <span className="avg">SPG</span> <span className="avg-num"></span>
+              <span className="avg">SPG</span><span className="avg-num">{averageSteals} </span>
             </div>
             <div className="players-avg">
-              <span className="avg">BPG</span> <span className="avg-num"></span>
+              <span className="avg">BPG</span><span className="avg-num">{averageBlocks} </span>
             </div>
           </div>
 
