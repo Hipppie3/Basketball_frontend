@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import PlayersImage from './PlayersImage';
+
 
 function AddNewPlayers() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [deletePlayerId, setDeletePlayerId] = useState('');
   const [playerId, setPlayerId] = useState(''); // Initialize playerId state
+
+  const [image, setImage] = useState(null);
 
 const handlePlayerSubmit = async (e) => {
   e.preventDefault();
@@ -20,20 +22,46 @@ const handlePlayerSubmit = async (e) => {
       },
     });
 
-    // Retrieve the playerId from the response
-    const playerId = response.data.player.id;
-    console.log('New player created with ID:', playerId);
+
 
     // Reset form values
     setFirstName('');
     setLastName('');
 
-    // Update the playerId state
-    setPlayerId(playerId);
+
   } catch (error) {
     console.error(error);
   }
 };
+
+
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('player[image]', image);
+
+    try {
+      const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      console.log('Image uploaded:', response.data);
+      // Handle any success message or further actions after image upload
+      
+      // Clear the image input field and reset the playerId
+      setImage(null);
+      setPlayerId('');
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      // Handle any error messages or error handling
+    }
+  };
+
 
 
   const handleDeletePlayer = async (e) => {
@@ -83,7 +111,16 @@ const handlePlayerSubmit = async (e) => {
         </form>
       </div>
 
-      <PlayersImage playerId={playerId} setPlayerId={setPlayerId} />
+      <form onSubmit={handleSubmit}>
+      <input type="file" onChange={handleImageChange} />
+      <input
+        type="text"
+        placeholder="Player ID"
+        value={playerId}
+        onChange={(e) => setPlayerId(e.target.value)}
+      />
+      <button type="submit">Upload Image</button>
+    </form>
 
       <div className="playerContainer">
         <h1 className="deletePlayerTitle">Delete Player</h1>
