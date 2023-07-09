@@ -12,8 +12,8 @@ function Players() {
     const fetchPlayerData = async () => {
       try {
         const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players');
-        setPlayers(response.data);
-        console.log(response.data);
+        setPlayers(response.data.player);
+        console.log(response.data.player);
       } catch (error) {
         console.error('Something went wrong:', error);
       }
@@ -44,15 +44,15 @@ function Players() {
 
         <div className="player-name-container">
           {players.map((player) => (
-            <div className="player-card" key={player.player.id}>
+            <div className="player-card" key={player.id}>
               <div>
                 <Link
                   className="player-name"
-                  to={`/players/${player.player.id}`}
-                  onClick={(event) => handlePlayerClick(event, player.player.id)}
+                  to={`/players/${player.id}`}
+                  onClick={(event) => handlePlayerClick(event, player.id)}
                 >
                   {player.image_url && <img src={player.image_url} className="player-card-image" />}
-                  {player.player.first_name} {player.player.last_name} {player.player.id}
+                  {player.first_name} {player.last_name} {player.id}
                 </Link>
               </div>
               <div className="player-sports">BASKETBALL</div>
