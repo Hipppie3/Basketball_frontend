@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Players.css';
 import { FaSearch } from 'react-icons/fa'
-import hiep from '../videos/h2.png'
+
 
 
 function Players() {
@@ -51,7 +51,7 @@ function Players() {
           <div className="player-card">
             <div key={player.id} >
             <Link className="player-name" to={`/players/${player.id}`} onClick={(event) => handlePlayerClick(event, player.id)}>
-          <img src={hiep} className="player-card-image"/>
+          <img src={player.image_url} className="player-card-image"/>
               {player.first_name} {player.last_name} {player.id}
             </Link>
           </div>
