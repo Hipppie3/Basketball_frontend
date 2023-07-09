@@ -47,7 +47,7 @@ console.log(player);
    <div className="players">
   <section className="players-container">
     <div className="players-profile">
-      <div className="players-image" style={{ backgroundImage: `url(${player.image})` }}></div>
+      <div className="players-image" style={{ backgroundImage: `url(${player.image_url})` }}></div>
       <div className="profile-information">
         <h1 className="name">{player.player.first_name} {player.player.last_name}</h1>
       </div>

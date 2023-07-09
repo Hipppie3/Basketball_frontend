@@ -49,7 +49,10 @@
  /* Add left padding to match the rows */
 
 }
-
+.player-img {
+ height: 300px;
+ width: 300px;
+}
 
 
 .game-date,
