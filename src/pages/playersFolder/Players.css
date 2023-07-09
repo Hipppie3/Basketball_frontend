@@ -76,6 +76,10 @@
  width: 180px
 }
 .player-name{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 10px;
  padding-top: 7px;
  text-decoration: none;
  color: rgb(16, 16, 16);
