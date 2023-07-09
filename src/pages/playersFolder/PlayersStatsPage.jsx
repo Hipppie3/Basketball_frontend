@@ -29,7 +29,8 @@ function PlayersStatsPage() {
     <div className="playersStatsPage">
             <section className="players-stats-container">
         <div className="players-stats">
-          <img src={player.image_url}/>
+          <img src={player.image_url} alt="Player" />
+
             <h1>{player.player.first_name} {player.player.last_name}</h1>
           <div className="game-table">
             <div className="game-row game-header">
