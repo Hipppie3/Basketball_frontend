@@ -1,8 +1,9 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 
 function PlayersMediaPage() {
-    const { id } = useParams();
+  const { id } = useParams();
   const [player, setPlayer] = useState(null);
 
    useEffect(() => {
