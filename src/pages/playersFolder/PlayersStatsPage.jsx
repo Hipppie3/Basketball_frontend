@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import './PlayerStats.css'
 
 function PlayersStatsPage() {
@@ -72,9 +72,10 @@ function PlayersStatsPage() {
             <ul>
               <li>
               <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink></li>
-              <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link'>Stats</NavLink></li>
-              <li>Bio</li>
-              <li>Media</li>
+              <li>Stats</li>
+              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li>
+
+              <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
             </ul>
           </div>
    

@@ -116,10 +116,15 @@ console.log(averagePoints);
         <div className="players-link-container">
           <div className="players-link-left">
             <ul>
+              
               <li>Profile</li>
+
               <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
-              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link"></NavLink>Bio</li>
-              <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link"></NavLink>Media</li>
+
+              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li>
+
+              <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
+
             </ul>
           </div>
           <div className="players-link-right"></div>
