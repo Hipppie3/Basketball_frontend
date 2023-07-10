@@ -1,7 +1,22 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { NavLink, useParams } from 'react-router-dom'
 
 function PlayersMediaPage() {
+    const { id } = useParams();
+  const [player, setPlayer] = useState(null);
+
+   useEffect(() => {
+    const fetchPlayerData = async () => {
+      try {
+        const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
+        setPlayer(response.data);
+      } catch (error) {
+        console.error('Something went wrong:', error);
+      }
+    };
+
+    fetchPlayerData();
+  }, [id]);
   return (
     <div>
               <div className="players-link-left1">
