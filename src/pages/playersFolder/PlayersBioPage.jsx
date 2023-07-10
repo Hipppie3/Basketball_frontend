@@ -10,6 +10,7 @@ function PlayersBioPage() {
     const fetchPlayerData = async () => {
       try {
         const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
+        console.log(response.data)
         setPlayer(response.data);
       } catch (error) {
         console.error('Something went wrong:', error);
@@ -18,6 +19,10 @@ function PlayersBioPage() {
 
     fetchPlayerData();
   }, [id]);
+
+    if (!player) {
+    return <div>Loading...</div>;
+  }
   return (
     <div>
       

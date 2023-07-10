@@ -18,6 +18,11 @@ function PlayersMediaPage() {
 
     fetchPlayerData();
   }, [id]);
+  
+    if (!player) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
               <div className="players-link-left1">
