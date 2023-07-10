@@ -20,6 +20,15 @@
  border-bottom: 1px solid rgb(216, 215, 215);
 }
 
+.login {
+ margin-right: 2rem;
+}
+
+.login a {
+  text-decoration: none;
+  font-size: 21px;
+  color: black;
+}
 .navbar-container {
  display: flex;
  height: 60px;

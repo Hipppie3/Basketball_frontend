@@ -15,8 +15,10 @@ function Navbar() {
         <NavLink to='/' className='navbar-logo'>
           HIPPPIE <span>SPORTS</span>
         </NavLink>
+
         <div className='menu-icon' onClick={handleClick}>
         {click ? <FaTimes /> :  <FaBars />}
+
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'><NavLink to='/' 
@@ -39,15 +41,19 @@ function Navbar() {
           className= {click ? 'nav-links active-form' : 'nav-links'} onClick={closeMobileMenu}>FORM</NavLink>
           <div className='dropdown'>
           <NavLink to='/editPlayers' className='dropdown-link' onClick={closeMobileMenu}>
-    Edit Player
-  </NavLink>
-  <NavLink to='/editStats' className='dropdown-link' onClick={closeMobileMenu}>
-    Edit Statistics
-  </NavLink>
-  <NavLink to='editVideos' className='dropdown-link' onClick={closeMobileMenu}>
-    Edit Video
-  </NavLink>
+          Edit Player
+          </NavLink>
+          <NavLink to='/editStats' className='dropdown-link' onClick={closeMobileMenu}>
+            Edit Statistics
+          </NavLink>
+          <NavLink to='editVideos' className='dropdown-link' onClick={closeMobileMenu}>
+            Edit Video
+          </NavLink>
           </div>
+          </li>
+          <li className="nav-item"><NavLink to='/login'
+          className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
+          } onClick={closeMobileMenu}>Login</NavLink>
           </li>
         </ul>
       </div>

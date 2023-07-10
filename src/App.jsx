@@ -12,7 +12,7 @@ import AddVideoPage from './pages/playersFolder/playersForm/AddVideoPage'
 import PlayerStatsPage from './pages/playersFolder/PlayersStatsPage'
 import PlayerBioPage from './pages/playersFolder/PlayersBioPage'
 import PlayersMediaPage from './pages/playersFolder/PlayersMediaPage'
-
+import Login from './pages/Login'
 
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
       <Route path="/players/:id/bio" element= {<PlayerBioPage/>} />
       <Route path="/players/:id/media" element={<PlayersMediaPage/>} />
       <Route path='/players/:id' element={<PlayersPage />} />
+      <Route path='/login' element={<Login />} />
     </Routes>
     </div>
   )
