@@ -31,6 +31,11 @@ function PlayersMediaPage() {
     height: '200', // Adjust the height as desired
   };
 
+  const getPlayerVideoId = (url) => {
+    const videoId = url.split('v=')[1];
+    return videoId;
+  };
+
   return (
     <div className='players-media'>
       <div className="players-link-left2">
@@ -48,7 +53,7 @@ function PlayersMediaPage() {
       <div className='media-container1'>
         {player.videos.map((video) => (
           <div className="eaVid1" key={`video-${video.id}`}>
-            <YouTube videoId={video.url} opts={videoOptions} />
+            <YouTube videoId={getPlayerVideoId(video.url)} opts={videoOptions} />
             <div className="hi">{video.title}</div>
           </div>
         ))}
