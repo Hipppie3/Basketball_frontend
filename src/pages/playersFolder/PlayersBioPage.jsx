@@ -30,13 +30,17 @@ function PlayersBioPage() {
             <ul>
               <li>
               <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink></li>
-              <li>Stats</li>
-              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' >Bio</NavLink></li>
-
+              <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
+              {/* <li>Bio</li> */}
               <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' >Media</NavLink></li>
             </ul>
           </div>
-   
+        <div>
+        <h1>{player.player.first_name}{player.player.last_name}</h1>
+        </div>
+        <div>
+          <h1>Biography</h1>
+        </div>
         
     </div>
   )

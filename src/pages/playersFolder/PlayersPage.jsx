@@ -121,7 +121,7 @@ console.log(averagePoints);
 
               <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
 
-              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li>
+              {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
 
               <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
 
@@ -146,7 +146,7 @@ console.log(averagePoints);
                 &lt;
               </button>
             )}
-            {visibleVideos.slice(-7).map((video, index) => {
+            {visibleVideos.slice(-5).map((video, index) => {
   const videoIndex = scrollPosition + index; // Calculate the actual index of the video in the videos array
   return (
 

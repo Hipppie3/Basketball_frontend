@@ -267,11 +267,11 @@
  /* Set the height to 100% */
 }
 .hi {
- 
  font-weight: bold;
  padding-top: 10px;
  height: 20%;
  font-size: 18px;
+ padding-bottom: 10px;
 }
 
 

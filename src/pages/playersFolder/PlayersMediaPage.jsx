@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
+import './PlayersMediaPage.css'
 
 function PlayersMediaPage() {
   const { id } = useParams();
@@ -24,19 +25,20 @@ function PlayersMediaPage() {
   }
 
   return (
-    <div>
+    <div classname='players-media'>
               <div className="players-link-left1">
-            
             <ul>
               <li>
               <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink></li>
-              <li>Stats</li>
-              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' >Bio</NavLink></li>
-
-              <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' >Media</NavLink></li>
+              <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
+              {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' >Bio</NavLink></li> */}
+              <li>Media</li>
             </ul>
           </div>
-   
+          
+          <div className='media-container'>
+    
+          </div>
     </div>
   )
 }

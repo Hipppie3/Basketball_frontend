@@ -73,8 +73,7 @@ function PlayersStatsPage() {
               <li>
               <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink></li>
               <li>Stats</li>
-              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li>
-
+              {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
               <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
             </ul>
           </div>

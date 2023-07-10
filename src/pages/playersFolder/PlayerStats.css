@@ -1,7 +1,7 @@
 
 .playersStatsPage {
  height: 100dvh;
- background-color: rgb(231, 238, 246);
+ background-color: white;
 }
 .players-link-left1 {
  display: flex;
@@ -43,7 +43,7 @@
  display: flex;
  justify-content: center;
  align-items: center;
- background-color: rgb(231, 238, 246);
+ background-color: white;
  padding: 40px 0;
 
 }
