@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import './PlayersPage.css'
 import YouTube from 'react-youtube'
 
+
 function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { id } = useParams();
@@ -68,7 +69,7 @@ console.log(averagePoints);
   return (
    <div className="players">
   <section className="players-container">
-    <div className="players-profile">
+    <div className="players-profile" >
       <div className="players-image" style={{ backgroundImage: `url(${player.image_url})` }}></div>
       <div className="profile-information">
         <h1 className="name">{player.player.first_name} {player.player.last_name}</h1>
@@ -117,8 +118,8 @@ console.log(averagePoints);
             <ul>
               <li>Profile</li>
               <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
-              <li>Bio</li>
-              <li>Media</li>
+              <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link"></NavLink>Bio</li>
+              <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link"></NavLink>Media</li>
             </ul>
           </div>
           <div className="players-link-right"></div>
