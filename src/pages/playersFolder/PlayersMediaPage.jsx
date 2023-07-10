@@ -1,18 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
-import './PlayersMediaPage.css'
+import React, { useEffect, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import './PlayersMediaPage.css';
+import YouTube from 'react-youtube';
 
 function PlayersMediaPage() {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchPlayerData = async () => {
       try {
         const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
         setPlayer(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.error('Something went wrong:', error);
       }
@@ -20,28 +21,40 @@ function PlayersMediaPage() {
 
     fetchPlayerData();
   }, [id]);
-  
-    if (!player) {
+
+  if (!player) {
     return <div>Loading...</div>;
   }
 
+  const videoOptions = {
+    width: '300', // Adjust the width as desired
+    height: '200', // Adjust the height as desired
+  };
+
   return (
-    <div classname='players-media'>
-              <div className="players-link-left1">
-            <ul>
-              <li>
-              <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink></li>
-              <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
-              {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' >Bio</NavLink></li> */}
-              <li>Media</li>
-            </ul>
+    <div className='players-media'>
+      <div className="players-link-left2">
+        <ul>
+          <li>
+            <NavLink className='stats-link' to={`/players/${player.id}`}>Profile</NavLink>
+          </li>
+          <li>
+            <NavLink className='stats-link' to={`/players/${player.id}/stats`}>Stats</NavLink>
+          </li>
+          <li>Media</li>
+        </ul>
+      </div>
+
+      <div className='media-container1'>
+        {player.videos.map((video) => (
+          <div className="eaVid1" key={`video-${video.id}`}>
+            <YouTube videoId={video.url} opts={videoOptions} />
+            <div className="hi">{video.title}</div>
           </div>
-          
-          <div className='media-container'>
-    
-          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default PlayersMediaPage
+export default PlayersMediaPage;

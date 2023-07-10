@@ -5,6 +5,7 @@ import './Navbar.css'
 
 function Navbar() {
   const [click, setClick] = useState(false)
+  const [user, setUser] = useState(true)
 
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
@@ -37,6 +38,7 @@ function Navbar() {
           className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
           } onClick={closeMobileMenu}>PLAYERS</NavLink>
           </li>
+          {user ?
           <li className='nav-items'><NavLink 
           className= {click ? 'nav-links active-form' : 'nav-links'} onClick={closeMobileMenu}>FORM</NavLink>
           <div className='dropdown'>
@@ -51,10 +53,14 @@ function Navbar() {
           </NavLink>
           </div>
           </li>
+          : ""
+}
+
           <li className="nav-item"><NavLink to='/login'
           className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')
           } onClick={closeMobileMenu}>Login</NavLink>
-          </li>
+          </li> 
+  
         </ul>
       </div>
     </nav>
