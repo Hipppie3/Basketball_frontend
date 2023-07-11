@@ -28,8 +28,8 @@ function App() {
       <Route path="/editStats" element={<AddStatsPage/>} />
       <Route path="/editVideos" element={<AddVideoPage/>} />
       <Route path="/about" element={<About/>} />
-      <Route path="/media" element={<Media/>} />
-      <Route path="/medias" element={<Medias/>} />
+      <Route path="/media" element={<Medias/>} />
+      <Route path="/medias" element={<Media/>} />
       <Route path="/players" element={<Players />} />
       <Route path="/players/:id/stats" element={<PlayerStatsPage/>} />
       <Route path="/players/:id/media" element={<PlayersMediaPage/>} />
