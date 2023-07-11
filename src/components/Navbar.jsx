@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 import { AuthContext } from '../context/AuthContext';
@@ -8,7 +8,6 @@ import axios from 'axios';
 function Navbar() {
   const [click, setClick] = useState(false);
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -18,7 +17,7 @@ function Navbar() {
       .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
       .then((response) => {
         setLoggedIn(false);
-        navigate('/login');
+        window.location.href = '/login';
       })
       .catch((error) => {
         console.log(error);
