@@ -40,6 +40,7 @@ const renderSportMediaVideos = (sport) => {
         </article>
       ));
     }
+   }
     return null;
   };
 
