@@ -14,7 +14,7 @@ import PlayerBioPage from './pages/playersFolder/PlayersBioPage'
 import PlayersMediaPage from './pages/playersFolder/PlayersMediaPage'
 import Login from './pages/Login'
 import Medias from './pages/Medias'
-import AddSportVideo from './AddSportVideo'
+import AddSportVideo from './pages/AddSportVideo'
 
 
 function App() {
