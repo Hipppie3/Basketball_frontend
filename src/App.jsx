@@ -13,6 +13,7 @@ import PlayerStatsPage from './pages/playersFolder/PlayersStatsPage'
 import PlayerBioPage from './pages/playersFolder/PlayersBioPage'
 import PlayersMediaPage from './pages/playersFolder/PlayersMediaPage'
 import Login from './pages/Login'
+import Medias from './pages/Medias'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
       <Route path="/editVideos" element={<AddVideoPage/>} />
       <Route path="/about" element={<About/>} />
       <Route path="/media" element={<Media/>} />
+      <Route path="/medias" element={<Medias/>} />
       <Route path="/players" element={<Players />} />
       <Route path="/players/:id/stats" element={<PlayerStatsPage/>} />
       <Route path="/players/:id/bio" element= {<PlayerBioPage/>} />
