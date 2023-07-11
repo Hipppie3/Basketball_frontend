@@ -11,10 +11,6 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-const handleLogout = () => {
-  // Perform logout logic here
-  // For example, you can make a request to your backend to clear the user's session or access token
-
   const handleLogout = () => {
     axios
       .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
