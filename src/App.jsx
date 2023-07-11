@@ -14,6 +14,7 @@ import PlayerBioPage from './pages/playersFolder/PlayersBioPage'
 import PlayersMediaPage from './pages/playersFolder/PlayersMediaPage'
 import Login from './pages/Login'
 import Medias from './pages/Medias'
+import AddSportVideo from './AddSportVideo'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
       <Route path="/players/:id/media" element={<PlayersMediaPage/>} />
       <Route path='/players/:id' element={<PlayersPage />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/addSportVideo' element={<AddSportVideo/>} />
     </Routes>
     </div>
   )
