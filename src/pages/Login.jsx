@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 import { AuthContext } from '../context/AuthContext';
-import { useNavigtate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const [name, setName] = useState('');
