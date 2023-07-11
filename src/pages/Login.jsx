@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 function Login() {
   const [name, setName] = useState('');
