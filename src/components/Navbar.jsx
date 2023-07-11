@@ -7,12 +7,15 @@ import axios from 'axios';
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const initialLoggedIn = localStorage.getItem('loggedIn') === 'true';
+const [loggedIn, setLoggedIn] = useState(initialLoggedIn);
   const navigate = useNavigate();
+  
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 console.log(loggedIn)
+
 const handleLogout = () => {
   console.log('Logging out...');
   axios
@@ -20,6 +23,7 @@ const handleLogout = () => {
     .then((response) => {
       console.log('Logout response:', response);
       setLoggedIn(false);
+      localStorage.removeItem('loggedIn');
       navigate('/login');
     })
     .catch((error) => {
