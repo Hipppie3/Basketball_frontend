@@ -17,11 +17,7 @@ console.log(loggedIn)
 const handleLogout = () => {
   console.log('Logging out...');
   axios
-    .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout', {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout', {withCredentials: true})
     .then((response) => {
       console.log('Logout response:', response);
       setLoggedIn(false);
@@ -34,7 +30,6 @@ const handleLogout = () => {
       }
     });
 };
-
 
   return (
     <nav className="navbar">
