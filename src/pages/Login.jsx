@@ -24,7 +24,7 @@ axios
   .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', { username: name, password })
   .then((response) => {
     const user = response.data; // Access the user object directly
-    if (user) {
+    if (response.status === 201) {
       // Update the loggedIn state to true
       setLoggedIn(true);
 
