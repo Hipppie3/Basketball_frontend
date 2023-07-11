@@ -12,18 +12,23 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
-  const handleLogout = () => {
-    axios
-      .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
-      .then((response) => {
-        setLoggedIn(false);
-        navigate('/login');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+axios.defaults.withCredentials = true;
+const handleLogout = () => {
+  console.log('Logging out...');
+  axios
+    .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
+    .then((response) => {
+      console.log('Logout response:', response);
+      setLoggedIn(false);
+      navigate('/login');
+    })
+    .catch((error) => {
+      console.log('Logout error:', error.message);
+      if (error.response) {
+        console.log('Error response:', error.response.data);
+      }
+    });
+};
 
   return (
     <nav className="navbar">
