@@ -31,7 +31,7 @@ function Login() {
         if (response.status === 201) {
           console.log(response.data)
           setLoggedIn(true);
-          window.location.href = '/';
+          window.location.href = '/login';
         } else {
           console.log('Login failed');
         }
