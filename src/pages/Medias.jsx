@@ -23,7 +23,8 @@ function Medias() {
     setActiveCategory(category);
   };
 
-  const renderSportMediaVideos = (sport) => {
+const renderSportMediaVideos = (sport) => {
+  if (activeCategory === 'all' || activeCategory === sport.name.toLowerCase()) {
     if (sport.sport_media_videos && sport.sport_media_videos.length > 0) {
       return sport.sport_media_videos.map((video) => (
         <article key={video.id} className="media-container">
