@@ -29,6 +29,7 @@ function Login() {
       .then((response) => {
         const user = response.data;
         if (response.status === 201) {
+          console.log(response.data)
           setLoggedIn(true);
           window.location.href = '/';
         } else {
