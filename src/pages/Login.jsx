@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
+import { AuthContext } from './AuthContext';
 
 function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
+ const { setLoggedIn } = useContext(AuthContext);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -20,28 +21,25 @@ function Login() {
 
     // Make a request to your Rails backend for authentication
     // Replace 'your_backend_endpoint' with the actual endpoint URL
-axios
-  .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', { username: name, password })
-  .then((response) => {
-    const user = response.data; // Access the user object directly
-    if (response.status === 201) {
-      // Update the loggedIn state to true
-      setLoggedIn(true);
-
-      // Redirect the user to the desired page upon successful login
-      // Replace 'your_redirect_path' with the actual path
-      window.location.href = '/';
-    } else {
-      // Handle authentication errors, e.g., display an error message
-      console.log('Login failed');
-    }
-  })
-  .catch((error) => {
-    // Handle any network or other errors
-    console.log(error);
-  });
-
+    axios
+      .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', {
+        username: name,
+        password
+      })
+      .then((response) => {
+        const user = response.data;
+        if (response.status === 201) {
+          setLoggedIn(true);
+          window.location.href = '/';
+        } else {
+          console.log('Login failed');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
 
   return (
     <div className="login">

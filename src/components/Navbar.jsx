@@ -15,23 +15,17 @@ const handleLogout = () => {
   // Perform logout logic here
   // For example, you can make a request to your backend to clear the user's session or access token
 
-  axios
-    .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
-    .then((response) => {
-      // Handle successful logout
-      // For example, you can clear any user-related data from local storage or state
-
-      // Set the loggedIn state to false
-      setLoggedIn(false);
-
-      // Redirect the user to the login page or desired page
-      window.location.href = '/login';
-    })
-    .catch((error) => {
-      // Handle logout error
-      console.log(error);
-    });
-};
+  const handleLogout = () => {
+    axios
+      .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
+      .then((response) => {
+        setLoggedIn(false);
+        window.location.href = '/login';
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
 
   return (
