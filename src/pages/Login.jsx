@@ -32,7 +32,6 @@ function Login() {
         const user = response.data;
         if (response.status === 201) {
           setLoggedIn(true);
-           localStorage.setItem('loggedIn', true);
           console.log(user); // Use console.log to display the user data
            navigate('/'); // Navigate to the desired route after successful login
         } else {
