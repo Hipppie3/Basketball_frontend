@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Media.css';
+import './Medias.css';
 
 function Medias() {
   const [sports, setSports] = useState([]);
