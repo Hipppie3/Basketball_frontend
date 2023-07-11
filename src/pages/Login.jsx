@@ -20,28 +20,27 @@ function Login() {
 
     // Make a request to your Rails backend for authentication
     // Replace 'your_backend_endpoint' with the actual endpoint URL
-    axios
-      .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', { username: name, password })
-      .then((response) => {
-        const data = response.data;
-        // Handle the response from the backend
-        // For example, you can check if the login was successful
-        if (data.success) {
-          // Update the loggedIn state to true
-          setLoggedIn(true);
+axios
+  .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', { username: name, password })
+  .then((response) => {
+    const user = response.data; // Access the user object directly
+    if (user) {
+      // Update the loggedIn state to true
+      setLoggedIn(true);
 
-          // Redirect the user to the desired page upon successful login
-          // Replace 'your_redirect_path' with the actual path
-          window.location.href = '/';
-        } else {
-          // Handle authentication errors, e.g., display an error message
-          console.log(data.error);
-        }
-      })
-      .catch((error) => {
-        // Handle any network or other errors
-        console.log(error);
-      });
+      // Redirect the user to the desired page upon successful login
+      // Replace 'your_redirect_path' with the actual path
+      window.location.href = '/';
+    } else {
+      // Handle authentication errors, e.g., display an error message
+      console.log('Login failed');
+    }
+  })
+  .catch((error) => {
+    // Handle any network or other errors
+    console.log(error);
+  });
+
   };
 
   return (
