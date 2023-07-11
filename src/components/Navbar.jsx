@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 import { AuthContext } from '../context/AuthContext';
@@ -8,6 +8,7 @@ import axios from 'axios';
 function Navbar() {
   const [click, setClick] = useState(false);
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -17,14 +18,13 @@ function Navbar() {
       .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
       .then((response) => {
         setLoggedIn(false);
-        window.location.href = '/login';
+        navigate('/login');
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-console.log(loggedIn)
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -77,9 +77,11 @@ console.log(loggedIn)
           {loggedIn ? (
             <>
               <li className="nav-items">
-                <NavLink className={click ? 'nav-links active-form' : 'nav-links'} onClick={closeMobileMenu}>
-                  FORM
-                </NavLink>
+                {loggedIn && ( // Conditionally render the "FORM" element
+                  <NavLink className={click ? 'nav-links active-form' : 'nav-links'} onClick={closeMobileMenu}>
+                    FORM
+                  </NavLink>
+                )}
                 <div className="dropdown">
                   <NavLink to="/editPlayers" className="dropdown-link" onClick={closeMobileMenu}>
                     Edit Player

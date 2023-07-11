@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useNavigate } from 'react';
 import axios from 'axios';
 import './Login.css';
 import { AuthContext } from '../context/AuthContext';
@@ -7,6 +7,7 @@ function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const { setLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -31,8 +32,7 @@ function Login() {
         if (response.status === 201) {
           setLoggedIn(true);
           console.log(user); // Use console.log to display the user data
-          // Remove the following line to prevent page refresh
-          // window.location.href = '/';
+           navigate('/'); // Navigate to the desired route after successful login
         } else {
           console.error('Login failed');
         }
