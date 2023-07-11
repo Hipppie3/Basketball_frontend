@@ -5,6 +5,7 @@ import './Login.css';
 function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -26,6 +27,9 @@ function Login() {
         // Handle the response from the backend
         // For example, you can check if the login was successful
         if (data.success) {
+          // Update the loggedIn state to true
+          setLoggedIn(true);
+
           // Redirect the user to the desired page upon successful login
           // Replace 'your_redirect_path' with the actual path
           window.location.href = '/';
