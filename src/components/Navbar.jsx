@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
+import { AuthContext } from './AuthContext';
 import axios from 'axios';
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
