@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
+import axios from 'axios';
 
 function Navbar() {
   const [click, setClick] = useState(false);
