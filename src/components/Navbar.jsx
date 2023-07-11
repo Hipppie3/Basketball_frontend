@@ -24,7 +24,7 @@ function Navbar() {
       });
   };
 
-console.log(loggedIn)
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
