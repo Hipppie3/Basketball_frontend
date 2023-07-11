@@ -12,7 +12,7 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-axios.defaults.withCredentials = true;
+console.log(loggedIn)
 const handleLogout = () => {
   console.log('Logging out...');
   axios
