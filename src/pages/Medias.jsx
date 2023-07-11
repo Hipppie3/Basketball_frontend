@@ -14,6 +14,7 @@ function Medias() {
     try {
       const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/sports');
       setSports(response.data);
+      console.log(response.data)
     } catch (error) {
       console.log(error);
     }
