@@ -27,20 +27,20 @@ function AddSportVideo() {
     setVideoUrl(event.target.value);
   };
 
-  const handleAddSportMediaVideo = async () => {
-    try {
-      const response = await axios.post(
-        `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/sports/${selectedSport}/sport_media_videos`,
-        { url: videoUrl }
-      );
-      console.log(response.data); // Handle the response as needed
-      // Clear form inputs
-      setSelectedSport('');
-      setVideoUrl('');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const handleAddSportMediaVideo = async () => {
+  try {
+    const response = await axios.post(
+      `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/sports/${selectedSport}/sport_media_videos`,
+      { video: videoUrl, title: 'Some Title' }
+    );
+    console.log(response.data);
+    setSelectedSport('');
+    setVideoUrl('');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   return (
     <div>
