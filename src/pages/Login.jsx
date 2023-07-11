@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
- const { setLoggedIn } = useContext(AuthContext);
+  const { setLoggedIn } = useContext(AuthContext);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -29,18 +29,18 @@ function Login() {
       .then((response) => {
         const user = response.data;
         if (response.status === 201) {
-          console.log(response.data)
           setLoggedIn(true);
-          window.location.href = '/login';
+          console.log(user); // Use console.log to display the user data
+          // Remove the following line to prevent page refresh
+          // window.location.href = '/';
         } else {
-          console.log('Login failed');
+          console.error('Login failed');
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
-
 
   return (
     <div className="login">
