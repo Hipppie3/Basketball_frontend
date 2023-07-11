@@ -21,7 +21,7 @@ function Login() {
     // Make a request to your Rails backend for authentication
     // Replace 'your_backend_endpoint' with the actual endpoint URL
     axios
-      .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/sessions', { name, password })
+      .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', { name, password })
       .then((response) => {
         const data = response.data;
         // Handle the response from the backend
