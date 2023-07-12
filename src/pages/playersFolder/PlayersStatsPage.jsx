@@ -59,9 +59,9 @@ function PlayersStatsPage() {
     totalBLK += stat.blk;
     totalTO += stat.to;
     totalPTS += stat.pts;
-    if (stat.result === 'W') {
+    if (stat.w_l === 'W') {
       totalWins += 1;
-    } else if (stat.result === 'L') {
+    } else if (stat.w_l === 'L') {
       totalLosses += 1;
     }
   });
@@ -120,7 +120,7 @@ function PlayersStatsPage() {
               <div key={stat.id}>
                 <div className="game-row">
                   <div className="stats-id">{stat.id}</div>
-                  <div className="game-date">{stat.result}</div>
+                  <div className="game-date">{stat.w_l}</div>
                   <div className="fgm">{stat.fgm}</div>
                   <div className="fga">{stat.fga}</div>
                   <div className="fgp">{stat.fg_percentage}</div>
