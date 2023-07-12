@@ -1,13 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import './PlayerStats.css'
+import './PlayerStats.css';
 
 function PlayersStatsPage() {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchPlayerData = async () => {
       try {
         const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
@@ -24,7 +24,7 @@ function PlayersStatsPage() {
     return <div>Loading...</div>;
   }
 
-    // Calculate the totals
+  // Calculate the totals
   let totalFGM = 0;
   let totalFGA = 0;
   let totalFGPercentage = 0;
@@ -40,7 +40,8 @@ function PlayersStatsPage() {
   let totalBLK = 0;
   let totalTO = 0;
   let totalPTS = 0;
-  // ... other stat variables
+  let totalWins = 0;
+  let totalLosses = 0;
 
   player.statistics.forEach((stat) => {
     totalFGM += stat.fgm;
@@ -57,35 +58,43 @@ function PlayersStatsPage() {
     totalSTL += stat.stl;
     totalBLK += stat.blk;
     totalTO += stat.to;
-    totalPTS += stat.pts
-    // ... update other stat variables accordingly
+    totalPTS += stat.pts;
+    if (stat.result === 'W') {
+      totalWins += 1;
+    } else if (stat.result === 'L') {
+      totalLosses += 1;
+    }
   });
 
   const averageFGPercentage = player.statistics.length > 0 ? (totalFGPercentage / player.statistics.length).toFixed(2) : 0;
+  const winningPercentage = totalWins + totalLosses > 0 ? ((totalWins / (totalWins + totalLosses)) * 100).toFixed(2) : 0;
 
-  return ( 
+  return (
     <div className="playersStatsPage">
-
- 
-          <div className="players-link-left1">
-            
-            <ul>
-              <li>
-              <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink></li>
-              <li>Stats</li>
-              {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
-              <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
-            </ul>
-          </div>
-   
-        
-
-            <section className="players-stats-container">
-              
-        <div className="players-stats">
-                  <div className="players-name">
-      <h1>{player.player.first_name} {player.player.last_name}</h1>
+      <div className="players-link-left1">
+        <ul>
+          <li>
+            <NavLink className="stats-link" to={`/players/${player.player.id}`}>
+              Profile
+            </NavLink>
+          </li>
+          <li>Stats</li>
+          {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
+          <li>
+            <NavLink to={`/players/${player.player.id}/media`} className="stats-link" activeClassName="active-link">
+              Media
+            </NavLink>
+          </li>
+        </ul>
       </div>
+
+      <section className="players-stats-container">
+        <div className="players-stats">
+          <div className="players-name">
+            <h1>
+              {player.player.first_name} {player.player.last_name}
+            </h1>
+          </div>
           <div className="game-table">
             <div className="game-row game-header">
               <div className="stat-id">Stats ID</div>
@@ -105,40 +114,39 @@ function PlayersStatsPage() {
               <div className="blk">BLK</div>
               <div className="to">TO</div>
               <div className="pts">PTS</div>
-
             </div>
-            
 
+            {player.statistics.map((stat) => (
+              <div key={stat.id}>
+                <div className="game-row">
+                  <div className="stats-id">{stat.id}</div>
+                  <div className="game-date">{stat.result}</div>
+                  <div className="fgm">{stat.fgm}</div>
+                  <div className="fga">{stat.fga}</div>
+                  <div className="fgp">{stat.fg_percentage}</div>
+                  <div className="twoPM">{stat.two_pm}</div>
+                  <div className="twoPA">{stat.two_pa}</div>
+                  <div className="threePM">{stat.three_pm}</div>
+                  <div className="threePA">{stat.three_pa}</div>
+                  <div className="oReb">{stat.oreb}</div>
+                  <div className="dReb">{stat.dreb}</div>
+                  <div className="reb">{stat.reb}</div>
+                  <div className="ast">{stat.ast}</div>
+                  <div className="stl">{stat.stl}</div>
+                  <div className="blk">{stat.blk}</div>
+                  <div className="to">{stat.to}</div>
+                  <div className="pts">{stat.pts}</div>
+                </div>
+              </div>
+            ))}
 
- {player.statistics.map((stat) => (
-        <div key={stat.id}>
-            <div className="game-row">
-              <div className="stats-id">{stat.id}</div>
-              <div className="game-date">{stat.game_date}</div>
-              <div className="fgm">{stat.fgm}</div>
-              <div className="fga">{stat.fga}</div>
-              <div className="fgp">{stat.fg_percentage}</div>
-              <div className="twoPM">{stat.two_pm}</div>
-              <div className="twoPA">{stat.two_pa}</div>
-              <div className="threePM">{stat.three_pm}</div>
-              <div className="threePA">{stat.three_pa}</div>
-              <div className="oReb">{stat.oreb}</div>
-              <div className="dReb">{stat.dreb}</div>
-              <div className="reb">{stat.reb}</div>
-              <div className="ast">{stat.ast}</div>
-              <div className="stl">{stat.stl}</div>
-              <div className="blk">{stat.blk}</div>
-              <div className="to">{stat.to}</div>
-              <div className="pts">{stat.pts}</div>
-            </div>
-       </div>))}
-              <div className="game-row total-row">
-                <div className="stat-id"> Total </div>
-                <div></div>
-                <div className="fga">{totalFGM}</div>
-                <div className="fga">{totalFGA}</div>
-                <div className="fgp">{averageFGPercentage}</div>
-                <div className="twoPM">{total2PM}</div>
+            <div className="game-row total-row">
+              <div className="stat-id">Total</div>
+              <div className="game-date">{`${totalWins}-${totalLosses}`}/{winningPercentage}%</div>
+              <div className="fga">{totalFGM}</div>
+              <div className="fga">{totalFGA}</div>
+              <div className="fgp">{averageFGPercentage}</div>
+              <div className="twoPM">{total2PM}</div>
               <div className="twoPA">{total2PA}</div>
               <div className="threePM">{total3PM}</div>
               <div className="threePA">{total3PA}</div>
@@ -150,7 +158,7 @@ function PlayersStatsPage() {
               <div className="blk">{totalBLK}</div>
               <div className="to">{totalTO}</div>
               <div className="pts">{totalPTS}</div>
-              </div>
+            </div>
           </div>
         </div>
       </section>
