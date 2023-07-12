@@ -172,7 +172,7 @@ console.log(averagePoints);
           <div className="game-table">
             <div className="game-row game-header">
               
-              <div className="game-date">GAME DATE</div>
+              <div className="game-date">WIN_LOSE</div>
               <div className="fgm">FGM</div>
               <div className="fga">FGA</div>
               <div className="fgp">FG%</div>
@@ -196,7 +196,7 @@ console.log(averagePoints);
  {player.statistics.slice(-5).map((stat) => (
         <div key={stat.id}>
             <div className="game-row">
-              <div className="game-date">{stat.game_date}</div>
+              <div className="game-date">{stat.w_l}</div>
               <div className="fgm">{stat.fgm}</div>
               <div className="fga">{stat.fga}</div>
               <div className="fgp">{stat.fg_percentage}</div>

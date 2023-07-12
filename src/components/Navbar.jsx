@@ -90,6 +90,9 @@ console.log(loggedIn)
                   <NavLink to="/editVideos" className="dropdown-link" onClick={closeMobileMenu}>
                     Edit Video
                   </NavLink>
+                  <NavLink to="/addSportVideo" className="dropdown-link" onClick={closeMobileMenu}>
+                    Edit Sport Video
+                  </NavLink>
                 </div>
               </li>
               <li className="nav-item">

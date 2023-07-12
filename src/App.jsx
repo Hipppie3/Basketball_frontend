@@ -13,7 +13,7 @@ import PlayerStatsPage from './pages/playersFolder/PlayersStatsPage'
 import PlayersMediaPage from './pages/playersFolder/PlayersMediaPage'
 import Login from './pages/Login'
 import Medias from './pages/Medias'
-import AddSportVideo from './pages/AddSportVideo'
+import AddSportVideo from './pages/playersFolder/playersForm/AddSportVideo'
 
 
 function App() {

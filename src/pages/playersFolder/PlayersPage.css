@@ -366,6 +366,7 @@
  font-size: 12px;
  background-color: rgb(231, 238, 246);
  /* Add left padding to match the rows */
+ padding-left: 0rem;
 
 }
 

@@ -1,36 +1,48 @@
-import React, { useState } from 'react'
-import './AddStatsPage.css'
+import React, { useState, useEffect } from 'react';
+import './AddStatsPage.css';
 import axios from 'axios';
 
 function AddStatsPage() {
+  const [id, setId] = useState('');
+  const [deleteStatisticsId, setDeleteStatisticsId] = useState('');
+  const [w_l, setW_l] = useState('');
+  const [fgm, setFgm] = useState('');
+  const [fga, setFga] = useState('');
+  const [fg_percentage, setFg_Percentage] = useState('');
+  const [two_pm, setTwo_Pm] = useState('');
+  const [two_pa, setTwo_Pa] = useState('');
+  const [three_pm, setThree_Pm] = useState('');
+  const [three_pa, setThree_Pa] = useState('');
+  const [oreb, setOreb] = useState('');
+  const [dreb, setDreb] = useState('');
+  const [reb, setReb] = useState('');
+  const [ast, setAst] = useState('');
+  const [stl, setStl] = useState('');
+  const [blk, setBlk] = useState('');
+  const [to, setTo] = useState('');
+  const [pts, setPts] = useState('');
+  const [players, setPlayers] = useState([]);
 
-const [id, setId] = useState('');
-const [deleteStatisticsId, setDeleteStatisticsId] = useState('');
-const [game_date, setGame_Date] = useState('');
-const [fgm, setFgm] = useState('');
-const [fga, setFga] = useState('');
-const [fg_percentage, setFg_Percentage] = useState('');
-const [two_pm, setTwo_Pm] = useState('');
-const [two_pa, setTwo_Pa] = useState('');
-const [three_pm, setThree_Pm] = useState('');
-const [three_pa, setThree_Pa] = useState('');
-const [oreb, setOreb] = useState('');
-const [dreb, setDreb] = useState('');
-const [reb, setReb] = useState('');
-const [ast, setAst] = useState('');
-const [stl, setStl] = useState('');
-const [blk, setBlk] = useState('');
-const [to, setTo] = useState('');
-const [pts, setPts] = useState('');
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      try {
+        const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players');
+        setPlayers(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-
+    fetchPlayers();
+  }, []);
 
   const handleStatisticsSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`, {
-        game_date,
+        w_l,
         fgm,
         fga,
         fg_percentage,
@@ -49,28 +61,28 @@ const [pts, setPts] = useState('');
       });
       console.log(response.data);
       // Reset form values
-    setGame_Date('');
-    setFgm('');
-    setFga('');
-    setFg_Percentage('');
-    setTwo_Pm('');
-    setTwo_Pa('');
-    setThree_Pm('');
-    setThree_Pa('');
-    setOreb('');
-    setDreb('');
-    setReb('');
-    setAst('');
-    setStl('');
-    setBlk('');
-    setTo('');
-    setPts('');
+      setW_l('');
+      setFgm('');
+      setFga('');
+      setFg_Percentage('');
+      setTwo_Pm('');
+      setTwo_Pa('');
+      setThree_Pm('');
+      setThree_Pa('');
+      setOreb('');
+      setDreb('');
+      setReb('');
+      setAst('');
+      setStl('');
+      setBlk('');
+      setTo('');
+      setPts('');
     } catch (error) {
       console.error(error);
     }
   };
 
-    const handleDeleteStatistics = async () => {
+  const handleDeleteStatistics = async () => {
     try {
       await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics/${deleteStatisticsId}`);
       // Reset form values
@@ -80,32 +92,37 @@ const [pts, setPts] = useState('');
       console.error(error);
     }
   };
+
   return (
     <div className="addNewStatsContainer">
-     <h1 className="addStatsTitle">Add New Stats</h1>
+      <h1 className="addStatsTitle">Add New Stats</h1>
 
+      <form onSubmit={handleStatisticsSubmit} className="newStats">
+        <div className="statsContainer">
+          <div className="stats">
+            <label className="newStatsLabel" htmlFor="id">Player ID</label>
+            <select
+              className="newStatsInput1"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            >
+              <option value="">Select a player</option>
+              {players.map((player) => (
+                <option key={player.id} value={player.id}>
+                  {player.first_name} {player.last_name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-    <form onSubmit={handleStatisticsSubmit} className="newStats">
-    <div className='statsContainer'>
     <div className="stats">
-      <label className="newStatsLabel" htmlFor="id">Player ID
-      <input
-            className="newStatsInput"
-            type="number"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-      />
-      </label>
-    </div>
-
-    <div className="stats">
-    <label className="newStatsLabel" htmlFor="game_date">GDate
+    <label className="newStatsLabel" htmlFor="w_l">W_L
     <input
       className="newStatsInput"
       type="text"
-      id="game_date"
-      value={game_date}
-      onChange={(e) => setGame_Date(e.target.value)}
+      id="w_l"
+      value={w_l}
+      onChange={(e) => setW_l(e.target.value)}
     />
     </label>
     </div>
@@ -300,14 +317,19 @@ const [pts, setPts] = useState('');
 <h1>Delete Player Stats</h1>
   <form onSubmit={handleDeleteStatistics}>
     <div className='statsInput'>
-        <label>
-          Player ID:
-          <input
-            type="number"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-        </label>
+            <label className="newStatsLabel" htmlFor="id">Player ID</label>
+            <select
+              className="newStatsInput1"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            >
+              <option value="">Select a player</option>
+              {players.map((player) => (
+                <option key={player.id} value={player.id}>
+                  {player.first_name} {player.last_name}
+                </option>
+              ))}
+            </select>
         <label>
           Statistic ID:
           <input
