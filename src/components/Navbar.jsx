@@ -8,6 +8,7 @@ import axios from 'axios';
 function Navbar() {
   const [click, setClick] = useState(false);
   const { loggedIn, setLoggedIn, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
 
   const handleClick = () => setClick(!click);
@@ -17,6 +18,9 @@ function Navbar() {
     localStorage.removeItem('token');
     setLoggedIn(false);
     delete axios.defaults.headers.common['Authorization'];
+    setTimeout(() => {
+    navigate('/login');
+  }, 0);
   };
   
 
