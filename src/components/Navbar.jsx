@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
@@ -7,30 +7,37 @@ import axios from 'axios';
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const { setLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  const handleLogout = () => {
+    console.log('Logging out...');
+    axios
+      .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
+      .then((response) => {
+        console.log('Logout response:', response);
+        localStorage.removeItem('token'); // Remove the token from local storage
+        setLoggedIn(false);
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.log('Logout error:', error.message);
+        if (error.response) {
+          console.log('Error response:', error.response.data);
+        }
+      });
+  };
 
-const handleLogout = () => {
-  console.log('Logging out...');
-  axios
-    .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
-    .then((response) => {
-      console.log('Logout response:', response);
-      setLoggedIn(false);
-      navigate('/login');
-    })
-    .catch((error) => {
-      console.log('Logout error:', error.message);
-      if (error.response) {
-        console.log('Error response:', error.response.data);
-      }
-    });
-};
-  console.log(loggedIn)
+  useEffect(() => {
+    const token = localStorage.getItem('token'); // Retrieve the token from local storage
+    if (token) {
+      setLoggedIn(true); // Update the loggedIn state if the token exists
+    }
+  }, [setLoggedIn]);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
