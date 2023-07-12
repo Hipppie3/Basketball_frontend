@@ -27,7 +27,7 @@ function Login() {
       .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', {
         username,
         password
-      })
+      }, { withCredentials: true })
       .then((response) => {
         const user = response.data;
         if (response.status === 201) {
