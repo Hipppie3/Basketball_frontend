@@ -20,7 +20,7 @@ const handleLogout = () => {
     .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
     .then((response) => {
       console.log('Logout response:', response);
-      setLoggedIn(false);
+      setLoggedIn();
       navigate('/login');
     })
     .catch((error) => {
