@@ -18,30 +18,29 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+const handleSubmit = (event) => {
+  event.preventDefault();
 
-    // Make a request to your Rails backend for authentication
-    // Replace 'your_backend_endpoint' with the actual endpoint URL
-    axios
-      .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', {
-        username,
-        password
-      })
-      .then((response) => {
-        const user = response.data;
-        if (response.status === 201) {
-          setLoggedIn(user);
-          console.log(user); // Use console.log to display the user data
-           navigate('/'); // Navigate to the desired route after successful login
-        } else {
-          console.error('Login failed');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  axios
+    .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', {
+      username,
+      password
+    })
+    .then((response) => {
+      const user = response.data;
+      if (response.status === 200) {
+        setLoggedIn(true);
+        console.log(user); // Use console.log to display the user data
+        navigate('/'); // Navigate to the desired route after successful login
+      } else {
+        console.error('Login failed');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 
   return (
     <div className="login">
