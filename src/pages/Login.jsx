@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [password, setPassword] = useState('');
   const { setLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Login() {
     // Replace 'your_backend_endpoint' with the actual endpoint URL
     axios
       .post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', {
-        username: name,
+        username,
         password
       })
       .then((response) => {
@@ -51,9 +51,9 @@ function Login() {
           className="input"
           placeholder="Enter Name"
           type="text"
-          id="name"
+          id="username"
           autoComplete="off"
-          value={name}
+          value={username}
           onChange={handleNameChange}
         />
         <input

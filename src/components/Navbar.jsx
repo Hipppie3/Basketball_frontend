@@ -12,12 +12,11 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-console.log(loggedIn)
+
 
 const handleLogout = () => {
   console.log('Logging out...');
-  axios
-    .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout', {withCredentials: true})
+  axios.delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout', { withCredentials: true })
     .then((response) => {
       console.log('Logout response:', response);
       setLoggedIn(false);
@@ -30,7 +29,7 @@ const handleLogout = () => {
       }
     });
 };
-
+  console.log(loggedIn)
   return (
     <nav className="navbar">
       <div className="navbar-container">
