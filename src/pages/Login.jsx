@@ -31,7 +31,7 @@ function Login() {
       .then((response) => {
         const user = response.data;
         if (response.status === 201) {
-          setLoggedIn(true);
+          setLoggedIn(user);
           console.log(user); // Use console.log to display the user data
            navigate('/'); // Navigate to the desired route after successful login
         } else {
