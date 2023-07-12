@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 
-const Login = () => {
+const Log = () => {
   const { setLoggedIn } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -119,4 +119,4 @@ const handleSubmit = async (e) => {
   );
 };
 
-export default Login;
+export default Log;
