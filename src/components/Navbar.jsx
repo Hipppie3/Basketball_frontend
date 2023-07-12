@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
@@ -7,30 +7,20 @@ import axios from 'axios';
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { loggedIn, setLoggedIn, user } = useContext(AuthContext);
+
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+    delete axios.defaults.headers.common['Authorization'];
+  };
+  
 
-const handleLogout = () => {
-  console.log('Logging out...');
-  axios
-    .delete('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout')
-    .then((response) => {
-      console.log('Logout response:', response);
-      setLoggedIn(false);
-      navigate('/login');
-    })
-    .catch((error) => {
-      console.log('Logout error:', error.message);
-      if (error.response) {
-        console.log('Error response:', error.response.data);
-      }
-    });
-};
-  console.log(loggedIn)
+console.log(loggedIn)
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -83,11 +73,9 @@ const handleLogout = () => {
           {loggedIn ? (
             <>
               <li className="nav-items">
-                {loggedIn && ( // Conditionally render the "FORM" element
-                  <NavLink className={click ? 'nav-links active-form' : 'nav-links'} onClick={closeMobileMenu}>
+                  <NavLink className={click ? 'nav-links active-form' : 'nav-links'} to="/form" onClick={closeMobileMenu}>
                     FORM
                   </NavLink>
-                )}
                 <div className="dropdown">
                   <NavLink to="/editPlayers" className="dropdown-link" onClick={closeMobileMenu}>
                     Edit Player

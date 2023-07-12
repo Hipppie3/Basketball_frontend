@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import Home from './Home'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -31,6 +30,7 @@ const Login = () => {
       localStorage.setItem('token', token);
       setLoggedIn(true);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      navigate('/')
     } catch (error) {
       console.error(error);
     }
@@ -38,27 +38,33 @@ const Login = () => {
 
 
 
-  if (loggedIn) {
-    return (
-      <div>
-        <Home/>
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="username">Username:</label>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-
-        <label htmlFor="password">Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-        <button type="submit">Login</button>
+    <div className="login">
+      <form className="loginForm" onSubmit={handleLogin}>
+        <h1 className="loginTitle">Log In</h1>
+        <input
+          className="input"
+          placeholder="Enter Name"
+          type="text"
+          id="username"
+          autoComplete="off"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="input"
+          placeholder="Enter Password"
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="loginBtn" type="submit">
+          Log In
+        </button>
       </form>
     </div>
   );
-};
+}
 
 export default Login;
