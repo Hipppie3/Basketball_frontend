@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavLink, useParams } from 'react-router-dom';
 import './PlayersPage.css'
 import YouTube from 'react-youtube'
-
+import { AuthContext } from '../../context/AuthContext'
 
 function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
+  const { loggedIn, setLoggedIn} = useContext(AuthContext)
 
   const handleScrollLeft = () => {
     setScrollPosition(scrollPosition - 1);
@@ -64,7 +65,7 @@ function PlayersPage() {
   const averageAssists = player.statistics.length > 0 ? (totalAssists / player.statistics.length).toFixed(2) : 0;
   const averageSteals = player.statistics.length > 0 ? (totalSteals / player.statistics.length).toFixed(2) : 0;
   const averageBlocks = player.statistics.length > 0 ? (totalBlocks / player.statistics.length).toFixed(2) : 0;
-
+console.log(loggedIn)
 console.log(averagePoints);
   return (
    <div className="players">

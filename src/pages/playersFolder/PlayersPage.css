@@ -24,15 +24,14 @@
 }
 
 .players-image {
- height: 300px;
- width: 300px;
- border-radius: 180px;
- margin-top: 1.5rem;
- background-size: contain;
- background-repeat: no-repeat;
- background-position: center;
+   height: 300px;
+   width: 300px;
+   border-radius: 180px;
+   margin-top: 1.5rem;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
 }
-
 .profile-information {
  display: flex;
  flex-direction: column;
