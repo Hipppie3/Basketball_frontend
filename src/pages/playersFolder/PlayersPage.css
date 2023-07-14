@@ -268,9 +268,12 @@
 .hi {
  font-weight: bold;
  padding-top: 10px;
+ display: flex;
+ justify-content: center;
  height: 20%;
  font-size: 18px;
  padding-bottom: 10px;
+ text-decoration: none;
 }
 
 

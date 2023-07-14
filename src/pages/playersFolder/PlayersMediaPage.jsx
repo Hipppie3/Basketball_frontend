@@ -54,8 +54,10 @@ function PlayersMediaPage() {
       <div className='media-container1'>
         {player.videos.map((video) => (
           <div className="eaVid1" key={`video-${video.id}`}>
-            <YouTube videoId={getPlayerVideoId(video.url)} opts={videoOptions} />
+               <a href={video.url} style={{ textDecoration: "none", color: "black" }}target="_blank" rel="noopener noreferrer">
+       <div style={{height: "200px", width: "300px", backgroundColor: "black"}}/>
             <div className="hi">{video.title}</div>
+            </a>
           </div>
         ))}
       </div>

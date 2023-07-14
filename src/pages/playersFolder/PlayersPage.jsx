@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavLink, useParams } from 'react-router-dom';
 import './PlayersPage.css'
-import YouTube from 'react-youtube'
+import player from '../../images/player.png'
 import { AuthContext } from '../../context/AuthContext'
 
 function PlayersPage() {
@@ -151,10 +151,13 @@ console.log(averagePoints);
   const videoIndex = scrollPosition + index; // Calculate the actual index of the video in the videos array
   return (
 
-      <div className="eaVid" key={`video-${video.id}`}>
-        <YouTube videoId={getPlayerVideoId(video.url)} />
-    <div className="hi">{video.title}</div>
-      </div>
+  <div className="eaVid" key={`video-${video.id}`}>
+    <a href={video.url} style={{ textDecoration: "none", color: "black" }}target="_blank" rel="noopener noreferrer">
+       <div style={{height: "150px", width: "250px", backgroundColor: "black"}}/>
+       
+      <div className="hi" >{video.title}</div>
+    </a>
+  </div>
   );
 })}
             {canScrollRight && (
