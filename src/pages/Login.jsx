@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -18,9 +18,10 @@ const Login = () => {
         username,
         password
       }, { withCredentials: true }); // Include withCredentials option to send session cookie
-
-      setLoggedIn(true);
       setUser(response.data);
+      setLoggedIn(true);
+      console.log(response.data)
+      console.log(loggedIn)
       navigate('/');
     } catch (error) {
       console.error(error);

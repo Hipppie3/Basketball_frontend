@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
         });
         setUser(response.data);
         setLoggedIn(true);
+        console.log(user)
+        console.log(loggedIn)
       } catch (error) {
         console.error('Error fetching user:', error);
       }
