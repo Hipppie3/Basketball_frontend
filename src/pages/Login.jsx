@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import Home from './Home';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
@@ -10,11 +9,6 @@ const Login = () => {
   const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
   const navigate = useNavigate('');
 
-  useEffect(() => {
-    if (loggedIn && user) {
-      navigate('/');
-    }
-  }, [loggedIn, user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,11 +21,11 @@ const Login = () => {
 
       setLoggedIn(true);
       setUser(response.data);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
   };
-
 
   return (
     <div>

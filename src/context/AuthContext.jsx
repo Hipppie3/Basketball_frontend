@@ -5,27 +5,28 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState(null); // Add user state
-
-
-const checkLoggedInStatus = async () => {
-  try {
-    const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/me', { withCredentials: true });
-
-    setLoggedIn(true);
-    setUser(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    checkLoggedInStatus();
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/me', {
+          withCredentials: true,
+        });
+        setUser(response.data);
+        setLoggedIn(true);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    fetchUser();
   }, []);
 
-  console.log(loggedIn);
-  console.log(user);
+  useEffect(() => {
+    console.log('User:', user);
+    console.log('LoggedIn:', loggedIn);
+  }, [user, loggedIn]);
 
   return (
     <AuthContext.Provider value={{ loggedIn, setLoggedIn, user, setUser }}>
