@@ -5,7 +5,7 @@
 
 .media {
  height: auto;
- background-color: #f9f9f9;
+ background-color: white;
 }
 
 .media-section {
@@ -28,8 +28,22 @@
 }
 
 .thumbnail {
+ width: 100%;
+ height: 0;
+ padding-bottom: 56.25%;
+ /* 16:9 aspect ratio */
  position: relative;
- display: flex;
+ overflow: hidden;
+}
+
+.thumbnail iframe,
+.thumbnail object,
+.thumbnail embed {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
 }
 
 
@@ -111,7 +125,7 @@
  white-space: nowrap;
  border: 1px solid #CCC;
  border-radius: 900px;
- background-color: #E7E7E7;
+ background-color: #fffdfd;
  padding: .1rem 1rem;
  font-size: inherit;
  cursor: pointer;

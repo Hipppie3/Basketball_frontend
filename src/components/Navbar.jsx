@@ -3,28 +3,28 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 import { AuthContext } from '../context/AuthContext';
-import axios from 'axios';
+
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const { loggedIn, setLoggedIn, user } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setLoggedIn(false);
-    delete axios.defaults.headers.common['Authorization'];
-    setTimeout(() => {
-    navigate('/login');
-  }, 0);
+  const handleLogout = (e) => {
+    e.preventDefault()
+    setLoggedIn
+    setUser(null);
+    setLoggedIn(false)
+    navigate('/login')
   };
   
 
 console.log(loggedIn)
+console.log(user)
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -74,7 +74,7 @@ console.log(loggedIn)
             </NavLink>
           </li>
 
-          {loggedIn ? (
+          {user ? (
             <>
               <li className="nav-items">
                   <NavLink className={click ? 'nav-links active-form' : 'nav-links'} to="/form" onClick={closeMobileMenu}>

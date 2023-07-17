@@ -1,34 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Home.css';
+import { AuthContext } from '../context/AuthContext';
 
 const HomePage = () => {
-  const playerRef = useRef(null);
-
-  useEffect(() => {
-    const player = new window.YT.Player(playerRef.current, {
-      videoId: '0L-DGlol05A',
-      playerVars: {
-        autoplay: 1,
-        controls: 0,
-        modestbranding: 1,
-        loop: 1,
-        playlist: '0L-DGlol05A',
-      },
-      events: {
-        onReady: event => {
-          event.target.mute();
-        },
-      },
-    });
-
-    return () => {
-      player.destroy();
-    };
-  }, []);
+const { user, loggedIn } = useContext(AuthContext)
+  console.log(user)
+  console.log(loggedIn)
 
   return (
     <div className="homepage-container">
-      <div className="video-player" ref={playerRef}></div> 
+      <h1>HOME</h1>
     </div>
   );
 };

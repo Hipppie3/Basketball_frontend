@@ -1,0 +1,11 @@
+.playerStats {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+ 
+}
+
+.playerStatsLi {
+ list-style-type: none;
+ text-decoration: none;
+}

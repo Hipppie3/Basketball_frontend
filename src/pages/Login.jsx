@@ -1,22 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../context/AuthContext';
+import Home from './Home';
 import { useNavigate } from 'react-router-dom';
-import Home from './Home'
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate('');
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setLoggedIn(true);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+    if (loggedIn && user) {
+      navigate('/');
     }
-  }, []);
+  }, [loggedIn, user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,26 +23,15 @@ const Login = () => {
       const response = await axios.post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/login', {
         username,
         password
-      });
+      }, { withCredentials: true }); // Include withCredentials option to send session cookie
 
-      const { token } = response.data;
-      localStorage.setItem('token', token);
       setLoggedIn(true);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setUser(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-
-
-  if (loggedIn) {
-    return (
-      <div>
-        <Home/>
-      </div>
-    );
-  }
 
   return (
     <div>
