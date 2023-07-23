@@ -73,9 +73,6 @@ console.log(user)
               PLAYERS
             </NavLink>
           </li>
-
-          {user ? (
-            <>
               <li className="nav-items">
                   <NavLink className={click ? 'nav-links active-form' : 'nav-links'} to="/form" onClick={closeMobileMenu}>
                     FORM
@@ -93,6 +90,9 @@ console.log(user)
                   <NavLink to="/addSportVideo" className="dropdown-link" onClick={closeMobileMenu}>
                     Edit Sport Video
                   </NavLink>
+                   <NavLink to="/all" className="dropdown-link" onClick={closeMobileMenu}>
+                    All
+                  </NavLink>
                 </div>
               </li>
               <li className="nav-item">
@@ -104,8 +104,7 @@ console.log(user)
                   Logout
                 </NavLink>
               </li>
-            </>
-          ) : (
+
             <li className="nav-item">
               <NavLink
                 to="/login"
@@ -115,7 +114,7 @@ console.log(user)
                 Login
               </NavLink>
             </li>
-          )}
+
         </ul>
       </div>
     </nav>

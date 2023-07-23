@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Players.css';
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa';
 
 function Players() {
   const [players, setPlayers] = useState(null);
+  const [sports, setSports] = useState([]); // New state to store sports data
   const [sortedPlayers, setSortedPlayers] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPlayers, setFilteredPlayers] = useState([]);
@@ -25,6 +26,20 @@ function Players() {
     fetchPlayerData();
   }, []);
 
+  // Fetch sports data
+  useEffect(() => {
+    const fetchSportsData = async () => {
+      try {
+        const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/sports');
+        setSports(response.data);
+      } catch (error) {
+        console.error('Something went wrong:', error);
+      }
+    };
+
+    fetchSportsData();
+  }, []);
+
   useEffect(() => {
     filterPlayers();
   }, [sortedPlayers, searchQuery]);
@@ -41,7 +56,12 @@ function Players() {
     }
   };
 
-  if (!filteredPlayers) {
+  const getSportNameById = (sportId) => {
+    const sport = sports.find((s) => s.id === sportId);
+    return sport ? sport.name : 'Unknown Sport';
+  };
+
+  if (!filteredPlayers || !sports.length) {
     return <div>Loading...</div>;
   }
 
@@ -79,10 +99,12 @@ function Players() {
                     className="player-card-image"
                     alt="Player"
                   />
-                  {player.first_name} {player.last_name} {player.id}
+                  {player.first_name} {player.last_name} 
                 </Link>
               </div>
-              <div className="player-sports">Basketball</div>
+              <div className="player-sports">
+                {getSportNameById(player.sport_id)}
+              </div>
             </div>
           ))}
         </div>
