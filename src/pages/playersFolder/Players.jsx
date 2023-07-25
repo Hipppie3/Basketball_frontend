@@ -97,13 +97,13 @@ function Players() {
                   <img
                     src={player.image_url}
                     className="player-card-image"
-                    alt="Player"
+                    
                   />
                   {player.first_name} {player.last_name} 
                 </Link>
               </div>
               <div className="player-sports">
-                {getSportNameById(player.sport_id)}
+                {player.sport ? getSportNameById(player.sport.id) : 'Unknown Sport'}
               </div>
             </div>
           ))}

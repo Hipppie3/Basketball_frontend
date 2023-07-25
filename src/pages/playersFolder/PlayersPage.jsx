@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavLink, useParams } from 'react-router-dom';
 import './PlayersPage.css'
-import player from '../../images/player.png'
-import { AuthContext } from '../../context/AuthContext'
+// import { AuthContext } from '../../context/AuthContext'
 
 function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
-  const { loggedIn, setLoggedIn} = useContext(AuthContext)
+  // const { loggedIn, setLoggedIn} = useContext(AuthContext)
 
   const handleScrollLeft = () => {
     setScrollPosition(scrollPosition - 1);
@@ -65,7 +64,7 @@ function PlayersPage() {
   const averageAssists = player.statistics.length > 0 ? (totalAssists / player.statistics.length).toFixed(2) : 0;
   const averageSteals = player.statistics.length > 0 ? (totalSteals / player.statistics.length).toFixed(2) : 0;
   const averageBlocks = player.statistics.length > 0 ? (totalBlocks / player.statistics.length).toFixed(2) : 0;
-console.log(loggedIn)
+
 console.log(averagePoints);
   return (
    <div className="players">
@@ -73,7 +72,7 @@ console.log(averagePoints);
     <div className="players-profile" >
       <div className="players-image" style={{ backgroundImage: `url(${player.image_url})` }}></div>
       <div className="profile-information">
-        <h1 className="name">{player.player.first_name} {player.player.last_name}</h1>
+        <h1 className="name">{player.first_name} {player.last_name}</h1>
       </div>
     </div>
 
@@ -120,11 +119,11 @@ console.log(averagePoints);
               
               <li>Profile</li>
 
-              <li><NavLink to={`/players/${player.player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
+              <li><NavLink to={`/players/${player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
 
               {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
 
-              <li><NavLink to={`/players/${player.player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
+              <li><NavLink to={`/players/${player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
 
             </ul>
           </div>

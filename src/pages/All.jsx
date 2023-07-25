@@ -12,19 +12,55 @@ function All() {
   const [editedStatistics, setEditedStatistics] = useState({});
   const [isEditingPlayer, setIsEditingPlayer] = useState(false); // State to track player edit mode
   const [editedPlayer, setEditedPlayer] = useState({}); // State to store edited player data
+  const [w_l, setW_l] = useState('');
+  const [fgm, setFgm] = useState('');
+  const [fga, setFga] = useState('');
+  const [fg_percentage, setFg_Percentage] = useState('');
+  const [two_pm, setTwo_Pm] = useState('');
+  const [two_pa, setTwo_Pa] = useState('');
+  const [three_pm, setThree_Pm] = useState('');
+  const [three_pa, setThree_Pa] = useState('');
+  const [oreb, setOreb] = useState('');
+  const [dreb, setDreb] = useState('');
+  const [reb, setReb] = useState('');
+  const [ast, setAst] = useState('');
+  const [stl, setStl] = useState('');
+  const [blk, setBlk] = useState('');
+  const [to, setTo] = useState('');
+  const [pts, setPts] = useState('');
+  const [deleteStatisticsId, setDeleteStatisticsId] = useState('');
+  const [games, setGames] = useState([]);
+  const [gameDate, setGameDate] = useState('');
 
-  useEffect(() => {
-    const fetchPlayerData = async () => {
-      try {
-        const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players');
-        setAll(response.data);
-        console.log(response.data)
-      } catch (error) {
-        console.error('Something went wrong:', error);
-      }
-    };
-    fetchPlayerData();
-  }, []);
+useEffect(() => {
+  const fetchPlayerData = async () => {
+    try {
+      const playersResponse = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players');
+      const gamesResponse = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games');
+
+      // Combine the games data into a dictionary for easy lookup
+      const gamesData = gamesResponse.data.reduce((acc, game) => {
+        acc[game.id] = game.date;
+        return acc;
+      }, {});
+
+      // Add the game date to each statistic object of each player
+      const playersWithStatsAndGames = playersResponse.data.map((player) => ({
+        ...player,
+        statistics: player.statistics.map((statistic) => ({
+          ...statistic,
+          game_date: gamesData[statistic.id],
+        })),
+      }));
+
+      setAll(playersWithStatsAndGames);
+    } catch (error) {
+      console.error('Something went wrong:', error);
+    }
+  };
+  fetchPlayerData();
+}, []);
+
 
   useEffect(() => {
     const fetchPlayerData = async () => {
@@ -79,47 +115,48 @@ const handlePlayerChange = (e, setId) => {
     }));
   };
 
-  const handleUpdateClick = async (statisticId) => {
-    if (!selectedPlayer) {
-      console.error('No player selected.'); // Handle the error appropriately
-      return;
-    }
+const handleUpdateClick = async (statisticId) => {
+  if (!selectedPlayer) {
+    console.error('No player selected.'); // Handle the error appropriately
+    return;
+  }
 
-    const updatedStatistic = editedStatistics[statisticId];
-    const playerId = selectedPlayer.id; // Get the selected player ID here
+  const updatedStatistic = editedStatistics[statisticId];
+  const playerId = selectedPlayer.id; // Get the selected player ID here
 
-    try {
-      const response = await axios.put(
-        `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}/statistics/${statisticId}`,
-        updatedStatistic
-      );
-      console.log(response.data); // Check the response from the backend
-      // Perform any necessary handling after successful update
+  try {
+    const response = await axios.put(
+      `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}/statistics/${statisticId}`,
+      { statistic: updatedStatistic } // Include the statistic object in the request payload
+    );
+    console.log(response.data); // Check the response from the backend
+    // Perform any necessary handling after successful update
 
-      // Fetch the updated player data
-      const updatedPlayerResponse = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}`);
-      const updatedPlayer = updatedPlayerResponse.data; // Store the updated player data
+    // Fetch the updated player data
+    const updatedPlayerResponse = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}`);
+    const updatedPlayer = updatedPlayerResponse.data; // Store the updated player data
 
-      // Update the selected player with the new data
-      setSelectedPlayer((prevState) => ({
-        ...prevState,
-        statistics: prevState.statistics.map((stat) =>
-          stat.id === statisticId ? { ...stat, ...updatedStatistic } : stat
-        ),
-      }));
-    } catch (error) {
-      console.error('Failed to update statistic:', error);
-      // Perform error handling if needed
-    }
+    // Update the selected player with the new data
+    setSelectedPlayer((prevState) => ({
+      ...prevState,
+      statistics: prevState.statistics.map((stat) =>
+        stat.id === statisticId ? { ...stat, ...updatedStatistic } : stat
+      ),
+    }));
+  } catch (error) {
+    console.error('Failed to update statistic:', error);
+    // Perform error handling if needed
+  }
 
-    // Clear the editing state
-    setEditingStatisticId(null);
-    setEditedStatistics((prevState) => {
-      const updatedState = { ...prevState };
-      delete updatedState[statisticId];
-      return updatedState;
-    });
-  };
+  // Clear the editing state
+  setEditingStatisticId(null);
+  setEditedStatistics((prevState) => {
+    const updatedState = { ...prevState };
+    delete updatedState[statisticId];
+    return updatedState;
+  });
+};
+
 
 const handlePlayerUpdateClick = async () => {
   if (!selectedPlayer) {
@@ -173,7 +210,21 @@ const handlePlayerUpdateClick = async () => {
     e.preventDefault();
 
     try {
+          if (!selectedPlayer || !editingStatisticId) {
+      console.error('No player or statistic selected.');
+      return;
+    }
+
+    // Get the corresponding game_date from the games array
+    const gameDate = selectedPlayer.games.find((game) => game.id === editingStatisticId)?.date;
+
+    if (!gameDate) {
+      console.error('No game date found for the selected statistic.');
+      return;
+    }
+
       const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`, {
+        game_date: gameDate,
         w_l,
         fgm,
         fga,
@@ -193,6 +244,7 @@ const handlePlayerUpdateClick = async () => {
       });
       console.log(response.data);
       // Reset form values
+      setGameDate('');
       setW_l('');
       setFgm('');
       setFga('');
@@ -213,11 +265,53 @@ const handlePlayerUpdateClick = async () => {
       console.error(error);
     }
   };
+
+// ... (previous code)
+
+const handleDeleteClick = (statisticId) => {
+  if (window.confirm('Are you sure you want to delete this statistic?')) {
+    setDeleteStatisticsId(statisticId);
+  }
+};
+
+// Move the API call to useEffect
+useEffect(() => {
+  const handleDeleteStatistics = async () => {
+    try {
+      if (!deleteStatisticsId || !id) {
+        console.error('No player or statistics selected.');
+        return;
+      }
+
+      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics/${deleteStatisticsId}`);
+
+      // After deletion, fetch the updated player data to refresh the statistics
+      const updatedPlayerResponse = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
+      setSelectedPlayer(updatedPlayerResponse.data);
+
+      // Clear the deleteStatisticsId state
+      setDeleteStatisticsId('');
+
+    } catch (error) {
+      console.error('Failed to delete statistics:', error);
+      // Perform error handling if needed
+    }
+  };
+
+  if (deleteStatisticsId) {
+    handleDeleteStatistics();
+  }
+}, [deleteStatisticsId, id]);
+
+// ... (rest of the code)
+
+
+
   return (
     <div>
       <div className="statsInput">
         <label className="newStatsLabel" htmlFor="id">
-          Player ID
+          <h3>Player</h3>
         </label>
         <select className="newStatsInput1" value={id} onChange={(e) => handlePlayerChange(e, setId)}>
           <option value="">Select a player</option>
@@ -267,12 +361,16 @@ const handlePlayerUpdateClick = async () => {
             <div>
               <p>First Name: {selectedPlayer.first_name}</p>
               <p>Last Name: {selectedPlayer.last_name}</p>
-       <p>Sport: {selectedPlayer.sport_id && sports.find((sport) => sport.id === selectedPlayer.sport_id)?.name}</p>
+      <p>Sport: {selectedPlayer.sport_id && sports.find((sport) => sport.id === selectedPlayer.sport_id)?.name}</p>
         <button onClick={handlePlayerEditClick}>Edit Player</button>
             </div>
           )}
 
-          <h3>Statistics:</h3>
+          <h3>Statistics:<button 
+          onClick={handleAddStatsClick}>
+          {isAddingStats ? 'Cancel Adding Stats' : 'Add Stats'}
+          </button>
+          </h3>
           {selectedPlayer.statistics.length > 0 ? (
             <ul className="playerStats">
               {selectedPlayer.statistics.map((statistic) => {
@@ -283,19 +381,12 @@ const handlePlayerUpdateClick = async () => {
                   <li key={statistic.id} className="playerStatsLi">
                     <div>
                       {isEditing ? (
-                        <div>
+                        <div className-="playerStats">
                           Game Date:
                           <input
                             type="text"
-                            defaultValue={editedStatistic.game_date || statistic.game_date}
+                            defaultValue={editedStatistic.game_date || gameDate}
                             onChange={(e) => handleInputChange(e, statistic.id, 'game_date')}
-                          />
-                          <br />
-                          Matchup:
-                          <input
-                            type="text"
-                            defaultValue={editedStatistic.matchup || statistic.matchup}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'matchup')}
                           />
                           <br />
                           W/L:
@@ -305,51 +396,159 @@ const handlePlayerUpdateClick = async () => {
                             onChange={(e) => handleInputChange(e, statistic.id, 'w_l')}
                           />
                           <br />
-                          PPG:
+                          FGM:
                           <input
                             type="text"
-                            defaultValue={editedStatistic.pts || statistic.pts}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'pts')}
+                            defaultValue={editedStatistic.fgm || statistic.fgm}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'fgm')}
                           />
                           <br />
-                          RBG:
+                          FGA:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.fga || statistic.fga}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'fga')}
+                          />
+                          <br />
+                          FG%:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.fg_percentage || statistic.fg_percentage}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'fg_percentage')}
+                          />
+                          <br />
+                          2PA:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.two_pa || statistic.two_pa}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'two_pa')}
+                          />
+                          <br />
+                          2PM:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.two_pm || statistic.two_pm}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'two_pm')}
+                          />
+                          <br />
+                          3PA:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.three_pa || statistic.three_pa}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'three_pa')}
+                          />
+                          <br />
+                          3PM:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.three_pm || statistic.three_pm}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'three_pm')}
+                          />
+                          <br />
+                          OREB:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.oreb || statistic.oreb}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'oreb')}
+                          />
+                          <br />
+                          DREB:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.dreb || statistic.dreb}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'dreb')}
+                          />
+                          <br />
+                          REB:
                           <input
                             type="text"
                             defaultValue={editedStatistic.reb || statistic.reb}
                             onChange={(e) => handleInputChange(e, statistic.id, 'reb')}
                           />
                           <br />
-                          APG:
+                          AST:
                           <input
                             type="text"
                             defaultValue={editedStatistic.ast || statistic.ast}
                             onChange={(e) => handleInputChange(e, statistic.id, 'ast')}
                           />
                           <br />
+                          STL:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.stl || statistic.stl}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'stl')}
+                          />
+                          <br />
+                          BLK:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.blk || statistic.blk}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'blk')}
+                          />
+                          <br />
+                          TO:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.to || statistic.to}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'to')}
+                          />
+                          <br />
+                          PTS:
+                          <input
+                            type="text"
+                            defaultValue={editedStatistic.pts || statistic.pts}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'pts')}
+                          />
+                          <br />
                         </div>
                       ) : (
-                        <div>
+                        <div className="stats-results">
                           Id: {statistic.id}
                           <br />
                           Game Date: {statistic.game_date}
                           <br />
-                          Matchup: {statistic.matchup}
-                          <br />
                           W/L: {statistic.w_l}
                           <br />
-                          PPG: {statistic.pts}
+                          FGM: {statistic.fgm}
                           <br />
-                          RBG: {statistic.reb}
+                          FGA: {statistic.fga}
                           <br />
-                          APG: {statistic.ast}
+                          FG%: {statistic.fg_percentage}
                           <br />
+                          2PA: {statistic.two_pa}
+                          <br />
+                          2PM: {statistic.two_pm}
+                          <br />
+                          3PA: {statistic.three_pa}
+                          <br />
+                          3PM: {statistic.three_pm}
+                          <br />
+                          OREB: {statistic.oreb}
+                          <br />
+                          DREB: {statistic.dreb}
+                          <br />
+                          REB: {statistic.reb}
+                          <br />
+                          AST: {statistic.ast}
+                          <br />
+                          STL: {statistic.stl}
+                          <br />
+                          BLK: {statistic.blk}
+                          <br />
+                          TO: {statistic.to}
+                          <br />
+                          PTS: {statistic.pts}
                         </div>
                       )}
                     </div>
                     {isEditing ? (
                       <button onClick={() => handleUpdateClick(statistic.id)}>Update</button>
                     ) : (
+                      <div>
                       <button onClick={() => handleEditClick(statistic.id)}>Edit</button>
+                      <button onClick={() => handleDeleteClick(statistic.id)}>Delete Stats</button>
+                      </div>
                     )}
                   </li>
                 );
@@ -358,44 +557,128 @@ const handlePlayerUpdateClick = async () => {
           ) : (
             <div>
             <p>No statistics available for this player.</p>
-             <button onClick={handleAddStatsClick}>
-          {isAddingStats ? 'Cancel Adding Stats' : 'Add Stats'}
-          </button>
             </div>     
           )}
 
 {isAddingStats && (
-            <div>
+            <div className="playerStats">
               {/* Input fields for the new statistics */}
-              <input
+               <input
                 type="text"
-                placeholder="Game Date"
-                /* Add necessary event handlers and state variables to capture the data */
-              />
-              <input
-                type="text"
-                placeholder="Matchup"
-                /* Add necessary event handlers and state variables to capture the data */
+                placeholder="Game_date"
+                id="game_date"
+                value={gameDate}
+                onChange={(e) => setGameDate(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="W/L"
-                /* Add necessary event handlers and state variables to capture the data */
+                id="w_l"
+                value={w_l}
+                onChange={(e) => setW_l(e.target.value)}
               />
               <input
                 type="text"
-                placeholder="PPG"
-                /* Add necessary event handlers and state variables to capture the data */
+                placeholder="FGM"
+                id="fgm"
+                value={fgm}
+                onChange={(e) => setFgm(e.target.value)}
               />
               <input
                 type="text"
-                placeholder="RBG"
-                /* Add necessary event handlers and state variables to capture the data */
+                placeholder="FGA"
+                id="fga"
+                value={fga}
+                onChange={(e) => setFga(e.target.value)}
               />
               <input
                 type="text"
-                placeholder="APG"
-                /* Add necessary event handlers and state variables to capture the data */
+                placeholder="FG%"
+                value={fg_percentage}
+                onChange={(e) => setFg_Percentage(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="2PM"
+                id="two_pm"
+                value={two_pm}
+                onChange={(e) => setTwo_Pm(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="2AM"
+                value={two_pa}
+                onChange={(e) => setTwo_Pa(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="3PM"
+                id="three_pm"
+                value={three_pm}
+                onChange={(e) => setThree_Pm(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="3PA"
+                id="three_pa"
+                value={three_pa}
+                onChange={(e) => setThree_Pa(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="OREB"
+                id="oreb"
+                value={oreb}
+                onChange={(e) => setOreb(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="DREB"
+                id="dreb"
+                value={dreb}
+                onChange={(e) => setDreb(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="REB"
+                id="reb"
+                value={reb}
+                onChange={(e) => setReb(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="AST"
+                id="ast"
+                value={ast}
+                onChange={(e) => setAst(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="STL"
+                id="stl"
+                value={stl}
+                onChange={(e) => setStl(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="BLK"
+                id="blk"
+                value={blk}
+                onChange={(e) => setBlk(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="TO"
+                id="to"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="PTS"
+                id="pts"
+                value={pts}
+                onChange={(e) => setPts(e.target.value)}
               />
 
               {/* Button to submit the new statistics */}

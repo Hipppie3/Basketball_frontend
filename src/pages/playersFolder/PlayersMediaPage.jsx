@@ -42,10 +42,10 @@ function PlayersMediaPage() {
       <div className="players-link-left2">
         <ul>
           <li>
-            <NavLink className='stats-link'to={`/players/${player.player.id}`}>Profile</NavLink>
+            <NavLink className='stats-link'to={`/players/${player.id}`}>Profile</NavLink>
           </li>
           <li>
-            <NavLink className='stats-link' to={`/players/${player.player.id}/stats`}>Stats</NavLink>
+            <NavLink className='stats-link' to={`/players/${player.id}/stats`}>Stats</NavLink>
           </li>
           <li>Media</li>
         </ul>

@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
-import { AuthContext } from '../context/AuthContext';
+// import { AuthContext } from '../context/AuthContext';
 
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
+  // const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
 
@@ -16,15 +16,12 @@ function Navbar() {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    setLoggedIn
-    setUser(null);
-    setLoggedIn(false)
     navigate('/login')
   };
   
 
-console.log(loggedIn)
-console.log(user)
+
+
   return (
     <nav className="navbar">
       <div className="navbar-container">

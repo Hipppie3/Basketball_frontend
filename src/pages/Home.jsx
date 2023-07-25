@@ -1,14 +1,13 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+// import { AuthContext } from '../context/AuthContext';
 
 function Home() {
-  const { user, loggedIn, setUser, setLoggedIn} = useContext(AuthContext)
+  // const { user, loggedIn, setUser, setLoggedIn} = useContext(AuthContext)
   const navigate = useNavigate('');
 
-console.log(user)
-console.log(loggedIn)
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -37,18 +36,15 @@ console.log(loggedIn)
         }
       });
   };
-  console.log(user)
-  console.log(loggedIn)
+
   return (
     <div>
-      {user ? (
+
         <div>
-          <h2>Hi {user.username}!</h2>
+          <h2>Hi !</h2>
           <button onClick={handleLogout}>Logout</button>
         </div>
-      ) : (
-        <p>No user</p>
-      )}
+
     </div>
   );
 };

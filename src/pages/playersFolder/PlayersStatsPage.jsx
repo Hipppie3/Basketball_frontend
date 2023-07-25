@@ -74,14 +74,14 @@ function PlayersStatsPage() {
       <div className="players-link-left1">
         <ul>
           <li>
-            <NavLink className="stats-link" to={`/players/${player.player.id}`}>
+            <NavLink className="stats-link" to={`/players/${player.id}`}>
               Profile
             </NavLink>
           </li>
           <li>Stats</li>
           {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
           <li>
-            <NavLink to={`/players/${player.player.id}/media`} className="stats-link" activeClassName="active-link">
+            <NavLink to={`/players/${player.id}/media`} className="stats-link" activeClassName="active-link">
               Media
             </NavLink>
           </li>
@@ -92,7 +92,7 @@ function PlayersStatsPage() {
         <div className="players-stats">
           <div className="players-name">
             <h1>
-              {player.player.first_name} {player.player.last_name}
+              {player.first_name} {player.last_name}
             </h1>
           </div>
           <div className="game-table">

@@ -4,6 +4,7 @@ import axios from 'axios';
 function AddSportVideo() {
   const [sports, setSports] = useState([]);
   const [selectedSport, setSelectedSport] = useState('');
+  const [videoTitle, setVideoTitle] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
@@ -26,15 +27,18 @@ function AddSportVideo() {
   const handleVideoUrlChange = (event) => {
     setVideoUrl(event.target.value);
   };
-
+const handleVideoTitleChange = (event) => {
+  setVideoTitle(event.target.value);
+};
 const handleAddSportMediaVideo = async () => {
   try {
     const response = await axios.post(
       `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/sports/${selectedSport}/sport_media_videos`,
-      { video: { url: videoUrl, title: 'Some Title' } }
+      { video: { url: videoUrl, title: videoTitle } }
     );
     console.log(response.data);
     setSelectedSport('');
+    setVideoTitle('');
     setVideoUrl('');
   } catch (error) {
     console.log(error);
@@ -64,6 +68,13 @@ const handleAddSportMediaVideo = async () => {
           id="videoUrl"
           value={videoUrl}
           onChange={handleVideoUrlChange}
+        />
+        <label htmlFor="videoTitle">Sport Media Video Title:</label>
+          <input
+          type="text"
+          id="videoTitle"
+          value={videoTitle}
+          onChange={handleVideoTitleChange}
         />
       </div>
       <button onClick={handleAddSportMediaVideo}>Add Sport Media Video</button>
