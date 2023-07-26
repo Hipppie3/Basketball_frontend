@@ -45,11 +45,11 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <NavLink
-              to="/about"
+              to="/teams"
               className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')}
               onClick={closeMobileMenu}
             >
-              ABOUT
+              TEAMS
             </NavLink>
           </li>
           <li className="nav-item">
@@ -86,6 +86,9 @@ function Navbar() {
                   </NavLink>
                   <NavLink to="/addSportVideo" className="dropdown-link" onClick={closeMobileMenu}>
                     Edit Sport Video
+                  </NavLink>
+                  <NavLink to="/addNewTeam" className="dropdown-link" onClick={closeMobileMenu}>
+                    Edit Team
                   </NavLink>
                    <NavLink to="/all" className="dropdown-link" onClick={closeMobileMenu}>
                     All

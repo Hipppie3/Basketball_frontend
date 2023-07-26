@@ -309,7 +309,7 @@ useEffect(() => {
 
   return (
     <div>
-      <div className="statsInput">
+      <div className="allStatsInput">
         <label className="newStatsLabel" htmlFor="id">
           <h3>Player</h3>
         </label>

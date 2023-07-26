@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './AddSportVideo.css'
+
 
 function AddSportVideo() {
   const [sports, setSports] = useState([]);
@@ -48,7 +50,7 @@ const handleAddSportMediaVideo = async () => {
 
 
   return (
-    <div>
+    <div className="sport-video-container">
       <h2>Add Sport Media Video</h2>
       <div>
         <label htmlFor="sport">Select Sport:</label>
@@ -61,7 +63,8 @@ const handleAddSportMediaVideo = async () => {
           ))}
         </select>
       </div>
-      <div>
+      <div className='addSportVideo'>
+        <div className='addSportVideoInput'>
         <label htmlFor="videoUrl">Sport Media Video URL:</label>
         <input
           type="text"
@@ -69,6 +72,8 @@ const handleAddSportMediaVideo = async () => {
           value={videoUrl}
           onChange={handleVideoUrlChange}
         />
+        </div>
+         <div className='addSportVideoInput'>
         <label htmlFor="videoTitle">Sport Media Video Title:</label>
           <input
           type="text"
@@ -76,6 +81,7 @@ const handleAddSportMediaVideo = async () => {
           value={videoTitle}
           onChange={handleVideoTitleChange}
         />
+        </div>
       </div>
       <button onClick={handleAddSportMediaVideo}>Add Sport Media Video</button>
     </div>

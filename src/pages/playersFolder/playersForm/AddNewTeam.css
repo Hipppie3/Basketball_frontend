@@ -1,0 +1,10 @@
+.addNewTeamContainer{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+
+.teamContainer{
+ margin-top: 3rem;
+}

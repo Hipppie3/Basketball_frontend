@@ -1,0 +1,10 @@
+.addSportVideo{
+ display: flex;
+ flex-direction: column;
+}
+
+.addSportVideoInput {
+ display: flex;
+ flex-direction: row;
+}
+

@@ -7,7 +7,7 @@
 
 .newStatsLabel{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -30,15 +30,15 @@
 .addStatsTitle {
 display: flex;
 justify-content: center;
-margin-bottom: 4rem;
-margin-top: 5rem;
+margin-bottom: 1rem;
+margin-top: 1rem;
 }
 
 .statsContainer{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
 }
 
 .stats {
@@ -51,7 +51,7 @@ margin-top: 5rem;
 
 
 .deleteStats {
-  margin-top: 5rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +59,9 @@ margin-top: 5rem;
 }
 
 .statsInput {
-  margin-top: 2rem;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  align-items: end;
+  margin-top: 1rem;
+  gap: 1px;
 }

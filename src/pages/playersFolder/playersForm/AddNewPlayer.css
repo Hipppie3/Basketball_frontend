@@ -1,109 +1,86 @@
-.addNewPlayerContainer{
- display: flex;
- flex-direction: row;
- justify-content: space-evenly;
- align-items: center;
-
+.addNewPlayerContainer {
+  display: flex;
+  flex-direction: column;
+  /* Change from row to column */
+  align-items: center;
 }
 
-.addPlayerTitle {
- margin-left: 2rem;
- margin-top: 7rem;
+.newPlayer{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  gap: 2px;
 }
+
+.updateTeam{
+    display: flex;
+      flex-direction: column;
+      align-items: end;
+      justify-content: center;
+      gap: 2px;
+}
+
+/* ... Existing styles ... */
+
 .playerContainer {
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  /* Adjust margin to center vertically */
+}
+
+.updateTeamContainer {
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+      /* Adjust margin to center vertically */
 }
 
 .playerContainer1 {
   display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- margin-bottom: 13rem;
-}
-.newPlayer {
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
- width: 350px;
- height: 150px;
- border: 1px solid black;
- gap: 10px;
- margin-top: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  /* Adjust margin to center vertically */
 }
 
-
-.newPlayerInput {
- margin-left: 1rem;
- width: 200px;
- height: 30px;
-}
-
-.addPlayerBtn {
- margin-top: 1rem;
- width: 200px;
- height: 20px;
- margin-left: 6rem;
+.deletePlayer{
+      display: flex;
+        flex-direction: column;
+        align-items: end;
+        justify-content: center;
+        gap: 2px;
 }
 
 .add-image-form {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-top: 2rem;
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
 }
+
 .add-player-image {
- height: 150px;
- width: 350px;
- border: 1px solid black;
- display: flex;
- flex-direction: column;
- justify-content: center;
- gap: 20px;
- padding-left: 2rem;
-}
-.image-id {
- margin-bottom: 1rem;
- margin-left: 1rem;
- width: 200px;
- height: 30px;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 2px;
+  }
 
-.upload-input {
- margin-left: 5.5rem;
-}
-.image-btn {
- width: 200px;
- margin-left: 5.5rem;
-}
-.deletePlayerTitle {
- margin-left: 1rem;
- margin-top: 4rem;
-}
 
-.deletePlayer {
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
- margin-top: 1rem;
- width: 350px;
- height: 100px;
- border: 1px solid black;
-}
-.deletePlayerInput {
- margin-left: 1rem;
- width: 200px;
- height: 30px;
-}
 
-.deletePlayerBtn {
- margin-top: 1rem;
- width: 200px;
- height: 20px;
- margin-left: 5.5rem;
+/* ... Existing styles ... */
+
+@media screen and (max-width: 960px) {
+.addNewPlayerContainer{
+  display: flex;
+  margin-right: 2rem;
+}
 }

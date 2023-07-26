@@ -14,3 +14,7 @@
  display: flex;
  flex-direction: column;
 }
+
+.allStatsInput {
+ display: flex;
+}

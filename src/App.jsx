@@ -8,12 +8,15 @@ import PlayersPage from './pages/playersFolder/PlayersPage'
 import AddNewPlayers from './pages/playersFolder/playersForm/AddNewPlayers'
 import AddStatsPage from './pages/playersFolder/playersForm/AddStatsPage'
 import AddVideoPage from './pages/playersFolder/playersForm/AddVideoPage'
+import AddNewTeam from './pages/playersFolder/playersForm/AddNewTeam'
 import PlayerStatsPage from './pages/playersFolder/PlayersStatsPage'
 import PlayersMediaPage from './pages/playersFolder/PlayersMediaPage'
 import Login from './pages/Login'
 import Media from './pages/Media'
 import AddSportVideo from './pages/playersFolder/playersForm/AddSportVideo'
 import All from './pages/All'
+import Teams from './pages/Teams'
+import TeamDetails from './pages/TeamDetails'
 
 
 function App() {
@@ -27,7 +30,8 @@ function App() {
       <Route path="/editPlayers" element={<AddNewPlayers/>} />
       <Route path="/editStats" element={<AddStatsPage/>} />
       <Route path="/editVideos" element={<AddVideoPage/>} />
-      <Route path="/about" element={<About/>} />
+      <Route path="/addNewteam" element={<AddNewTeam/>} />
+      <Route path="/teams" element={<Teams/>} />
       <Route path="/media" element={<Media/>} />
       <Route path="/players" element={<Players />} />
       <Route path="/players/:id/stats" element={<PlayerStatsPage/>} />
@@ -36,6 +40,7 @@ function App() {
       <Route path='/login' element={<Login />} />
       <Route path='/addSportVideo' element={<AddSportVideo/>} />
       <Route path='/all' element={<All/>} />
+      <Route exact path="/teams/:id" element={<TeamDetails/>} />
     </Routes>
     </div>
   )

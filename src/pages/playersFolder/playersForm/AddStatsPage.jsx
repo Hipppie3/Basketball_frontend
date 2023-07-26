@@ -317,7 +317,7 @@ function AddStatsPage() {
 <h1>Delete Player Stats</h1>
   <form onSubmit={handleDeleteStatistics}>
     <div className='statsInput'>
-            <label className="newStatsLabel" htmlFor="id">Player ID</label>
+            <label className="newStatsLabel" htmlFor="id">Player ID
             <select
               className="newStatsInput1"
               value={id}
@@ -330,6 +330,7 @@ function AddStatsPage() {
                 </option>
               ))}
             </select>
+            </label>
         <label>
           Statistic ID:
           <input
