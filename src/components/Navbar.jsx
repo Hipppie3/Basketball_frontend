@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
-// import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  // const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
 
@@ -70,6 +70,7 @@ function Navbar() {
               PLAYERS
             </NavLink>
           </li>
+          {user && <>
               <li className="nav-items">
                   <NavLink className={click ? 'nav-links active-form' : 'nav-links'} to="/form" onClick={closeMobileMenu}>
                     FORM
@@ -104,6 +105,8 @@ function Navbar() {
                   Logout
                 </NavLink>
               </li>
+              </>
+}
 
             <li className="nav-item">
               <NavLink
@@ -111,7 +114,7 @@ function Navbar() {
                 className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')}
                 onClick={closeMobileMenu}
               >
-                Login
+                LOGIN
               </NavLink>
             </li>
 

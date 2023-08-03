@@ -1,28 +1,10 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 function Home() {
-  // const { user, loggedIn, setUser, setLoggedIn} = useContext(AuthContext)
+  const { user, loggedIn, setUser, setLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate('');
-
-
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/me'); // Replace with your actual endpoint URL
-
-        setUser(response.data);
-        setLoading(true);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
 
   const handleLogout = () => {
     // Perform logout logic
@@ -32,21 +14,27 @@ function Home() {
       .then((response) => {
         if (response.ok) {
           setUser(null);
-          navigate('/login')
+          setLoggedIn(false);
+          navigate('/login');
         }
       });
   };
 
   return (
     <div>
-
-        <div>
-          <h2>Hi !</h2>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-
+      <div>
+        {user ? (
+          <>
+        <h2>Hi {user ? user.username : 'Guest'}!</h2>
+        <button onClick={handleLogout}>Logout</button>
+        </>
+        ) : (
+          <h2>Hi</h2>
+        )
+}
+      </div>
     </div>
   );
-};
+}
 
 export default Home;

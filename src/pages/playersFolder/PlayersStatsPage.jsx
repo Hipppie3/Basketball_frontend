@@ -6,18 +6,19 @@ import './PlayerStats.css';
 function PlayersStatsPage() {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
-
+  const [playerGame, setPlayerGame] = useState(null);
+  
   useEffect(() => {
-    const fetchPlayerData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
-        setPlayer(response.data);
+        const playerResponse = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
+        setPlayer(playerResponse.data);
       } catch (error) {
         console.error('Something went wrong:', error);
       }
     };
 
-    fetchPlayerData();
+    fetchData();
   }, [id]);
 
   if (!player) {
@@ -69,6 +70,8 @@ function PlayersStatsPage() {
   const averageFGPercentage = player.statistics.length > 0 ? (totalFGPercentage / player.statistics.length).toFixed(2) : 0;
   const winningPercentage = totalWins + totalLosses > 0 ? ((totalWins / (totalWins + totalLosses)) * 100).toFixed(2) : 0;
 
+
+
   return (
     <div className="playersStatsPage">
       <div className="players-link-left1">
@@ -79,7 +82,6 @@ function PlayersStatsPage() {
             </NavLink>
           </li>
           <li>Stats</li>
-          {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
           <li>
             <NavLink to={`/players/${player.id}/media`} className="stats-link" activeClassName="active-link">
               Media
@@ -97,8 +99,8 @@ function PlayersStatsPage() {
           </div>
           <div className="game-table">
             <div className="game-row game-header">
-              <div className="stat-id">Stats ID</div>
-              <div className="game-date">W_L</div>
+              <div className="game-date">Game Date</div>
+              <div className="w_l">W_L</div>
               <div className="fgm">FGM</div>
               <div className="fga">FGA</div>
               <div className="fgp">FG%</div>
@@ -119,8 +121,8 @@ function PlayersStatsPage() {
             {player.statistics.map((stat) => (
               <div key={stat.id}>
                 <div className="game-row">
-                  <div className="stats-id">{stat.id}</div>
-                  <div className="game-date">{stat.w_l}</div>
+                  <div className="game-date">{stat.game_id}</div>
+                  <div className="w_l">{stat.w_l}</div>
                   <div className="fgm">{stat.fgm}</div>
                   <div className="fga">{stat.fga}</div>
                   <div className="fgp">{stat.fg_percentage}</div>

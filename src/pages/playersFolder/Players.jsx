@@ -67,7 +67,9 @@ function Players() {
 
   const handlePlayerClick = (e, playerId) => {
     e.preventDefault();
+
     navigate(`/players/${playerId}`);
+    
   };
 
   return (

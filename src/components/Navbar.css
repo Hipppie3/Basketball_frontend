@@ -9,7 +9,7 @@
 
 .navbar {
  background-color: white;
- height: 13dvh;
+ height: 9dvh;
  display: flex;
  justify-content: center;
  align-items: center;
@@ -88,9 +88,9 @@
 }
 
 
-.nav-item:hover {
+/* .nav-item:hover {
  border-bottom: 2px solid #09bef0;
-}
+} */
 
 .nav-links {
  color: rgb(3, 3, 3);

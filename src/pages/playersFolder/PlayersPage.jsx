@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavLink, useParams } from 'react-router-dom';
 import './PlayersPage.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faInstagram, faTwitter, faLinkedin  } from '@fortawesome/free-brands-svg-icons'
 // import { AuthContext } from '../../context/AuthContext'
 
 function PlayersPage() {
@@ -26,6 +28,7 @@ function PlayersPage() {
       try {
         const response = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}`);
         setPlayer(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error('Something went wrong:', error);
       }
@@ -98,16 +101,28 @@ console.log(averagePoints);
 
           <div className="right-section">
             <div className="left-side">
-              <div className="left-info"><span>HEIGHT</span></div>
-              <div className="left-info"><span>WEIGHT</span></div>
-              <div className="left-info"><span>COUNTRY</span></div>
-              <div className="left-info"><span>COLLEGE</span></div>
+              <div className="left-info"><span>AGE</span>33</div>
+              <div className="left-info"><span>HEIGHT</span>5'5</div>
+              <div className="left-info"><span>WEIGHT</span>130</div>
+              <div className="left-info"><span>CAREER</span>Software</div>
             </div>    
             <div className="right-side">
-              <div className="right-info"><span>AGE</span></div>
-              <div className="right-info"><span>BIRTHDATE</span></div>
-              <div className="right-info"><span>DRAFT</span></div>
-              <div className="right-info"><span>EXPERIENCE</span></div>
+              <div className="right-info social-media-icons-white"><span>
+              <a href="http://facebook.com">
+              <FontAwesomeIcon icon={faFacebook}/>
+              </a></span></div>
+              <div className="right-info social-media-icons-white"><span>
+              <a href="http://facebook.com">
+              <FontAwesomeIcon icon={faInstagram}/>
+              </a></span></div>
+              <div className="right-info social-media-icons-white"><span>
+              <a href="http://facebook.com">
+              <FontAwesomeIcon icon={faTwitter}/>
+              </a></span></div>
+              <div className="right-info social-media-icons-white"><span>
+              <a href="http://facebook.com">
+              <FontAwesomeIcon icon={faLinkedin}/>
+              </a></span></div>
             </div>    
           </div>
         </div>
@@ -132,7 +147,7 @@ console.log(averagePoints);
       </section>
         <section className="ad">
      <div className="ad-container">
-       <h1>SPONSORS</h1>
+       <h1>Business Website</h1>
      </div>
      </section>
 

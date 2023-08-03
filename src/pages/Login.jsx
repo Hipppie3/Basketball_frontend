@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, user, setUser } = useContext(AuthContext);
   const navigate = useNavigate('');
 
 
