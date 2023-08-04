@@ -29,8 +29,8 @@ function All() {
   const [to, setTo] = useState('');
   const [pts, setPts] = useState('');
   const [deleteStatisticsId, setDeleteStatisticsId] = useState('');
-  const [games, setGames] = useState([]);
   const [gameDate, setGameDate] = useState('');
+  const [gameId, setGameId] = useState('');
 
 useEffect(() => {
   const fetchPlayerData = async () => {
@@ -121,14 +121,33 @@ const handleUpdateClick = async (statisticId) => {
     return;
   }
 
-  const updatedStatistic = editedStatistics[statisticId];
   const playerId = selectedPlayer.id; // Get the selected player ID here
+  const updatedStatistic = {
+    w_l: w_l,
+    fgm: fgm,
+    fga: fga,
+    fg_percentage: fg_percentage,
+    two_pm: two_pm,
+    two_pa: two_pa,
+    three_pm: three_pm,
+    three_pa: three_pa,
+    oreb: oreb,
+    dreb: dreb,
+    reb: reb,
+    ast: ast,
+    stl: stl,
+    blk: blk,
+    to: to,
+    pts: pts,
+  };
 
   try {
+    // Make the PUT request to update the statistic data on the backend
     const response = await axios.put(
       `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}/statistics/${statisticId}`,
-      { statistic: updatedStatistic } // Include the statistic object in the request payload
+      { statistic: updatedStatistic } // Include the updated statistic object in the request payload
     );
+
     console.log(response.data); // Check the response from the backend
     // Perform any necessary handling after successful update
 
@@ -137,25 +156,17 @@ const handleUpdateClick = async (statisticId) => {
     const updatedPlayer = updatedPlayerResponse.data; // Store the updated player data
 
     // Update the selected player with the new data
-    setSelectedPlayer((prevState) => ({
-      ...prevState,
-      statistics: prevState.statistics.map((stat) =>
-        stat.id === statisticId ? { ...stat, ...updatedStatistic } : stat
-      ),
-    }));
+    setSelectedPlayer(updatedPlayer);
+
+    // Clear the editing state
+    setEditingStatisticId(null);
+    setEditedStatistics({});
   } catch (error) {
     console.error('Failed to update statistic:', error);
     // Perform error handling if needed
   }
-
-  // Clear the editing state
-  setEditingStatisticId(null);
-  setEditedStatistics((prevState) => {
-    const updatedState = { ...prevState };
-    delete updatedState[statisticId];
-    return updatedState;
-  });
 };
+
 
 
 const handlePlayerUpdateClick = async () => {
@@ -202,71 +213,6 @@ const handlePlayerUpdateClick = async () => {
 };
 
 
- const handleAddStatsClick = () => {
-    setIsAddingStats(!isAddingStats);
-  };
-
-  const handlePostStatsClick = async (e) => {
-    e.preventDefault();
-
-    try {
-          if (!selectedPlayer || !editingStatisticId) {
-      console.error('No player or statistic selected.');
-      return;
-    }
-
-    // Get the corresponding game_date from the games array
-    const gameDate = selectedPlayer.games.find((game) => game.id === editingStatisticId)?.date;
-
-    if (!gameDate) {
-      console.error('No game date found for the selected statistic.');
-      return;
-    }
-
-      const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`, {
-        game_date: gameDate,
-        w_l,
-        fgm,
-        fga,
-        fg_percentage,
-        two_pm,
-        two_pa,
-        three_pm,
-        three_pa,
-        oreb,
-        dreb,
-        reb,
-        ast,
-        stl,
-        blk,
-        to,
-        pts,
-      });
-      console.log(response.data);
-      // Reset form values
-      setGameDate('');
-      setW_l('');
-      setFgm('');
-      setFga('');
-      setFg_Percentage('');
-      setTwo_Pm('');
-      setTwo_Pa('');
-      setThree_Pm('');
-      setThree_Pa('');
-      setOreb('');
-      setDreb('');
-      setReb('');
-      setAst('');
-      setStl('');
-      setBlk('');
-      setTo('');
-      setPts('');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-// ... (previous code)
 
 const handleDeleteClick = (statisticId) => {
   if (window.confirm('Are you sure you want to delete this statistic?')) {
@@ -366,10 +312,7 @@ useEffect(() => {
             </div>
           )}
 
-          <h3>Statistics:<button 
-          onClick={handleAddStatsClick}>
-          {isAddingStats ? 'Cancel Adding Stats' : 'Add Stats'}
-          </button>
+          <h3>Statistics:
           </h3>
           {selectedPlayer.statistics.length > 0 ? (
             <ul className="playerStats">
@@ -382,11 +325,11 @@ useEffect(() => {
                     <div>
                       {isEditing ? (
                         <div className-="playerStats">
-                          Game Date:
+                          Game ID:
                           <input
                             type="text"
-                            defaultValue={editedStatistic.game_date || gameDate}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'game_date')}
+                            defaultValue={editedStatistic.game_id || statistic.game_id}
+                            onChange={(e) => handleInputChange(e, statistic.id, 'game_id')}
                           />
                           <br />
                           W/L:
@@ -504,9 +447,9 @@ useEffect(() => {
                         </div>
                       ) : (
                         <div className="stats-results">
-                          Id: {statistic.id}
+                          ID: {statistic.id}
                           <br />
-                          Game Date: {statistic.game_date}
+                          Game ID: {statistic.game_id}
                           <br />
                           W/L: {statistic.w_l}
                           <br />

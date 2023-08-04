@@ -17,7 +17,7 @@ import AddSportVideo from './pages/playersFolder/playersForm/AddSportVideo'
 import All from './pages/All'
 import Teams from './pages/Teams'
 import TeamDetails from './pages/TeamDetails'
-import Tennis from './pages/playersFolder/Tennis'
+import GameDetailsPage from './pages/playersFolder/GameDetailsPage'
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
       <Route path='/addSportVideo' element={<AddSportVideo/>} />
       <Route path='/all' element={<All/>} />
       <Route exact path="/teams/:id" element={<TeamDetails/>} />
-      <Route path='/tennis' element={<Tennis/>}/>
+      <Route path='/games/:gameId' element={<GameDetailsPage/>}/>
     </Routes>
     </div>
   )

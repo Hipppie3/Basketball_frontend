@@ -10,6 +10,8 @@ function PlayersPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
+  const [playerStatistics, setPlayerStatistics] = useState(null);
+
   // const { loggedIn, setLoggedIn} = useContext(AuthContext)
 
   const handleScrollLeft = () => {
@@ -33,15 +35,25 @@ function PlayersPage() {
         console.error('Something went wrong:', error);
       }
     };
+const fetchPlayerStatistics = async () => {
+      try {
+        const statisticsResponse = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`);
+        setPlayerStatistics(statisticsResponse.data);
+        console.log(statisticsResponse.data);
+      } catch (error) {
+        console.error('Something went wrong:', error);
+      }
+    };
 
     fetchPlayerData();
+    fetchPlayerStatistics();
   }, [id]);
 
-  if (!player) {
-    return <div>Loading...</div>;
-  }
+if (!player || !playerStatistics) {
+  return <div>Loading...</div>;
+}
 
-  const visibleVideos = player.videos?.slice(scrollPosition, scrollPosition + 4) || [];
+const visibleVideos = player.videos?.slice(scrollPosition, scrollPosition + 4) || [];
   const getPlayerVideoId = (url) => {
   const videoId = url.split('v=')[1];
   return videoId;
@@ -134,11 +146,11 @@ console.log(averagePoints);
               
               <li>Profile</li>
 
-              <li><NavLink to={`/players/${player.id}/stats`} className='stats-link' activeClassName="active-link">Stats</NavLink></li>
+              <li><NavLink to={`/players/${player.id}/stats`} className='stats-link' >Stats</NavLink></li>
 
-              {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' activeClassName="active-link">Bio</NavLink></li> */}
+              {/* <li><NavLink to={`/players/${player.player.id}/bio`} className='stats-link' >Bio</NavLink></li> */}
 
-              <li><NavLink to={`/players/${player.id}/media`} className='stats-link' activeClassName="active-link">Media</NavLink></li>
+              <li><NavLink to={`/players/${player.id}/media`} className='stats-link' >Media</NavLink></li>
 
             </ul>
           </div>
@@ -188,8 +200,8 @@ console.log(averagePoints);
           <h2>Last 5 Games</h2>
           <div className="game-table">
             <div className="game-row game-header">
-              
-              <div className="game-date">WIN_LOSE</div>
+              <div className="game-date">DATE</div>
+              <div className="w_l">W_L</div>
               <div className="fgm">FGM</div>
               <div className="fga">FGA</div>
               <div className="fgp">FG%</div>
@@ -210,10 +222,14 @@ console.log(averagePoints);
             
 
 
- {player.statistics.slice(-5).map((stat) => (
+ {playerStatistics.slice(-5).map((stat) => (
         <div key={stat.id}>
-            <div className="game-row">
-              <div className="game-date">{stat.w_l}</div>
+       {console.log(stat)}
+              <div className="game-row">
+              <NavLink to={`/games/${stat.game_id}`} className="game-date">
+              {stat.game.date}
+              </NavLink>
+              <div className="w_l">{stat.w_l}</div>
               <div className="fgm">{stat.fgm}</div>
               <div className="fga">{stat.fga}</div>
               <div className="fgp">{stat.fg_percentage}</div>

@@ -22,6 +22,7 @@ function AddStatsPage() {
   const [to, setTo] = useState('');
   const [pts, setPts] = useState('');
   const [players, setPlayers] = useState([]);
+  const [game_id, setGame_Id] = useState('');
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -42,6 +43,7 @@ function AddStatsPage() {
 
     try {
       const response = await axios.post(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${id}/statistics`, {
+        game_id,
         w_l,
         fgm,
         fga,
@@ -61,6 +63,7 @@ function AddStatsPage() {
       });
       console.log(response.data);
       // Reset form values
+      setGame_Id('')
       setW_l('');
       setFgm('');
       setFga('');
@@ -115,6 +118,17 @@ function AddStatsPage() {
             </select>
           </div>
 
+<div className="stats">
+    <label className="newStatsLabel" htmlFor="game_id">GAME_ID
+    <input
+      className="newStatsInput"
+      type="text"
+      id="game_id"
+      value={game_id}
+      onChange={(e) => setGame_Id(e.target.value)}
+    />
+    </label>
+    </div>
     <div className="stats">
     <label className="newStatsLabel" htmlFor="w_l">W_L
     <input
