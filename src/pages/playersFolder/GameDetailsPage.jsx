@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './GameDetailsPage.css'
 
 function GameDetailsPage() {
   const { gameId } = useParams();
@@ -38,20 +39,50 @@ function GameDetailsPage() {
 
   return (
     <div>
-      <h1>{game.name}</h1>
+      <h1 className='gameTitle'>{game.name}</h1>
       {Object.entries(playersByTeam).map(([teamName, players]) => (
-        <div key={teamName}>
+        <div className='gameTeam' key={teamName}>
           <h1>{teamName}</h1>
+          <div className='gameHeader'>
+              <div>Players</div>
+              <div className="gamePlayersHeader">FGA</div>
+              <div className="gamePlayersHeader">FGM</div>
+              <div className="gamePlayersHeader">FG%</div>
+              <div className="gamePlayersHeader">2PA</div>
+              <div className="gamePlayersHeader">2PM</div>
+              <div className="gamePlayersHeader">3PA</div>
+              <div className="gamePlayersHeader">3PM</div>
+              <div className="gamePlayersHeader">OREB</div>
+              <div className="gamePlayersHeader">DREB</div>
+              <div className="gamePlayersHeader">REB</div>
+              <div className="gamePlayersHeader">AST</div>
+              <div className="gamePlayersHeader">STL</div>
+              <div className="gamePlayersHeader">BLK</div>
+              <div className="gamePlayersHeader">TO</div>
+              <div className="gamePlayersHeader">PTS</div>
+          </div>
           {players.map((player) => (
-            <div key={player.name}>
-              <h2>{player.name}</h2>
-              <ul>
-                <li>PTS: {player.statistics.pts}</li>
-                <li>REB: {player.statistics.reb}</li>
-                <li>AST: {player.statistics.ast}</li>
+      
+              <div className='playerStatsList'>
+                      {console.log(player)}
+                <div>{player.name}</div>
+                <div className="gamePlayersHeaders">{player.statistics.fga}</div>
+                <div className="gamePlayersHeaders">{player.statistics.fgm}</div>
+                <div className="gamePlayersHeaderss">{player.statistics.fg_percentage}</div>
+                <div className="gamePlayersHeaders">{player.statistics.two_pa}</div>
+                <div className="gamePlayersHeaders">{player.statistics.two_pm}</div>
+                <div className="gamePlayersHeaders">{player.statistics.three_pa}</div>
+                <div className="gamePlayersHeaders">{player.statistics.three_pm}</div>
+                <div className="gamePlayersHeaders">{player.statistics.oreb}</div>
+                <div className="gamePlayersHeaders">{player.statistics.dreb}</div>
+                <div className="gamePlayersHeaders">{player.statistics.reb}</div>
+                <div className="gamePlayersHeaders">{player.statistics.ast}</div>
+                <div className="gamePlayersHeaders">{player.statistics.stl}</div>
+                <div className="gamePlayersHeaders">{player.statistics.blk}</div>
+                <div className="gamePlayersHeaders">{player.statistics.to}</div>
+                <div className="gamePlayersHeaders">{player.statistics.pts}</div>
                 {/* Add more statistics as needed */}
-              </ul>
-            </div>
+              </div>
           ))}
         </div>
       ))}

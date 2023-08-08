@@ -226,9 +226,13 @@ console.log(averagePoints);
         <div key={stat.id}>
        {console.log(stat)}
               <div className="game-row">
-              <NavLink to={`/games/${stat.game_id}`} className="game-date">
-              {stat.game.date}
-              </NavLink>
+              {stat.game?.date ? (
+        <NavLink to={`/games/${stat.game_id}`} className="game-date">
+          {stat.game.name}
+        </NavLink>
+      ) : (
+        <div className="game-date">nil</div>
+      )}
               <div className="w_l">{stat.w_l}</div>
               <div className="fgm">{stat.fgm}</div>
               <div className="fga">{stat.fga}</div>

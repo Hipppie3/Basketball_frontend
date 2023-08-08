@@ -94,6 +94,9 @@ function Navbar() {
                    <NavLink to="/all" className="dropdown-link" onClick={closeMobileMenu}>
                     All
                   </NavLink>
+                  <NavLink to='/gameManagement' className="dropdown-link" onClick={closeMobileMenu}>
+                    Edit Game
+                  </NavLink>
                 </div>
               </li>
               <li className="nav-item">

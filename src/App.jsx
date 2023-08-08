@@ -18,6 +18,7 @@ import All from './pages/All'
 import Teams from './pages/Teams'
 import TeamDetails from './pages/TeamDetails'
 import GameDetailsPage from './pages/playersFolder/GameDetailsPage'
+import GameManagement from './pages/playersFolder/playersForm/GameManagement'
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
       <Route path='/all' element={<All/>} />
       <Route exact path="/teams/:id" element={<TeamDetails/>} />
       <Route path='/games/:gameId' element={<GameDetailsPage/>}/>
+      <Route path='/gameManagement' element={<GameManagement/>} />
     </Routes>
     </div>
   )

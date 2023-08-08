@@ -47,7 +47,7 @@ function AddStatsPage() {
         w_l,
         fgm,
         fga,
-        fg_percentage,
+        fg_percentage, 
         two_pm,
         two_pa,
         three_pm,
