@@ -30,7 +30,26 @@ function All() {
   const [pts, setPts] = useState('');
   const [deleteStatisticsId, setDeleteStatisticsId] = useState('');
   const [gameDate, setGameDate] = useState('');
-  const [gameId, setGameId] = useState('');
+  const [game_id, setGameId] = useState('');
+  const [updatedStatistic, setUpdatedStatistic] = useState({
+  game_id: '',
+  w_l: '',
+  fgm: '',
+  fga: '',
+  fg_percentage: '',
+  two_pm: '',
+  two_pa: '',
+  three_pm: '',
+  three_pa: '',
+  oreb: '',
+  dreb: '',
+  reb: '',
+  ast: '',
+  stl: '',
+  blk: '',
+  to: '',
+  pts: '',
+});
 
 useEffect(() => {
   const fetchPlayerData = async () => {
@@ -117,43 +136,25 @@ const handlePlayerChange = (e, setId) => {
 
 const handleUpdateClick = async (statisticId) => {
   if (!selectedPlayer) {
-    console.error('No player selected.'); // Handle the error appropriately
+    console.error('No player selected.');
     return;
   }
 
-  const playerId = selectedPlayer.id; // Get the selected player ID here
-  const updatedStatistic = {
-    w_l: w_l,
-    fgm: fgm,
-    fga: fga,
-    fg_percentage: fg_percentage,
-    two_pm: two_pm,
-    two_pa: two_pa,
-    three_pm: three_pm,
-    three_pa: three_pa,
-    oreb: oreb,
-    dreb: dreb,
-    reb: reb,
-    ast: ast,
-    stl: stl,
-    blk: blk,
-    to: to,
-    pts: pts,
-  };
-
   try {
+    const playerId = selectedPlayer.id;
+
     // Make the PUT request to update the statistic data on the backend
     const response = await axios.put(
       `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}/statistics/${statisticId}`,
-      { statistic: updatedStatistic } // Include the updated statistic object in the request payload
+      { statistic: updatedStatistic }
     );
 
     console.log(response.data); // Check the response from the backend
-    // Perform any necessary handling after successful update
-
     // Fetch the updated player data
-    const updatedPlayerResponse = await axios.get(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}`);
-    const updatedPlayer = updatedPlayerResponse.data; // Store the updated player data
+    const updatedPlayerResponse = await axios.get(
+      `https://agile-reef-32463-2ad3559c3e00.herokuapp.com/players/${playerId}`
+    );
+    const updatedPlayer = updatedPlayerResponse.data;
 
     // Update the selected player with the new data
     setSelectedPlayer(updatedPlayer);
@@ -161,11 +162,31 @@ const handleUpdateClick = async (statisticId) => {
     // Clear the editing state
     setEditingStatisticId(null);
     setEditedStatistics({});
+    setUpdatedStatistic({
+      game_id: '',
+      w_l: '',
+      fgm: '',
+      fga: '',
+      fg_percentage: '',
+      two_pm: '',
+      two_pa: '',
+      three_pm: '',
+      three_pa: '',
+      oreb: '',
+      dreb: '',
+      reb: '',
+      ast: '',
+      stl: '',
+      blk: '',
+      to: '',
+      pts: '',
+    });
   } catch (error) {
     console.error('Failed to update statistic:', error);
     // Perform error handling if needed
   }
 };
+
 
 
 
@@ -324,124 +345,124 @@ useEffect(() => {
                   <li key={statistic.id} className="playerStatsLi">
                     <div>
                       {isEditing ? (
-                        <div className-="playerStats">
+                        <div className="playerStats">
                           Game ID:
                           <input
                             type="text"
                             defaultValue={editedStatistic.game_id || statistic.game_id}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'game_id')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, game_id: e.target.value })}
                           />
                           <br />
                           W/L:
                           <input
                             type="text"
                             defaultValue={editedStatistic.w_l || statistic.w_l}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'w_l')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, w_l: e.target.value })}
                           />
                           <br />
                           FGM:
                           <input
                             type="text"
                             defaultValue={editedStatistic.fgm || statistic.fgm}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'fgm')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, fgm: e.target.value })}
                           />
                           <br />
                           FGA:
                           <input
                             type="text"
                             defaultValue={editedStatistic.fga || statistic.fga}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'fga')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, fga: e.target.value })}
                           />
                           <br />
                           FG%:
                           <input
                             type="text"
                             defaultValue={editedStatistic.fg_percentage || statistic.fg_percentage}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'fg_percentage')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, fg_percentage: e.target.value })}
                           />
                           <br />
                           2PA:
                           <input
                             type="text"
                             defaultValue={editedStatistic.two_pa || statistic.two_pa}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'two_pa')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, two_pa: e.target.value })}
                           />
                           <br />
                           2PM:
                           <input
                             type="text"
                             defaultValue={editedStatistic.two_pm || statistic.two_pm}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'two_pm')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, two_pm: e.target.value })}
                           />
                           <br />
                           3PA:
                           <input
                             type="text"
                             defaultValue={editedStatistic.three_pa || statistic.three_pa}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'three_pa')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, three_pa: e.target.value })}
                           />
                           <br />
                           3PM:
                           <input
                             type="text"
                             defaultValue={editedStatistic.three_pm || statistic.three_pm}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'three_pm')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, three_pm: e.target.value })}
                           />
                           <br />
                           OREB:
                           <input
                             type="text"
                             defaultValue={editedStatistic.oreb || statistic.oreb}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'oreb')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, oreb: e.target.value })}
                           />
                           <br />
                           DREB:
                           <input
                             type="text"
                             defaultValue={editedStatistic.dreb || statistic.dreb}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'dreb')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, dreb: e.target.value })}
                           />
                           <br />
                           REB:
                           <input
                             type="text"
                             defaultValue={editedStatistic.reb || statistic.reb}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'reb')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, reb: e.target.value })}
                           />
                           <br />
                           AST:
                           <input
                             type="text"
                             defaultValue={editedStatistic.ast || statistic.ast}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'ast')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, ast: e.target.value })}
                           />
                           <br />
                           STL:
                           <input
                             type="text"
                             defaultValue={editedStatistic.stl || statistic.stl}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'stl')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, stl: e.target.value })}
                           />
                           <br />
                           BLK:
                           <input
                             type="text"
                             defaultValue={editedStatistic.blk || statistic.blk}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'blk')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, blk: e.target.value })}
                           />
                           <br />
                           TO:
                           <input
                             type="text"
                             defaultValue={editedStatistic.to || statistic.to}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'to')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, to: e.target.value })}
                           />
                           <br />
                           PTS:
                           <input
                             type="text"
                             defaultValue={editedStatistic.pts || statistic.pts}
-                            onChange={(e) => handleInputChange(e, statistic.id, 'pts')}
+                            onChange={(e) => setUpdatedStatistic({ ...updatedStatistic, pts: e.target.value })}
                           />
                           <br />
                         </div>

@@ -52,6 +52,15 @@ function Navbar() {
               TEAMS
             </NavLink>
           </li>
+            <li className="nav-item">
+            <NavLink
+              to="/games"
+              className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')}
+              onClick={closeMobileMenu}
+            >
+              GAMES
+            </NavLink>
+          </li>
           <li className="nav-item">
             <NavLink
               to="/media"

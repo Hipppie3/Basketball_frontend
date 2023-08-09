@@ -64,8 +64,8 @@ function GameDetailsPage() {
           {players.map((player) => (
       
               <div className='playerStatsList'>
-                      {console.log(player)}
-                <div>{player.name}</div>
+                {console.log(player)}
+                <div className="gamePlayers">{player.name}</div>
                 <div className="gamePlayersHeaders">{player.statistics.fga}</div>
                 <div className="gamePlayersHeaders">{player.statistics.fgm}</div>
                 <div className="gamePlayersHeaderss">{player.statistics.fg_percentage}</div>

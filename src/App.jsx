@@ -19,6 +19,7 @@ import Teams from './pages/Teams'
 import TeamDetails from './pages/TeamDetails'
 import GameDetailsPage from './pages/playersFolder/GameDetailsPage'
 import GameManagement from './pages/playersFolder/playersForm/GameManagement'
+import Games from './pages/Games'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
       <Route path="/teams" element={<Teams/>} />
       <Route path="/media" element={<Media/>} />
       <Route path="/players" element={<Players />} />
+      <Route path='/games' element={<Games/>} />
       <Route path="/players/:id/stats" element={<PlayerStatsPage/>} />
       <Route path="/players/:id/media" element={<PlayersMediaPage/>} />
       <Route path='/players/:id' element={<PlayersPage />} />
