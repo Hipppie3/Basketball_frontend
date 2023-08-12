@@ -113,10 +113,10 @@ console.log(averagePoints);
 
           <div className="right-section">
             <div className="left-side">
-              <div className="left-info"><span>AGE</span>33</div>
-              <div className="left-info"><span>HEIGHT</span>5'5</div>
-              <div className="left-info"><span>WEIGHT</span>130</div>
-              <div className="left-info"><span>CAREER</span>Software</div>
+              <div className="left-info"><span>AGE</span></div>
+              <div className="left-info"><span>HEIGHT</span></div>
+              <div className="left-info"><span>WEIGHT</span></div>
+              <div className="left-info"><span>CAREER</span></div>
             </div>    
             <div className="right-side">
               <div className="right-info social-media-icons-white"><span>
@@ -228,7 +228,7 @@ console.log(averagePoints);
               <div className="game-row">
               {stat.game?.date ? (
         <NavLink to={`/games/${stat.game_id}`} className="game-date">
-          {stat.game.name}
+          {stat.game.date}
         </NavLink>
       ) : (
         <div className="game-date">nil</div>

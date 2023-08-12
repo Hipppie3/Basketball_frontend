@@ -56,14 +56,15 @@ function GameManagement() {
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games/${id}`);
-      fetchGames();
-    } catch (error) {
-      console.error('Error deleting game:', error);
-    }
-  };
+const handleDelete = async (game) => {
+  try {
+    await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games/${game.id}`);
+    fetchGames();
+  } catch (error) {
+    console.error('Error deleting game:', error);
+  }
+};
+
 
   return (
     <div>
@@ -79,7 +80,8 @@ function GameManagement() {
           <li key={game.id}>
             {game.name} - {game.date} - {game.id}
             <button onClick={() => setSelectedGame(game)}>Edit</button>
-            <button onClick={() => handleDelete(game.id)}>Delete</button>
+            <button onClick={() => handleDelete(game)}>Delete</button>
+
           </li>
         ))}
       </ul>

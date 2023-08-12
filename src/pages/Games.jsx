@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
+import './Games.css'
 
 function Games() {
  const [games, setGames] = useState([])
@@ -20,7 +21,7 @@ function Games() {
 },[]);
 
   return (
-    <div>
+    <div className='games'>
       {games.map(game => (
        <>
        <NavLink to={`/games/${game.id}`}>

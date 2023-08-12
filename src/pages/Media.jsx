@@ -37,7 +37,6 @@ function Medias() {
                   {video.title}
                 </a>
                 <a href={video.url} className="media-description">
-                  Media Description
                 </a>
               </div>
             </div>
@@ -79,25 +78,26 @@ function Medias() {
         </section>
       </div>
       <div className="media">
-        {activeCategory === 'all' ? (
-          <>
-            {sports.map((sport) => (
-              <section key={sport.id} className="media-section">
-                <h2 className="media-section-title">{sport.name}</h2>
-                <div className="media-container">{renderSportMediaVideos(sport)}</div>
-              </section>
-            ))}
-          </>
-        ) : (
-          <>
-            {sports.map(
-              (sport) =>
-                activeCategory === sport.name.toLowerCase() && (
-                  <section key={sport.id} className="media-section">
-                    <h2 className="media-section-title">{sport.name}</h2>
-                    <div className="media-container">{renderSportMediaVideos(sport)}</div>
-                  </section>
-                )
+  {activeCategory === 'all' ? (
+    <>
+    {sports.map(
+      (sport) =>
+      <div className="media-section">
+        <h2 className="media-section-title">All</h2>
+            {renderSportMediaVideos(sport)}
+          </div>
+        )}
+            </>
+  ) : (
+    <>
+      {sports.map(
+        (sport) =>
+          activeCategory === sport.name.toLowerCase() && (
+            <div key={sport.id} className="media-section">
+              <h2 className="media-section-title">{sport.name}</h2>
+              {renderSportMediaVideos(sport)}
+            </div>
+          )
             )}
           </>
         )}

@@ -43,7 +43,7 @@ function Navbar() {
               HOME
             </NavLink>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink
               to="/teams"
               className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')}
@@ -51,7 +51,7 @@ function Navbar() {
             >
               TEAMS
             </NavLink>
-          </li>
+          </li> */}
             <li className="nav-item">
             <NavLink
               to="/games"
