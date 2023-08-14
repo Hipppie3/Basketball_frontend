@@ -30,7 +30,7 @@ function Medias() {
       if (sport.sport_media_videos && sport.sport_media_videos.length > 0) {
         return sport.sport_media_videos.map((video) => (
           <article key={video.id} className="media-container">
-            <YouTube videoId={getVideoId(video.url)} className="thumbnail" data-duration="12:24" />
+            <YouTube videoId={getVideoId(video.url)} className="thumbnail"/>
             <div className="media-bottom-section">
               <div className="media-details">
                 <a href={video.url} className="media-title">

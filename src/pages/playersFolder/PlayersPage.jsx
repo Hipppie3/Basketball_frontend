@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import './PlayersPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faInstagram, faTwitter, faLinkedin  } from '@fortawesome/free-brands-svg-icons'
+import YouTube from 'react-youtube';
 // import { AuthContext } from '../../context/AuthContext'
 
 function PlayersPage() {
@@ -81,6 +82,17 @@ const visibleVideos = player.videos?.slice(scrollPosition, scrollPosition + 4) |
   const averageBlocks = player.statistics.length > 0 ? (totalBlocks / player.statistics.length).toFixed(2) : 0;
 
 console.log(averagePoints);
+
+  const getVideoId = (url) => {
+    const match = url.match(/youtube\.com.*(\?v=|\/embed\/|\/\d\/|\/vi\/|\/v\/|https:\/\/youtu\.be\/|\/e\/|watch\?v=|\&v=|youtu\.be\/|\/v\/|e\/|youtube\.com\/v\/)([^#\&\?\n]*)/);
+    if (match && match[2].length === 11) {
+      return match[2];
+    } else {
+      return null;
+    }
+  };
+  
+
   return (
    <div className="players">
   <section className="players-container">
@@ -178,11 +190,8 @@ console.log(averagePoints);
   return (
 
   <div className="eaVid" key={`video-${video.id}`}>
-    <a href={video.url} style={{ textDecoration: "none", color: "black" }}target="_blank" rel="noopener noreferrer">
-       <div style={{height: "150px", width: "250px", backgroundColor: "black"}}/>
-       
-      <div className="hi" >{video.title}</div>
-    </a>
+  <YouTube  style={{height: "150px", width: "250px", backgroundColor: "black"}} videoId={getVideoId(video.url)}/>
+  <div className="hi" >{video.title}</div>
   </div>
   );
 })}

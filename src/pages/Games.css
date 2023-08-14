@@ -1,4 +1,46 @@
-.games {
+.games-container {
+ height: 100%;
  display: flex;
  justify-content: space-evenly;
+ margin-top: 2rem;
+}
+
+.games {
+ border: 2px solid blue;
+ background-color: black;
+}
+
+.nav-link {
+ font-size: 20px;
+ text-decoration: none;
+ /* Remove underline */
+ color: #007bff;
+ /* Change link color to blue (adjust as needed) */
+}
+
+.nav-link:hover {
+ color: #0056b3;
+ /* Change link color on hover */
+}
+
+@media (max-width: 600px) {
+.games-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem
+ }
+.games {
+ display: flex;
+ justify-content: center;
+ width: 50%;
+ border: 2px solid blue;
+ background-color: black;
+ border-radius: 100px;
+}
+
+
 }

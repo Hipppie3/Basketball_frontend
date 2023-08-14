@@ -99,7 +99,7 @@ function PlayersStatsPage() {
           </div>
           <div className="game-table">
             <div className="game-row game-header">
-              <div className="game-date">Game Date</div>
+              <div className="game-date"></div>
               <div className="w_l">W_L</div>
               <div className="fgm">FGM</div>
               <div className="fga">FGA</div>
@@ -121,7 +121,7 @@ function PlayersStatsPage() {
             {player.statistics.map((stat) => (
               <div key={stat.id}>
                 <div className="game-row">
-                  <div className="game-date">{stat.game_id}</div>
+                  <div className="game-date">{console.log(stat)}</div>
                   <div className="w_l">{stat.w_l}</div>
                   <div className="fgm">{stat.fgm}</div>
                   <div className="fga">{stat.fga}</div>
