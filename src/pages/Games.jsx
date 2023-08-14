@@ -25,12 +25,17 @@ function Games() {
   return (
     <div className='games-container'>
       {sortedGames.map(game => (
+        <NavLink key={game.id} to={`/games/${game.id}`} className='link'>
         <div className='games'>
-        <NavLink key={game.id} to={`/games/${game.id}`} className="nav-link">
+        <div className='game-score'>{game.home_team_score} - {game.away_team_score}</div>
+        <div className='game-name'>
+        <div className="nav-link">
           <h1>{game.name}</h1>
           <h2>{game.date}</h2>
-        </NavLink>
         </div>
+        </div>
+        </div>
+      </NavLink>
       ))}
     </div>
   )
