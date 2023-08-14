@@ -23,7 +23,7 @@
  /* Change link color on hover */
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
 .games-container {
   height: 100%;
   display: flex;
