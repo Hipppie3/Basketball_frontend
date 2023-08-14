@@ -5,6 +5,9 @@ function GameManagement() {
   const [games, setGames] = useState([]);
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
+  const [videoUrl, setVideoUrl] = useState('');
+  const [homeTeamScore, setHomeTeamScore] = useState(0);
+  const [awayTeamScore, setAwayTeamScore] = useState(0);
   const [selectedGame, setSelectedGame] = useState(null);
 
   useEffect(() => {
@@ -15,6 +18,9 @@ function GameManagement() {
     if (selectedGame) {
       setName(selectedGame.name);
       setDate(selectedGame.date);
+      setVideoUrl(selectedGame.video_url || '');
+      setHomeTeamScore(selectedGame.home_team_score || 0);
+      setAwayTeamScore(selectedGame.away_team_score || 0);
     }
   }, [selectedGame]);
 
@@ -27,44 +33,59 @@ function GameManagement() {
     }
   };
 
-  const handleCreate = async () => {
-    try {
-      await axios.post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games', {
-        name,
-        date,
-      });
-      fetchGames();
-    } catch (error) {
-      console.error('Error creating game:', error);
-    }
-  };
-
-  const handleUpdate = async () => {
-    if (!selectedGame) return;
-
-    try {
-      await axios.patch(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games/${selectedGame.id}`, {
-        name,
-        date,
-      });
-      fetchGames();
-      setSelectedGame(null);
-      setName('');
-      setDate('');
-    } catch (error) {
-      console.error('Error updating game:', error);
-    }
-  };
-
-const handleDelete = async (game) => {
+const handleCreate = async () => {
   try {
-    await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games/${game.id}`);
+    // Convert the date to the expected format 'month/day/year'
+    const formattedDate = new Date(date).toLocaleDateString('en-US');
+
+    await axios.post('https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games', {
+      name,
+      date: formattedDate,
+      video_url: videoUrl,
+      home_team_score: homeTeamScore,
+      away_team_score: awayTeamScore,
+    });
     fetchGames();
   } catch (error) {
-    console.error('Error deleting game:', error);
+    console.error('Error creating game:', error);
   }
 };
 
+const handleUpdate = async () => {
+  if (!selectedGame) return;
+
+  try {
+    // Convert the date to the expected format 'month/day/year'
+    const formattedDate = new Date(date).toLocaleDateString('en-US');
+
+    await axios.patch(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games/${selectedGame.id}`, {
+      name,
+      date: formattedDate,
+      video_url: videoUrl,
+      home_team_score: homeTeamScore,
+      away_team_score: awayTeamScore,
+    });
+    fetchGames();
+    setSelectedGame(null);
+    setName('');
+    setDate('');
+    setVideoUrl('');
+    setHomeTeamScore(0);
+    setAwayTeamScore(0);
+  } catch (error) {
+    console.error('Error updating game:', error);
+  }
+};
+
+
+  const handleDelete = async (game) => {
+    try {
+      await axios.delete(`https://agile-reef-32463-2ad3559c3e00.herokuapp.com/games/${game.id}`);
+      fetchGames();
+    } catch (error) {
+      console.error('Error deleting game:', error);
+    }
+  };
 
   return (
     <div>
@@ -72,16 +93,20 @@ const handleDelete = async (game) => {
       <div>
         <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="text" placeholder="Date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <input type="text" placeholder="Video URL" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} />
+        <input type="number" placeholder="Home Team Score" value={homeTeamScore} onChange={(e) => setHomeTeamScore(e.target.value)} />
+        <input type="number" placeholder="Away Team Score" value={awayTeamScore} onChange={(e) => setAwayTeamScore(e.target.value)} />
         <button onClick={handleCreate}>Create</button>
         <button onClick={handleUpdate}>Update</button>
       </div>
       <ul>
+        
         {games.map((game) => (
           <li key={game.id}>
-            {game.name} - {game.date} - {game.id}
+            {console.log(game)}
+            {game.name} - {game.date} - ({game.home_team_score} - {game.away_team_score }) - {game.id}
             <button onClick={() => setSelectedGame(game)}>Edit</button>
             <button onClick={() => handleDelete(game)}>Delete</button>
-
           </li>
         ))}
       </ul>
