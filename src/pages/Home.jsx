@@ -21,7 +21,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="home-container">
       <div>
         {user ? (
           <>
@@ -29,7 +29,7 @@ function Home() {
         <button onClick={handleLogout}>Logout</button>
         </>
         ) : (
-          <h2>Hi</h2>
+          <h2>Coming Soon</h2>
         )
 }
       </div>

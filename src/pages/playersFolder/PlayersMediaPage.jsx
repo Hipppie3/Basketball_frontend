@@ -30,13 +30,15 @@ function PlayersMediaPage() {
     height: '200', // Adjust the height as desired
   };
 
-  const getPlayerVideoId = (url) => {
-    const videoId = url.split('v=')[1];
-    return videoId;
+  console.log(player)
+  const getVideoId = (url) => {
+    const match = url.match(/youtube\.com.*(\?v=|\/embed\/|\/\d\/|\/vi\/|\/v\/|https:\/\/youtu\.be\/|\/e\/|watch\?v=|\&v=|youtu\.be\/|\/v\/|e\/|youtube\.com\/v\/)([^#\&\?\n]*)/);
+    if (match && match[2].length === 11) {
+      return match[2];
+    } else {
+      return null;
+    }
   };
-
-  console.log(player.video)
-
   return (
     <div className='players-media'>
       <div className="players-link-left2">
@@ -51,16 +53,17 @@ function PlayersMediaPage() {
         </ul>
       </div>
 
-      <div className='media-container1'>
-        {player.videos.map((video) => (
-          <div className="eaVid1" key={`video-${video.id}`}>
-               <a href={video.url} style={{ textDecoration: "none", color: "black" }}target="_blank" rel="noopener noreferrer">
-       <div style={{height: "200px", width: "300px", backgroundColor: "black"}}/>
-            <div className="hi">{video.title}</div>
-            </a>
-          </div>
-        ))}
+<div className='media-container1'>
+  {player.videos.map((video) => (
+    <div className="video-wrapper">
+      <div className="video-container">
+        <YouTube videoId={getVideoId(video.url)} opts={videoOptions} />
       </div>
+      <div className="video-title">{video.title}</div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }

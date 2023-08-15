@@ -1,8 +1,10 @@
 .games-container {
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: 2rem;
+  gap: 1rem;
 }
 
 .game-score {
@@ -46,6 +48,12 @@
   padding-top: 0.5rem;
 }
 
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .link {
   font-size: 15px;
   text-decoration: none;
@@ -61,10 +69,12 @@
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     align-items: center;
-    gap: 1rem;
     margin-top: 2rem;
   }
 
+  .gameName {
+    padding-bottom: 2px;
+  }
         .link:hover .games {
           background-color: black;
           /* Change background color on hover */

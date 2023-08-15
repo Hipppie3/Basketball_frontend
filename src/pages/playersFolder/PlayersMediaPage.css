@@ -44,6 +44,7 @@
  flex-wrap: wrap;
  justify-content: flex-start;
  margin-top: 3rem;
+ margin-left: 2rem;
 }
 
 .eaVid1 {
@@ -55,9 +56,21 @@
  padding: 10px;
 }
 
+.video-title {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 .eaVid1 video {
  width: 100%;
  height: auto;
+}
+
+.video-container {
+  height: 80%;
 }
 
 @media (max-width: 768px) {
