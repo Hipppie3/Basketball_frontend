@@ -34,7 +34,7 @@ function Medias() {
             <div className="media-bottom-section">
               <div className="media-details">
                 <a href={video.url} className="media-title">
-                  {video.title}
+            
                 </a>
                 <a href={video.url} className="media-description">
                 </a>
@@ -94,7 +94,7 @@ function Medias() {
         (sport) =>
           activeCategory === sport.name.toLowerCase() && (
             <div key={sport.id} className="media-section">
-              <h2 className="media-section-title"></h2>
+              <h2 className="media-section-title">{sport.name}</h2>
               {renderSportMediaVideos(sport)}
             </div>
           )
