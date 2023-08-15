@@ -94,7 +94,7 @@ function Medias() {
         (sport) =>
           activeCategory === sport.name.toLowerCase() && (
             <div key={sport.id} className="media-section">
-              <h2 className="media-section-title">{sport.name}</h2>
+              <h2 className="media-section-title"></h2>
               {renderSportMediaVideos(sport)}
             </div>
           )
