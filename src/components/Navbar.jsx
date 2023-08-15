@@ -14,14 +14,6 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const handleLogout = (e) => {
-    e.preventDefault()
-    navigate('/login')
-  };
-  
-
-
-
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -107,15 +99,6 @@ function Navbar() {
                     Edit Game
                   </NavLink>
                 </div>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/logout"
-                  className={({ isActive }) => 'nav-links' + (isActive ? ' activated' : '')}
-                  onClick={handleLogout}
-                >
-                  Logout
-                </NavLink>
               </li>
               </>
 }

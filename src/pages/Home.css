@@ -1,4 +1,6 @@
 .home-container {
+ font-size: 40px;
+ height: 80dvh;
  display: flex;
  justify-content: center;
  align-items: center;
