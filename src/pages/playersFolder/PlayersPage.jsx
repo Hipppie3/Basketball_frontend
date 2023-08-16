@@ -175,7 +175,7 @@ console.log(averagePoints);
      </div>
      </section>
 
-       <section className="video-container">
+       <section className="video-container1">
         <div className="players-video">
           <div className="latest-video">LATEST VIDEOS</div>
           <div className="vid">
