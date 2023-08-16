@@ -21,7 +21,7 @@ function Games() {
   }, []);
 
   // Sort the games array by date before rendering
-  const sortedGames = games.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
+  const sortedGames = games.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // Function to format date in "month date year" format
 const formatDate = (dateString) => {

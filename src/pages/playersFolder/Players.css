@@ -3,6 +3,20 @@
  padding: 0;
 }
 
+.player-info {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+.most-stat-player{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ margin-bottom: 3rem;
+}
+
 .player-card-container {
  width: 100%;
  margin-top: 4rem;
@@ -17,6 +31,11 @@
  font-size: 40px;
 }
 
+.most-stat-players-container {
+ display: flex;
+ justify-content: space-between;
+ gap: 2rem
+}
 .search-input {
  position: relative;
  display: inline-flex;
@@ -99,7 +118,7 @@
 
 
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
  .player-name-container {
   display: flex;
   flex-wrap: wrap;
@@ -107,6 +126,11 @@
   /* Adjust this value to set the desired gap between player cards */
  }
 
+ .most-stat-players-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ }
 
 }
 @media (max-width: 300px) {
