@@ -204,7 +204,10 @@ console.log(averagePoints);
         </div>
       </section>
 
+
+
         <section className="players-stats-container">
+
         <div className="players-stats">
           <h2>Last 5 Games</h2>
           <div className="game-table">

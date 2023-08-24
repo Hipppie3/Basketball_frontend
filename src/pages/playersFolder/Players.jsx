@@ -17,6 +17,7 @@ function Players() {
   const [playerWithMostSteals, setPlayerWithMostSteals] = useState(null);
   const [playerWithMostThreePointers, setPlayerWithMostThreePointers] = useState(null);
   const navigate = useNavigate();
+  const [isBasketballButtonClicked, setIsBasketballButtonClicked] = useState(false);
 
   useEffect(() => {
     const fetchPlayerData = async () => {
@@ -213,6 +214,28 @@ function Players() {
     return <div>Loading...</div>;
   }
 
+
+  const filterBySport = (sportName) => {
+  if (!sportName) {
+    setFilteredPlayers(sortedPlayers); // Set to all players when no specific sport is selected
+  } else {
+    const filteredBySport = sortedPlayers.filter(
+      (player) => player.sport && player.sport.name === sportName
+    );
+    if (filteredBySport.length === 0) {
+      setFilteredPlayers(sortedPlayers); // Set to all players if no players found for the selected sport
+    } else {
+      setFilteredPlayers(filteredBySport);
+    }
+  }
+  
+  // Update isBasketballButtonClicked state
+  setIsBasketballButtonClicked(sportName === 'Basketball');
+};
+
+
+
+
   return (
     <div className="player-container">
       <div className="player-card-container">
@@ -228,7 +251,17 @@ function Players() {
             <FaSearch />
           </button>
         </div>
+        <div className="filter-buttons">
+          <button onClick={() => filterBySport(null)}>All</button>
+          <button onClick={() => filterBySport('Basketball')}>Basketball</button>
+          <button onClick={() => filterBySport('Volleyball')}>Volleyball</button>
+          <button onClick={() => filterBySport('Tennis')}>Tennis</button>
+          <button onClick={() => filterBySport('Football')}>Football</button>
+        </div>
+
         <div className="most-stat-players-container">
+          {isBasketballButtonClicked && (
+            <>
           {playerWithMostPoints && (
             <div className="most-stat-player">
               <h2>Most Points</h2>
@@ -242,7 +275,7 @@ function Players() {
                     }
                   >
                     <img
-                      src={getPlayerInfoById(playerWithMostPoints.playerId).image}
+                      src={getPlayerInfoById(playerWithMostPoints.playerId).image || avatarImg}
                       className="player-card-image"
                       alt={`${getPlayerInfoById(playerWithMostPoints.playerId).name}'s Avatar`}
                     />
@@ -272,7 +305,7 @@ function Players() {
                     }
                   >
                     <img
-                      src={getPlayerInfoById(playerWithMostRebounds.playerId).image}
+                      src={getPlayerInfoById(playerWithMostRebounds.playerId).image || avatarImg}
                       className="player-card-image"
                       alt={`${getPlayerInfoById(playerWithMostRebounds.playerId).name}'s Avatar`}
                     />
@@ -302,7 +335,7 @@ function Players() {
                     }
                   >
                     <img
-                      src={getPlayerInfoById(playerWithMostAssists.playerId).image}
+                      src={getPlayerInfoById(playerWithMostAssists.playerId).image || avatarImg}
                       className="player-card-image"
                       alt={`${getPlayerInfoById(playerWithMostAssists.playerId).name}'s Avatar`}
                     />
@@ -332,7 +365,7 @@ function Players() {
                     }
                   >
                     <img
-                      src={getPlayerInfoById(playerWithMostSteals.playerId).image}
+                      src={getPlayerInfoById(playerWithMostSteals.playerId).image || avatarImg}
                       className="player-card-image"
                       alt={`${getPlayerInfoById(playerWithMostSteals.playerId).name}'s Avatar`}
                     />
@@ -362,7 +395,7 @@ function Players() {
                     }
                   >
                     <img
-                      src={getPlayerInfoById(playerWithMostThreePointers.playerId).image}
+                      src={getPlayerInfoById(playerWithMostThreePointers.playerId).image || avatarImg}
                       className="player-card-image"
                       alt={`${getPlayerInfoById(playerWithMostThreePointers.playerId).name}'s Avatar`}
                     />
@@ -379,12 +412,14 @@ function Players() {
               </div>
             </div>
           )}
+          </>
+          )}
         </div>
         <div className="player-name-container">
           {filteredPlayers.map((player) => (
             <div className="player-card" key={player.id}>
               <div>
-               <Link
+              <Link
   className="player-name"
   to={`/players/${player.id}`}
   onClick={(event) => handlePlayerClick(event, player.id)}
