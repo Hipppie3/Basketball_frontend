@@ -1,7 +1,63 @@
 .home-container {
  font-size: 40px;
- height: 80dvh;
+ height: 220dvh;
+ display: flex;
+ flex-direction: column;
+}
+
+.section-one {
+ width: 100%;
+ flex: .4;
+ background-color: rgb(0, 0, 0);
+}
+.home-title {
  display: flex;
  justify-content: center;
+ color: white;
+}
+.section-two {
+ display: flex;
+ width: 100%;
+ flex: .3;
+ background-color: red;
+ flex-direction: row;
+}
+
+.section-three {
+ display: flex;
+ width: 100%;
+ flex: .3;
+ background-color: rgb(227, 227, 227);
+ flex-direction: row;
+}
+
+.about-left {
+ display: flex;
+ flex: .5;
+ background-color: white;
  align-items: center;
+ justify-content: center;
+}
+
+.about-paragraph {
+ font-size: 17px;
+ margin: 20px;
+ color: rgb(91, 90, 90)
+}
+.hipppie-sport {
+ color: black;
+ font-size: 20px;
+ font-weight: bold;
+}
+.about-right {
+ flex: .5;
+}
+
+.section-three {
+display: flex;
+justify-content: center;
+}
+
+.sponsors {
+ margin-top: 3rem;
 }

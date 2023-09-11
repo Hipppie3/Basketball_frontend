@@ -1,41 +1,36 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 import './Home.css'
 
 function Home() {
-  const { user, loggedIn, setUser, setLoggedIn } = useContext(AuthContext);
-  const navigate = useNavigate('');
+  
+return (
+  <div className="home-container">
 
-  const handleLogout = () => {
-    // Perform logout logic
-    fetch("https://agile-reef-32463-2ad3559c3e00.herokuapp.com/logout", {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          setUser(null);
-          setLoggedIn(false);
-          navigate('/login');
-        }
-      });
-  };
+    <section className='section-one'>
+      <h2 className="home-title">Coming Soon</h2>
+    </section>
 
-  return (
-    <div className="home-container">
-      <div>
-        {user ? (
-          <>
-        <h2>Hi {user ? user.username : 'Guest'}!</h2>
-        <button onClick={handleLogout}>Logout</button>
-        </>
-        ) : (
-          <h2>Coming Soon</h2>
-        )
-}
+    <section className="section-two">
+      <div className="about-left">
+        <p className="about-paragraph">
+          <span className="hipppie-sport">Hipppie Sports </span>mission is to bring adults together to play sports, with free participation for kids, all while facilitating networking and business opportunities. We unite people worldwide through sports, making every participant feel like a star athlete. Our focus on capturing memories with videos and photos ensures we cherish these connections and experiences for years to come. Join us in a world where sports create lasting memories and valuable business connections.
+        </p>
       </div>
-    </div>
-  );
+      <div className="about-right">
+
+      </div>
+    </section>
+
+    <section className="section-three">
+      <div className="sponsors">
+        Sponsors
+      </div>
+      <div>
+
+      </div>
+    </section>
+
+  </div>
+  )
 }
 
 export default Home;

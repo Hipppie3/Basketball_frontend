@@ -8,7 +8,7 @@
 }
 
 .navbar {
- background-color: white;
+ background-color: black;
  height: 10dvh;
  display: flex;
  justify-content: center;
@@ -27,7 +27,7 @@
 .login a {
   text-decoration: none;
   font-size: 21px;
-  color: black;
+  color: rgb(247, 241, 241);
 }
 .navbar-container {
  display: flex;
@@ -40,7 +40,7 @@
 }
 
 .navbar-logo {
- color: rgb(0, 0, 0);
+ color: rgb(246, 246, 246);
  cursor: pointer;
  text-decoration: none;
  font-size: 2.5rem;
@@ -93,7 +93,7 @@
 } */
 
 .nav-links {
- color: rgb(3, 3, 3);
+ color: rgb(250, 249, 249);
  display: flex;
  text-decoration: none;
  padding: 1rem;
